@@ -22,7 +22,18 @@ func main () {
   fmt.Println("HEY BUDDY< THIS IS A TEST< THE PORT NUMBER IS ")
   fmt.Println(port)
 
-  http.HandleFunc("/", handler)
-  http.ListenAndServe(port, nil)
-  // http.ListenAndServe(":8080", nil)
+  router := gin.New()
+	router.Use(gin.Logger())
+	router.LoadHTMLGlob("index.tmpl.html")
+	router.Static("/static", "static")
+
+	router.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.tmpl.html", nil)
+	})
+
+	router.Run(":" + port)
+  //
+  // http.HandleFunc("/", handler)
+  // http.ListenAndServe(port, nil)
+  // // http.ListenAndServe(":8080", nil)
 }
