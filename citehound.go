@@ -21,8 +21,8 @@ func main () {
 		log.Fatal("$PORT must be set")
 	}
 
-  console.log("HEY BUDDY< THIS IS A TEST< THE PORT NUMBER IS ")
-  console.log(port)
+  fmt.Println("HEY BUDDY< THIS IS A TEST< THE PORT NUMBER IS ")
+  fmt.Println(port)
 
   http.HandleFunc("/", handler)
   http.ListenAndServe(port, nil)
