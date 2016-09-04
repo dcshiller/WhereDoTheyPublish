@@ -8,15 +8,12 @@ import(
   "os"
 )
 
-
-
 func handler (w http.ResponseWriter, r *http.Request) {
-  fmt.Fprintf(w, "Hello, World!!" )
+  // fmt.Fprintf(w, "Hello, World!!" )
 }
 
 func main () {
   port := os.Getenv("PORT")
-
 
 	if port == "" {
 		log.Fatal("$PORT must be set")
