@@ -6,16 +6,12 @@ import(
   "fmt"
   "log"
   "github.com/gin-gonic/gin"
-
   "os"
 )
 
-func handler (w http.ResponseWriter, r *http.Request) {
-  // fmt.Fprintf(w, "Hello, World!!" )
-}
-
 func main () {
   port := os.Getenv("PORT")
+  if (port == "") {port = "8080"}
 
 	if port == "" {
 		log.Fatal("$PORT must be set")
@@ -34,8 +30,4 @@ func main () {
 	})
 
 	router.Run(":" + port)
-  //
-  // http.HandleFunc("/", handler)
-  // http.ListenAndServe(port, nil)
-  // // http.ListenAndServe(":8080", nil)
 }
