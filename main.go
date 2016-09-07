@@ -30,5 +30,5 @@ func main() {
 	// 	c.HTML(http.StatusOK, "index.tmpl.html", nil)
 	// })
 
-	router.Run(":" + port)
+	// router.Run(":" + port)
 }
