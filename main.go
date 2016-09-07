@@ -25,7 +25,7 @@ func main() {
 
 		})
 
-		log.Println("SREEED")
+		log.Fatal("SREEED")
 	router.GET("/", func(c *gin.Context) {
 		fmt.Println("SREEED")
 		c.String(200, "pong")
