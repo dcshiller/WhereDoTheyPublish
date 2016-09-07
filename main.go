@@ -9,8 +9,8 @@ import (
 )
 
 func main() {
-	// port := os.Getenv("PORT")
-
+	port := os.Getenv("PORT")
+	// port = ""
 	if port == "" {
 		log.Fatal("SREEED")
 		log.Fatal("$PORT must be set")
