@@ -23,7 +23,7 @@ func main () {
 	// router.Static("/assets", "./assets")
 	// router.Static("/assets/master.css", "./assets/master.css")
 	router.StaticFile("/master.css","./master.css")
-	router.Static("/main.js","./main.js")
+	router.StaticFile("/main.js","./main.js")
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl.html", nil)
