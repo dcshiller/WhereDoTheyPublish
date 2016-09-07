@@ -25,10 +25,10 @@ func main() {
 	router.GET("ping", func(c *gin.Context) {
 		})
 
-	router.GET("/", func(c *gin.Context) {
-		c.String(200, "pong")
-		// c.HTML(http.StatusOK, "index.tmpl.html", nil)
-	})
+	// router.GET("/", func(c *gin.Context) {
+	// 	c.String(200, "pong")
+	// 	c.HTML(http.StatusOK, "index.tmpl.html", nil)
+	// })
 
 	router.Run(":" + port)
 }
