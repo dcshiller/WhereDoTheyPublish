@@ -1,1 +1,1 @@
-web: citehound
+web: go-getting-started

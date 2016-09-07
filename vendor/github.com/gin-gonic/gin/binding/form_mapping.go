@@ -56,6 +56,7 @@ func mapForm(ptr interface{}, form map[string][]string) error {
 				return err
 			}
 		}
+
 	}
 	return nil
 }
