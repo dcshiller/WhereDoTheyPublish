@@ -25,9 +25,10 @@ func main() {
 
 		})
 
+		log.Println("SREEED")
 	router.GET("/", func(c *gin.Context) {
-		c.String(200, "pong")
 		fmt.Println("SREEED")
+		c.String(200, "pong")
 		// c.HTML(http.StatusOK, "index.tmpl.html", nil)
 	})
 
