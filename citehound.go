@@ -22,8 +22,8 @@ func main () {
 	router.LoadHTMLGlob("index.tmpl.html")
 	// router.Static("/assets", "./assets")
 	// router.Static("/assets/master.css", "./assets/master.css")
-	router.StaticFile("/master.css","./master.css")
-	router.StaticFile("/main.js","./main.js")
+	router.StaticFile("/xvxcvxmaster.css","./master.css")
+	router.StaticFile("/xcvcxvxmain.js","./main.js")
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl.html", nil)
