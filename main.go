@@ -27,7 +27,8 @@ func main() {
 
 	router.GET("/", func(c *gin.Context) {
 		c.String(200, "pong")
-		c.HTML(http.StatusOK, "index.tmpl.html", nil)
+		fmt.Println("SREEED")
+		// c.HTML(http.StatusOK, "index.tmpl.html", nil)
 	})
 
 	router.Run(":" + port)
