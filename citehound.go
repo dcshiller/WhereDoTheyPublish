@@ -17,13 +17,13 @@ func main () {
 		log.Fatal("$PORT must be set")
 	}
 
-  fmt.Println("HEY BUDDY< THIS IS A TEST< THE PORT NUMBER IS ")
-  fmt.Println(port)
-
   router := gin.New()
 	router.Use(gin.Logger())
 	router.LoadHTMLGlob("index.tmpl.html")
-	router.Static("/assets", "./assets")
+	// router.Static("/assets", "./assets")
+	// router.Static("/assets/master.css", "./assets/master.css")
+	router.StaticFile("/master.css","./master.css")
+	router.Static("/main.js","./main.js")
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl.html", nil)
