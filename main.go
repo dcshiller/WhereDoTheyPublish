@@ -9,9 +9,10 @@ import (
 )
 
 func main() {
-	port := os.Getenv("PORT")
+	// port := os.Getenv("PORT")
 
 	if port == "" {
+		log.Fatal("SREEED")
 		log.Fatal("$PORT must be set")
 	}
 
@@ -25,7 +26,6 @@ func main() {
 
 		})
 
-		log.Fatal("SREEED")
 	router.GET("/", func(c *gin.Context) {
 		fmt.Println("SREEED")
 		c.String(200, "pong")
