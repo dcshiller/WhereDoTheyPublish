@@ -1,26 +1,64 @@
-.jumbotron {
-  background: #532F8C;
-  color: white;
-  padding-bottom: 80px; }
-  .jumbotron .btn-primary {
-    background: #845ac7;
-    border-color: #845ac7; }
-    .jumbotron .btn-primary:hover {
-      background: #7646c1; }
-  .jumbotron p {
-    color: #d9ccee;
-    max-width: 75%;
-    margin: 1em auto 2em; }
-  .navbar + .jumbotron {
-    margin-top: -20px; }
-  .jumbotron .lang-logo {
-    display: block;
-    background: #B01302;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    border: 2px solid white; }
-    .jumbotron .lang-logo img {
-      max-width: 100%; }
+
+body {
+  background: white;
+}
+
+form.leftside {
+  width: calc(50% - 80px);
+  height: 500px;
+  background: rgba(218, 200, 143, .6);
+  border-radius: 20px;
+  border: 2px solid rgba(218, 200, 143, 1);
+
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  text-align: center;
+}
+
+.brownWrapper {
+  border: 2px solid  rgba(200, 180, 113, 1);
+  border-radius: 18px;
+  height: calc(100% - 4px);
+  width: calc(100% - 4px);
+}
+
+.tanWrapper {
+  border: 2px solid rgba(218, 200, 143, 1);
+  border-radius: 18px;
+  height: calc(100% - 4px);
+  width: calc(100% - 4px);
+}
+
+form.leftside h1 {
+}
+
+form.leftside hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 70%;
+  border-top: 2px solid black;
+  border-bottom: 2px solid rgba(200, 180, 113, 1);
+}
+
+form.leftside input {
+  padding-left: 5px;
+  margin-bottom: 40px;
+  background: rgba(252, 245, 233, 1);
+  outline-color: rgba(200, 180, 113, 1);
+}
+
+div.rightside {
+  width: calc(50% - 120px);
+  height: 700px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: rgba(218, 200, 143, .6);
+  border-radius: 20px;
+  border: 2px solid black;
+  margin: 30px;
+  padding: 20px;
+}
+
+main.rightside {}
