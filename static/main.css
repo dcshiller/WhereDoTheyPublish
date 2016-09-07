@@ -1,39 +1,43 @@
-
 body {
   background: white;
+}
+
+.leftside, .rightside {
+    width: calc(50% - 80px);
+  border-top: 3px ridge rgba(218, 200, 143, 1);
+  border-left: 3px ridge rgba(218, 200, 143, 1);
+  border-right: 3px groove rgba(218, 200, 143, 1);
+  border-bottom: 3px groove rgba(218, 200, 143, 1);
+  background: rgba(238, 220, 193, 1);
+  border-radius: 20px;
+  height: 500px;
+  top: 30px;
+  text-align: center;
+
 }
 
 form.leftside {
   width: calc(50% - 80px);
   height: 500px;
-  background: rgba(218, 200, 143, .6);
-  border-radius: 20px;
-  border: 2px solid rgba(218, 200, 143, 1);
-
   position: absolute;
   left: 30px;
-  top: 30px;
-  text-align: center;
 }
 
 .brownWrapper {
-  border: 2px solid  rgba(200, 180, 113, 1);
+  /*border: 2px solid  rgba(200, 180, 113, 1);*/
   border-radius: 18px;
   height: calc(100% - 4px);
   width: calc(100% - 4px);
 }
 
 .tanWrapper {
-  border: 2px solid rgba(218, 200, 143, 1);
+  /*border: 2px solid rgba(218, 200, 143, 1);*/
   border-radius: 18px;
   height: calc(100% - 4px);
   width: calc(100% - 4px);
 }
 
-form.leftside h1 {
-}
-
-form.leftside hr {
+form.leftside hr, .rightside hr{
   margin-top: 20px;
   margin-bottom: 20px;
   width: 70%;
@@ -49,16 +53,9 @@ form.leftside input {
 }
 
 div.rightside {
-  width: calc(50% - 120px);
-  height: 700px;
+
   position: absolute;
-  top: 30px;
   right: 30px;
-  background: rgba(218, 200, 143, .6);
-  border-radius: 20px;
-  border: 2px solid black;
-  margin: 30px;
-  padding: 20px;
 }
 
 main.rightside {}
