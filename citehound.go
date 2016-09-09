@@ -9,9 +9,14 @@ import (
     "log"
 )
 
+type TestStruct struct {
+  name string
+}
+
 func viewHandler(w http.ResponseWriter, r *http.Request) {
   t, _ := template.ParseFiles("index.tmpl.html")
-  t.Execute(w, nil)
+  myTest := TestStruct{name: "yoyo"}
+  t.Execute(w, myTest)
 }
 
 func main() {
@@ -19,8 +24,6 @@ func main() {
   // http.Handle("/",fs)
   port := os.Getenv("PORT")
   if (port == "") {port = "8080"}
-
-  log.Println("Works")
 
   if port == "" {
     log.Fatal("$PORT must be set")
