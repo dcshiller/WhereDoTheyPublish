@@ -13,8 +13,8 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-  fs := http.FileServer(http.Dir("Static"))
-  http.Handle("/",fs)
+  // fs := http.FileServer(http.Dir("Static"))
+  // http.Handle("/",fs)
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
   http.HandleFunc("/", viewHandler)
   http.ListenAndServe(":8080", nil)
