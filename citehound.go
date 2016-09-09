@@ -9,9 +9,9 @@ import (
     "log"
 )
 
-type TestStruct struct {
-  Name string
-}
+// type TestStruct struct {
+//   Name string
+// }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
   t, _ := template.ParseFiles("index.tmpl.html")
