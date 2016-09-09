@@ -5,7 +5,7 @@ import (
     // "io/ioutil"
     "html/template"
     "net/http"
-    "go"
+    "os"
 )
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
