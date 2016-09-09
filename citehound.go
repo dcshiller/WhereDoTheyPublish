@@ -10,12 +10,12 @@ import (
 )
 
 type TestStruct struct {
-  name string
+  Name string
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
   t, _ := template.ParseFiles("index.tmpl.html")
-  myTest := TestStruct{name: "yoyo"}
+  myTest := &TestStruct{Name: "yoyo"}
   t.Execute(w, myTest)
 }
 
