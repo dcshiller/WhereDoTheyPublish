@@ -15,8 +15,8 @@ type TestStruct struct {
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
   t, _ := template.ParseFiles("index.tmpl.html")
-  myTest := &TestStruct{Name: "yoyo"}
-  t.Execute(w, myTest)
+  // myTest := &TestStruct{Name: "yoyo"}
+  t.Execute(w, nil)
 }
 
 func main() {
