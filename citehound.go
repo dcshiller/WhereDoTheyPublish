@@ -6,6 +6,7 @@ import (
     "html/template"
     "net/http"
     "os"
+    "log"
 )
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
