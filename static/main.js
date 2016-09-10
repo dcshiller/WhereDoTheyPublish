@@ -32,11 +32,14 @@ function queryRequest (e) {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
     let message = JSON.parse(this.responseText)
-    document.getElementById("resultTitle").innerText = message.Title
-    document.getElementById("resultAuthor").innerText = message.Author
-    document.getElementById("resultJournal").innerText = message.Journal
-   }
-  };
+    debugger
+    for (let i = 0; i < 25; i++) {
+      var newEl = document.createElement("li")
+      newEl.innerText = message[i].Journal
+      document.getElementById("pubList").appendChild(newEl)
+    }
+ }
+  }
   // let url = window.location.hostname == "localhost" ? "http://localhost:8080/json/" :
   xhttp.open("GET","/json/", true)
   xhttp.send();
