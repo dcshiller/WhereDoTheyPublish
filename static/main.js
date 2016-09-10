@@ -26,6 +26,21 @@ function move (coords, DOMelement, e) {
   DOMelement.style.top = coords.DOMOriginY + e.screenY - coords.clickOriginY + "px";
 }
 
+function queryRequest (e) {
+  e.preventDefault();
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4) {
+    let message = JSON.parse(this.responseText)
+    document.getElementById("resultTitle").innerText = message.Title
+    document.getElementById("resultAuthor").innerText = message.Author
+    document.getElementById("resultJournal").innerText = message.Journal 
+   }
+  };
+  xhttp.open("GET","http://localhost:8080/json/", true)
+  xhttp.send();
+}
+
 function onLoad() {
   var searchButton = document.getElementById("searchButton")
   searchForm = document.getElementById("searchForm");
@@ -34,6 +49,7 @@ function onLoad() {
   searchForm.addEventListener("mousedown", beginMove.bind(this, searchForm))
   displayPanel.addEventListener("mousedown", beginMove.bind(this, displayPanel))
   document.addEventListener("mouseup", endMove)
+  searchButton.addEventListener("click", queryRequest)
 }
 
 
