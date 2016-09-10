@@ -34,10 +34,11 @@ function queryRequest (e) {
     let message = JSON.parse(this.responseText)
     document.getElementById("resultTitle").innerText = message.Title
     document.getElementById("resultAuthor").innerText = message.Author
-    document.getElementById("resultJournal").innerText = message.Journal 
+    document.getElementById("resultJournal").innerText = message.Journal
    }
   };
-  xhttp.open("GET","http://localhost:8080/json/", true)
+  // let url = window.location.hostname == "localhost" ? "http://localhost:8080/json/" :
+  xhttp.open("GET","/json/", true)
   xhttp.send();
 }
 
