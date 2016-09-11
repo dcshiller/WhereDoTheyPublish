@@ -118,8 +118,12 @@ func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
   // fmt.Println(string(body))
   authors := strings.Split(string(body), "|")
   firstGroup := authors[0:4]
-  secondGroup := authors[4:]
-  groups := [][]string{ firstGroup, secondGroup}
+  groups := make([][]string,1)
+  groups[0] = firstGroup
+  if len(authors) > 4 {
+    secondGroup := authors[4:]
+    groups = append(groups, secondGroup)
+  }
 
   for i :=0; i < len(groups) ; i++ {
     searchStr := convertAuthorsToPPFormat(groups[i])
