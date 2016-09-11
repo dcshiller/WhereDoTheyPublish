@@ -30,16 +30,18 @@ form.leftside {
 #inputFields {
   height: 40%;
   overflow: auto;
-  position: absolute;
-  left: 100px;
-  right: 100px;
+  /*position: absolute;*/
+  /*right: calc(100% - 150px);*/
+  /*right: 100px;*/
+  margin: auto;
+  width: 300px;
 }
 
 #buttonBar {
   position: absolute;
   bottom: 10%;
-  width: 200px;
-  left: calc(50% - 100px);
+  width: 400px;
+  left: calc(50% - 200px);
 }
 
 /*.brownWrapper {
