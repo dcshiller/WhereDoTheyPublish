@@ -28,19 +28,27 @@
           <input class="authorField" type="text" name="author3" value="" placeholder="author name">
         </label> <br/>
         <label> Author 4:
-          <input class="authorField" type="text" name="author3" value="" placeholder="author name">
+          <input class="authorField" type="text" name="author4" value="" placeholder="author name">
         </label> <br/>
         <label> Author 5:
-          <input class="authorField" type="text" name="author3" value="" placeholder="author name">
+          <input class="authorField" type="text" name="author5" value="" placeholder="author name">
         </label> <br/>
         <label> Author 6:
-          <input class="authorField" type="text" name="author3" value="" placeholder="author name">
+          <input class="authorField" type="text" name="author6" value="" placeholder="author name">
+        </label> <br/>
+        <label> Author 7:
+          <input class="authorField" type="text" name="author7" value="" placeholder="author name">
+        </label> <br/>
+        <label> Author 8:
+          <input class="authorField" type="text" name="author8" value="" placeholder="author name">
         </label> <br/>
       </div>
 
       <span id="buttonBar">
         <button id="searchButton"> Search </button>
         <button id="aboutButton"> About </button>
+        <button id="sample1"> Sample Inputs 1 </button>
+        <button id="sample2"> Sample Inputs 2 </button>
       </span>
     </form>
 
@@ -53,11 +61,11 @@
 
           <p> The best way to rank journals, I propose, should take into account the audience's own interests and values. There is no adequate one-size-fits all ranking system. The present project aims to allow users to rank journals based on the citations of those scholars who they admire. Input your tastes, as measured by people who's work you admire, and the system outputs a list of journals based on those tastes. </p>
 
-          <p> The ultimate goal is to produce a ranking of journals from the users' input in the following way. The papers of the admired authors are searched for their citations. Each journal gets a number of points for each cited paper, weighted by the annual production of the journal. Then each of those papers are themselves searched for the papers that they cite, and the process is repeated. Points awarded at this later stage are weighted down in accordance with their distance from the initial input. The journals with the most points are ranked first. </p>
+          <p> The ultimate goal is to produce a ranking of journals from the users' input in the following way. The user inputs his or her admired authors. The papers of the admired authors are searched for their citations. Each journal gets awarded a number of points for each cited paper, weighted by the annual production of that journal. Then each of those papers are themselves searched for the papers that <em> they </em> cite, and the process is repeated. Points awarded at this second stage are weighted down to reflect their distance from the initial input. The journals with the most points are ranked first. </p>
 
-          <p> The project is on-going. At this stage, the search feature will rank journals based on the number of papers published by the input authors. </p>
+          <p> The project is on-going. At this stage, the search feature ranks journals based solely on the number of papers published by the input authors. It searchs for them in the PhilPapers database, and counts the number of publications per journal. </p>
 
-          <p> All data comes from Philpapers. None is stored on this website </p>
+          <p> All data comes from Philpapers. None is stored on this website. All code for this project can be found at my <a href="http://github.com/dcshiller/citehound"> Github </a> page. </p>
         </article>
       </div>
 
