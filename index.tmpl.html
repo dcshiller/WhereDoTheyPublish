@@ -12,26 +12,57 @@
 
     <form class="leftside" id="searchForm" >
 
-      <h1>Search Properties </h1>
+      <h1>Search Panel </h1>
       <hr/>
-      <label> Author 1:
-        <input type="text" name="author1" value="" placeholder="author name">
-      </label> <br/>
 
-      <label> Author 2:
-        <input type="text" name="author1" value="" placeholder="author name">
-      </label> <br/>
+      <div id="inputFields">
+        <label> Author 1:
+          <input class="authorField" type="text" name="author1" value="" placeholder="author name">
+        </label> <br/>
 
-      <label> Author 3:
-        <input type="text" name="author1" value="" placeholder="author name">
-      </label> <br/>
+        <label> Author 2:
+          <input class="authorField" type="text" name="author2" value="" placeholder="author name">
+        </label> <br/>
 
-      <hr/>
-      <button id="searchButton"> Search </button>
+        <label> Author 3:
+          <input class="authorField" type="text" name="author3" value="" placeholder="author name">
+        </label> <br/>
+        <label> Author 4:
+          <input class="authorField" type="text" name="author3" value="" placeholder="author name">
+        </label> <br/>
+        <label> Author 5:
+          <input class="authorField" type="text" name="author3" value="" placeholder="author name">
+        </label> <br/>
+        <label> Author 6:
+          <input class="authorField" type="text" name="author3" value="" placeholder="author name">
+        </label> <br/>
+      </div>
+
+      <span id="buttonBar">
+        <button id="searchButton"> Search </button>
+        <button id="aboutButton"> About </button>
+      </span>
     </form>
 
     <div class="rightside" id="displayPanel">
-      <h1>CiteHound Response</h1>
+      <div id="intro">
+        <h1>About</h1>
+        <hr/>
+        <article>
+          <p> This is an experimental project in journal rankings. One problem with current attempts to rank academic journals is that the standards to apply are controversial. Not everyone agrees about what constitutes good research. This means that rankings must use either subjective views of particular groups, or fall back on questionable objective measures like citation counts.</p>
+
+          <p> The best way to rank journals, I propose, should take into account the audience's own interests and values. There is no adequate one-size-fits all ranking system. The present project aims to allow users to rank journals based on the citations of those scholars who they admire. Input your tastes, as measured by people who's work you admire, and the system outputs a list of journals based on those tastes. </p>
+
+          <p> The ultimate goal is to produce a ranking of journals from the users' input in the following way. The papers of the admired authors are searched for their citations. Each journal gets a number of points for each cited paper, weighted by the annual production of the journal. Then each of those papers are themselves searched for the papers that they cite, and the process is repeated. Points awarded at this later stage are weighted down in accordance with their distance from the initial input. The journals with the most points are ranked first. </p>
+
+          <p> The project is on-going. At this stage, the search feature will rank journals based on the number of papers published by the input authors. </p>
+
+          <p> All data comes from Philpapers. None is stored on this website </p>
+        </article>
+      </div>
+
+
+      <h1>Search Results</h1>
             <hr/>
             <ul id = "pubList">
 
