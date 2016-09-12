@@ -10,11 +10,11 @@ import (
     "log"
     "strings"
     "sort"
+    "math"
     // "bytes"
     "encoding/json"
 )
 
-// Your API key is YUwLUPslNpcO9nkK and your user ID is 7192.
 
 //Variables
 
@@ -27,6 +27,7 @@ type journalRank struct {
   Count int
 }
 
+
 type publication struct {
   Title string
   Author string
@@ -34,6 +35,20 @@ type publication struct {
 }
 
 type rankedJournals []journalRank
+
+  func (ranking rankedJournals) Len() int {
+    return len(ranking)
+  }
+
+  func (ranking rankedJournals) Swap(i, j int) {
+    ranking[i], ranking[j] = ranking[j], ranking[i]
+  }
+
+  func (ranking rankedJournals) Less(i, j int) bool {
+    if ranking[i].Title == "" && ranking[j].Title != "" {return false}
+    if ranking[i].Title != "" && ranking[j].Title == "" {return true}
+    return ranking[i].Count > ranking[j].Count
+  }
 
 type returnData struct {
   JournalCounts map[string]int
@@ -43,28 +58,11 @@ type returnData struct {
 //Functions
 
 func countJournals (publications []publication) {
-  // var pubCount = make(map[string]int, 25)
   for i := 0 ; i < len(publications); i++ {
     if journalCount[publications[i].Journal] > 0 {
       journalCount[publications[i].Journal]++
       } else {journalCount[publications[i].Journal] = 1}
     }
-    // fmt.Println(pubCount["mind"])
-    // return pubCount;
-}
-
-func (ranking rankedJournals) Len() int {
-    return len(ranking)
-}
-
-func (ranking rankedJournals) Swap(i, j int) {
-    ranking[i], ranking[j] = ranking[j], ranking[i]
-}
-
-func (ranking rankedJournals) Less(i, j int) bool {
-    if ranking[i].Title == "" && ranking[j].Title != "" {return false}
-    if ranking[i].Title != "" && ranking[j].Title == "" {return true}
-    return ranking[i].Count > ranking[j].Count
 }
 
 func parseSinglePub ( entryStr string ) ( nextPub publication ) {
@@ -93,12 +91,6 @@ func retrievePubList (url string) []publication {
   return publications;
 }
 
-// searchStr=%28+%40+author+%20+Derek+%20+Shiller+%29
-// searchStr=%28+%40author+Derek+shiller+%29
-// type test_struct struct {
-//   Test string
-// }
-
 func convertAuthorToPPFormat(author string) string {
   author = strings.Join(strings.Split(author, " "), "+")
   author = "%28+%40author+" + author + "%29"
@@ -112,18 +104,26 @@ func convertAuthorsToPPFormat(authors []string) string {
   return strings.Join(authors, "+%7C+")
 }
 
-func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
-  journalCount = make(map[string]int, 25)
+func parseAuthors (r *http.Request) ( [][]string ) {
+  // fmt.Println(body)
   body,_ := ioutil.ReadAll(r.Body)
-  // fmt.Println(string(body))
   authors := strings.Split(string(body), "|")
-  firstGroup := authors[0:4]
+  // fmt.Println(authors)
+  lengthOrFour := int(math.Min(float64(len(authors)), 4.0))
+  firstGroup := authors[0:lengthOrFour]
+
   groups := make([][]string,1)
   groups[0] = firstGroup
   if len(authors) > 4 {
     secondGroup := authors[4:]
     groups = append(groups, secondGroup)
   }
+  return groups
+}
+
+func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
+  journalCount = make(map[string]int, 25)
+  groups := parseAuthors(r)
 
   for i :=0; i < len(groups) ; i++ {
     searchStr := convertAuthorsToPPFormat(groups[i])
@@ -131,20 +131,16 @@ func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
     urlSuffix := "&categorizerOn=&filterMode=keywords&onlineOnly=&sort=relevance&filterByAreas=&hideAbstracts=on&format=txt&start=&limit=500&jlist=&ap_c1=&ap_c2="
     fmt.Println(urlPrefix + searchStr + urlSuffix)
     pubList := retrievePubList(urlPrefix + searchStr + urlSuffix)//
+    // pubList := retrievePubList("http://www.derekshiller.com/test/test.html")
     countJournals(pubList)
   }
-
-// %28+%40author+Derek+Shiller+%29+%7C+%28+%40author+Richard+Chappell+%29+%7C+%28+%40author+Jack+Woods+%29
-// %28+%40author+Derek+Shiller%29+%7C+%28+%40author+Richard+Chappell%29+%7C+%28+%40author+Jack+Woods%29+%7C+%28+%40author+%29
-
-  //pubList := retrievePubList("http://www.derekshiller.com/test/test.html")//publication{Title: "Hidden Qualia", Author: "Derek Shiller", Journal: "Review of Philosophy and Psychology"}
-  topTenRanking := findTopTen(journalCount)
+  topTenRanking := findTop(journalCount)
   jData, _ := json.Marshal(topTenRanking)
   w.Header().Set("Content-Type","application/json")
   w.Write(jData)
 }
 
-func findTopTen (pubCount map[string]int) []journalRank {
+func findTop (pubCount map[string]int) []journalRank {
   allJournals := make([]journalRank, 501)
   i := 0
   for key, value := range journalCount {
