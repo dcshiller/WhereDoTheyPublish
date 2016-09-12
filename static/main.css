@@ -96,7 +96,7 @@ div.rightside #intro {
 }
 #intro article {
   position: absolute;
-  height: calc(100% - 150px);
+  height: calc(100% - 175px);
   bottom: 15%;
   left: 10%;
   right: 10%;
