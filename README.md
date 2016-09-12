@@ -1,6 +1,6 @@
 # CiteHound
 
-*Flexible Citation-Based Journal Ranking*
+*Flexible Citation-Based Journal Rankings*
 
 [Live](http://citehound.derekshiller.com)
 
