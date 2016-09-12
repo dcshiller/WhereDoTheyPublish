@@ -4,13 +4,25 @@ var boundMove;
 
 
 function addSample (sampleNum, e) {
-  debugger
   e.preventDefault();
   firstSample = ["Alan Gibbard", "Terry Horgan", "Jack Woods", "Derek Parfit", "Richard Joyce", "Sharon Street", "Mark Schroeder", "Michael Ridge"  ]
   secondSample = ["Peter Carruthers", "Daniel Dennett", "Patricia Churchland", "Susan Schneider", "Jerry Fodor", "David Papineau", "Ruth Millikan", "Murat Aydede" ]
+  clear = ["", "", "", "", "", "", "", "" ]
 
   let fields = document.getElementsByClassName('authorField');
-  sample = sampleNum == 1 ? firstSample : secondSample;
+  let sample;
+  switch (sampleNum) {
+      case 1 :
+        sample = firstSample
+        break;
+      case 2 :
+        sample = secondSample
+        break;
+      default :
+        sample = clear
+        break;
+    }
+
     for (let i = 0; i <= 8; i++) {
       fields[i].value = sample[i]
     }
@@ -80,6 +92,7 @@ function onLoad() {
   var body = document.getElementsByTagName("body")[0];
   document.getElementById('sample1').addEventListener("click", addSample.bind(this,1))
   document.getElementById('sample2').addEventListener("click", addSample.bind(this,2))
+  document.getElementById('clearButton').addEventListener("click", addSample.bind(this,3))
   searchForm = document.getElementById("searchForm");
   displayPanel = document.getElementById("displayPanel");
   searchForm.addEventListener("mousedown", beginMove.bind(this, searchForm))
