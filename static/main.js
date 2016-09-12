@@ -1,6 +1,6 @@
 var searchForm;
 var displayPanel;
-var boundMove
+var boundMove;
 
 
 function addSample (sampleNum, e) {
@@ -39,12 +39,10 @@ function move (coords, DOMelement, e) {
 function queryRequest (e) {
   e.preventDefault();
   document.getElementById("searchButton").disabled = true;
-  setTimeout(function(){
-    document.getElementById("searchButton").disabled = false;
-  }, 500)
+  // setTimeout(function(){
+  // }, 10000)
   document.getElementById("intro").style.display = 'none';
   let xhttp = new XMLHttpRequest();
-  // let params = "test"
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
     const pubList = document.getElementById("pubList")
@@ -57,11 +55,10 @@ function queryRequest (e) {
         pubList.appendChild(newEl)
       }
     }
+    document.getElementById("searchButton").disabled = false;
  }
   }
-  // let url = window.location.hostname == "localhost" ? "http://localhost:8080/json/" :
   xhttp.open("POST","/json/", true)
-  // var Data = new FormData(searchForm)
   let fields = document.getElementsByClassName('authorField')
   params = ""
   for (let i = 0; i < fields.length ; i++) {
