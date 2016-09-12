@@ -15,7 +15,6 @@ import (
     "encoding/json"
 )
 
-
 //Variables
 
 var journalCount = make(map[string]int, 25)
@@ -104,6 +103,21 @@ func convertAuthorsToPPFormat(authors []string) string {
   return strings.Join(authors, "+%7C+")
 }
 
+func findTop (pubCount map[string]int) []journalRank {
+  allJournals := make([]journalRank, 501)
+  i := 0
+  for key, value := range journalCount {
+    if len(key) > 2 {
+      nextJournal := journalRank{ Title: key, Count: value }
+      allJournals[i] = nextJournal
+      i++
+    }
+  }
+  sort.Sort(rankedJournals(allJournals))
+  topJournals := allJournals[0:100]
+  return topJournals
+}
+
 func parseAuthors (r *http.Request) ( [][]string ) {
   // fmt.Println(body)
   body,_ := ioutil.ReadAll(r.Body)
@@ -134,25 +148,10 @@ func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
     // pubList := retrievePubList("http://www.derekshiller.com/test/test.html")
     countJournals(pubList)
   }
-  topTenRanking := findTop(journalCount)
-  jData, _ := json.Marshal(topTenRanking)
+  sortedJournals := findTop(journalCount)
+  jsonSortedJournals, _ := json.Marshal(sortedJournals)
   w.Header().Set("Content-Type","application/json")
-  w.Write(jData)
-}
-
-func findTop (pubCount map[string]int) []journalRank {
-  allJournals := make([]journalRank, 501)
-  i := 0
-  for key, value := range journalCount {
-    if len(key) > 2 {
-      nextJournal := journalRank{ Title: key, Count: value }
-      allJournals[i] = nextJournal
-      i++
-    }
-  }
-  sort.Sort(rankedJournals(allJournals))
-  topTenJournals := allJournals[0:100]
-  return topTenJournals
+  w.Write(jsonSortedJournals)
 }
 
 func viewHandler (w http.ResponseWriter, r *http.Request) {
