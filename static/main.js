@@ -5,7 +5,7 @@ var boundMove;
 
 function addSample (sampleNum, e) {
   e.preventDefault();
-  firstSample = ["Alan Gibbard", "Terry Horgan", "Jack Woods", "Derek Parfit", "Richard Joyce", "Sharon Street", "Mark Schroeder", "Michael Ridge"  ]
+  firstSample = ["Allan Gibbard", "Terry Horgan", "Jack Woods", "Derek Parfit", "Richard Joyce", "Sharon Street", "Mark Schroeder", "Michael Ridge"  ]
   secondSample = ["Peter Carruthers", "Daniel Dennett", "Patricia Churchland", "Susan Schneider", "Jerry Fodor", "David Papineau", "Ruth Millikan", "Murat Aydede" ]
   clear = ["", "", "", "", "", "", "", "" ]
 
@@ -26,6 +26,26 @@ function addSample (sampleNum, e) {
     for (let i = 0; i <= 8; i++) {
       fields[i].value = sample[i]
     }
+}
+
+function assignJournalLis () {
+  if (this.readyState == 4) {
+  const pubList = document.getElementById("pubList")
+  pubList.innerHTML = ""
+  let message = JSON.parse(this.responseText)
+  for (let i = -1; i < message.length; i++) {
+    var newEl = document.createElement("li")
+    if (i == -1) {
+      newEl.innerHTML = `<strong> Count </strong> <center> Journal Title </center> `
+      pubList.appendChild(newEl)
+    } else if (message[i].Count > 0) {
+      // newEl.innerHTML = `<strong>${message[i].Count}</strong> <span>${message[i].Title}`
+      newEl.innerHTML = `<strong>${message[i].Count}</strong> <span>${message[i].Title}</span>`
+      pubList.appendChild(newEl)
+    }
+  }
+  document.getElementById("searchButton").disabled = false;
+}
 }
 
 function beginMove (DOMelement, e) {
@@ -55,21 +75,7 @@ function queryRequest (e) {
   // }, 10000)
   document.getElementById("intro").style.display = 'none';
   let xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4) {
-    const pubList = document.getElementById("pubList")
-    pubList.innerHTML = ""
-    let message = JSON.parse(this.responseText)
-    for (let i = 0; i < message.length; i++) {
-      if (message[i].Count > 0) {
-        var newEl = document.createElement("li")
-        newEl.innerText = message[i].Title + " " + message[i].Count
-        pubList.appendChild(newEl)
-      }
-    }
-    document.getElementById("searchButton").disabled = false;
- }
-  }
+  xhttp.onreadystatechange = assignJournalLis;
   xhttp.open("POST","/json/", true)
   let fields = document.getElementsByClassName('authorField')
   params = ""
