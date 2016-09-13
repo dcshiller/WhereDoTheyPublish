@@ -18,6 +18,7 @@ import (
 //Variables
 
 var journalCount = make(map[string]int, 25)
+var journalNames = make(map[string]bool, 172)
 
 //Structs
 
@@ -56,40 +57,6 @@ type returnData struct {
 
 //Functions
 
-func countJournals (publications []publication) {
-  for i := 0 ; i < len(publications); i++ {
-    if journalCount[publications[i].Journal] > 0 {
-      journalCount[publications[i].Journal]++
-      } else {journalCount[publications[i].Journal] = 1}
-    }
-}
-
-func parseSinglePub ( entryStr string ) ( nextPub publication ) {
-  titleReg := regexp.MustCompile("[)].*[[:space:]][_]")
-  journalReg := regexp.MustCompile("[[:space:]][_].*[_][[:space:]]")
-  title := titleReg.FindAllString(entryStr, -1)
-  journal := journalReg.FindAllString(entryStr, -1)
-  if len(title) == 0 {title = []string{""}}
-  if len(journal) == 0 {journal = []string{""}}
-  titleStr := strings.Trim(title[0], ")._ ")
-  journalStr := strings.Trim(journal[0], ")._ ")
-  nextPub = publication{Title: titleStr, Author: "tbd", Journal: journalStr}
-  return nextPub
-}
-
-func retrievePubList (url string) []publication {
-  resp, _ := http.Get(url)
-  rawData, _ := ioutil.ReadAll(resp.Body)
-  entryReg := regexp.MustCompile(".*-.")
-  stringArr := entryReg.FindAllString(string(rawData), -1)
-  publications := make([]publication, 501)
-  for i := 0 ; i < len(stringArr); i++ {
-      publications[i] = parseSinglePub(stringArr[i]);
-  }
-  resp.Body.Close()
-  return publications;
-}
-
 func convertAuthorToPPFormat(author string) string {
   author = strings.Join(strings.Split(author, " "), "+")
   author = "%28+%40author+" + author + "%29"
@@ -101,6 +68,16 @@ func convertAuthorsToPPFormat(authors []string) string {
     authors[i] = convertAuthorToPPFormat(authors[i])
   }
   return strings.Join(authors, "+%7C+")
+}
+
+func countJournals (publications []publication) {
+  for i := 0 ; i < len(publications); i++ {
+    nextPubJournal := publications[i].Journal;
+    recognizedJournal := journalNames[nextPubJournal]
+    if journalCount[nextPubJournal] > 0 && recognizedJournal {
+      journalCount[nextPubJournal]++
+      } else if recognizedJournal {journalCount[nextPubJournal] = 1}
+    }
 }
 
 func findTop (pubCount map[string]int) []journalRank {
@@ -135,6 +112,19 @@ func parseAuthors (r *http.Request) ( [][]string ) {
   return groups
 }
 
+func parseSinglePub ( entryStr string ) ( nextPub publication ) {
+  titleReg := regexp.MustCompile("[)].*[[:space:]][_]")
+  journalReg := regexp.MustCompile("[[:space:]][_].*[_][[:space:]]")
+  title := titleReg.FindAllString(entryStr, -1)
+  journal := journalReg.FindAllString(entryStr, -1)
+  if len(title) == 0 {title = []string{""}}
+  if len(journal) == 0 {journal = []string{""}}
+  titleStr := strings.Trim(title[0], ")._ ")
+  journalStr := strings.Trim(journal[0], ")._ ")
+  nextPub = publication{Title: titleStr, Author: "tbd", Journal: journalStr}
+  return nextPub
+}
+
 func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
   journalCount = make(map[string]int, 25)
   groups := parseAuthors(r)
@@ -154,6 +144,30 @@ func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
   w.Write(jsonSortedJournals)
 }
 
+func readJournalNames () {
+  journalString, err := ioutil.ReadFile("./static/JournalList.txt")
+  if err != nil {
+       panic(err)
+   }
+  journalsArr := strings.Split(string(journalString), "\n")
+  for i := 0; i < len(journalsArr); i++ {
+    journalNames[journalsArr[i]] = true
+  }
+}
+
+func retrievePubList (url string) []publication {
+  resp, _ := http.Get(url)
+  rawData, _ := ioutil.ReadAll(resp.Body)
+  entryReg := regexp.MustCompile(".*-.")
+  stringArr := entryReg.FindAllString(string(rawData), -1)
+  publications := make([]publication, 501)
+  for i := 0 ; i < len(stringArr); i++ {
+      publications[i] = parseSinglePub(stringArr[i]);
+  }
+  resp.Body.Close()
+  return publications;
+}
+
 func viewHandler (w http.ResponseWriter, r *http.Request) {
   t, _ := template.ParseFiles("index.tmpl.html")
   t.Execute(w, nil)
@@ -167,6 +181,7 @@ func main() {
     log.Fatal("$PORT must be set")
   }
 
+  readJournalNames()
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
   http.HandleFunc("/", viewHandler)
   http.HandleFunc("/json/", rankingRequestHandler)
