@@ -2,7 +2,6 @@ var searchForm;
 var displayPanel;
 var boundMove;
 
-
 function addSample (sampleNum, e) {
   e.preventDefault();
   firstSample = ["Allan Gibbard", "Terry Horgan", "Jack Woods", "Derek Parfit", "Richard Joyce", "Sharon Street", "Mark Schroeder", "Michael Ridge"  ]
@@ -44,7 +43,8 @@ function assignJournalLis () {
       pubList.appendChild(newEl)
     }
   }
-  document.getElementById("searchButton").disabled = false;
+  document.getElementById("whereTheyPublishButton").disabled = false;
+  document.getElementById("whereTheyCiteButton").disabled = false;
 }
 }
 
@@ -63,20 +63,13 @@ function endMove () {
   document.removeEventListener("mousemove", boundMove)
 }
 
-function move (coords, DOMelement, e) {
-  DOMelement.style.left = coords.DOMOriginX + e.screenX - coords.clickOriginX + "px";
-  DOMelement.style.top = coords.DOMOriginY + e.screenY - coords.clickOriginY + "px";
-}
-
-function queryRequest (e) {
+function getRanking (buttonId, url, e) {
   e.preventDefault();
-  document.getElementById("searchButton").disabled = true;
-  // setTimeout(function(){
-  // }, 10000)
+  document.getElementById(buttonId).disabled = true;
   document.getElementById("intro").style.display = 'none';
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = assignJournalLis;
-  xhttp.open("POST","/json/", true)
+  xhttp.open("POST",url, true)
   let fields = document.getElementsByClassName('authorField')
   params = ""
   for (let i = 0; i < fields.length ; i++) {
@@ -87,13 +80,27 @@ function queryRequest (e) {
   xhttp.send(params);
 }
 
+function getWhereTheyPublish (e) {
+    getRanking("whereTheyPublishButton", "/wheredotheypublish/", e)
+}
+
+function getWhereTheyCite (e) {
+    getRanking("whereTheyCiteButton", "/wheredotheycite/", e)
+}
+
+function move (coords, DOMelement, e) {
+  DOMelement.style.left = coords.DOMOriginX + e.screenX - coords.clickOriginX + "px";
+  DOMelement.style.top = coords.DOMOriginY + e.screenY - coords.clickOriginY + "px";
+}
+
 function showAbout(e) {
   e.preventDefault();
   document.getElementById("intro").style.display = 'block';
 }
 
 function onLoad() {
-  var searchButton = document.getElementById("searchButton")
+  var whereTheyPublishButton = document.getElementById("whereTheyPublishButton")
+  var whereTheyCiteButton = document.getElementById("whereTheyCiteButton")
   var aboutButton = document.getElementById("aboutButton")
   var body = document.getElementsByTagName("body")[0];
   document.getElementById('sample1').addEventListener("click", addSample.bind(this,1))
@@ -104,7 +111,8 @@ function onLoad() {
   searchForm.addEventListener("mousedown", beginMove.bind(this, searchForm))
   displayPanel.addEventListener("mousedown", beginMove.bind(this, displayPanel))
   document.addEventListener("mouseup", endMove)
-  searchButton.addEventListener("click", queryRequest)
+  whereTheyPublishButton.addEventListener("click", getWhereTheyPublish)
+  whereTheyCiteButton.addEventListener("click", getWhereTheyCite)
   aboutButton.addEventListener("click", showAbout)
 }
 
