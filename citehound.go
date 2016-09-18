@@ -184,7 +184,7 @@ func rankingByCitesRequestHandler (w http.ResponseWriter, r *http.Request) {
     pubList := retrievePubList(prefix + nextCode + suffix)
     // pubList := retrievePubList("http://www.derekshiller.com/test/test.html")
     countJournals(pubList)
-    time.Sleep(time.Second * 5)
+    time.Sleep(time.Second * 3)
   }
   sortedJournals := findTop(journalCount)
   fmt.Println(sortedJournals[0].Title)
