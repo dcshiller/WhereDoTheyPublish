@@ -4,7 +4,7 @@
 
 [Live](http://citehound.derekshiller.com)
 
-![CiteHound](static\CiteHound.png)
+![CiteHound](static/CiteHound.png)
 
 
 ## Aspiration
