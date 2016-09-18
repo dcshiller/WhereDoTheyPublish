@@ -79,7 +79,7 @@ form.leftside input {
 }
 
 form.leftside label:first-of-type input{
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
 }
 
 form.leftside label span {
