@@ -184,7 +184,7 @@ func rankingByCitesRequestHandler (w http.ResponseWriter, r *http.Request) {
     pubList := retrievePubList(prefix + nextCode + suffix)
     // pubList := retrievePubList("http://www.derekshiller.com/test/test.html")
     countJournals(pubList)
-    time.Sleep(time.Second)
+    time.Sleep(time.Second * 5)
   }
   sortedJournals := findTop(journalCount)
   fmt.Println(sortedJournals[0].Title)
@@ -210,7 +210,7 @@ func retrievePubCode (url string) (codeArr []string) {
   //li id='e..' onclick
   // fmt.Println(string(rawData))
   // codeReg := regexp.MustCompile("/citations/(.{5,7})\"")  // .*['].[o][n][c]")
-  codeReg := regexp.MustCompile("/rec/(.{5,7})'")  // .*['].[o][n][c]")
+  codeReg := regexp.MustCompile("/rec/(.{5,10})'")  // .*['].[o][n][c]")
   // codeReg := regexp.MustCompile("[l][i].[i][d][=]['][e].*$") // .*['].[o][n][c]")
   codeArr = codeReg.FindAllString(string(rawData), -1)
   for i := 0; i < len(codeArr); i++ {

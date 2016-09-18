@@ -98,6 +98,24 @@ function showAbout(e) {
   document.getElementById("intro").style.display = 'block';
 }
 
+function showWarning (e) {
+  warning.innerHTML = "Note, this feature is experimental and purposefully delayed to avoid putting any burden on PhilPapers. Data are sparse! It may take a little while and may have disappointing results.<br/>"
+}
+
+function hideWarning (e) {
+  warning.innerHTML = ""}
+
+function writeAuthorName (e){
+  let field = document.getElementById('authorFieldOne');
+  let nameSpan = document.getElementById('authorName');
+  let warning = document.getElementById('warning')
+  if (field.value == ""){
+    nameSpan.innerText = "author 1";
+    warning.innerHTML = ""}
+  else {nameSpan.innerText = field.value;
+   }
+}
+
 function onLoad() {
   var whereTheyPublishButton = document.getElementById("whereTheyPublishButton")
   var whereTheyCiteButton = document.getElementById("whereTheyCiteButton")
@@ -113,7 +131,10 @@ function onLoad() {
   document.addEventListener("mouseup", endMove)
   whereTheyPublishButton.addEventListener("click", getWhereTheyPublish)
   whereTheyCiteButton.addEventListener("click", getWhereTheyCite)
+  whereTheyCiteButton.addEventListener("mouseover", showWarning)
+  whereTheyCiteButton.addEventListener("mouseleave", hideWarning)
   aboutButton.addEventListener("click", showAbout)
+  document.getElementById("authorFieldOne").addEventListener("input", writeAuthorName)
 }
 
 

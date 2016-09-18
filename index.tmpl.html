@@ -17,7 +17,9 @@
 
       <div id="inputFields">
         <label> Author 1:
-          <input class="authorField" type="text" name="author1" value="" placeholder="author name">
+          <input id="authorFieldOne" class="authorField" type="text" name="author1" value="" placeholder="author name">
+          <button id="whereTheyCiteButton"> Where does <span id="authorName"> author 1 </span> cite? </button> <br/>
+          <span id="warning"></span>
         </label> <br/>
         <label> Author 2:
           <input class="authorField" type="text" name="author2" value="" placeholder="author name">
@@ -44,7 +46,6 @@
 
       <span id="buttonBar">
         <button id="whereTheyPublishButton"> Where do they publish? </button>
-        <button id="whereTheyCiteButton"> Where do they cite? </button>
         <button id="aboutButton"> About </button> <br/> <br/>
         <button id="sample1"> Sample Inputs 1 </button>
         <button id="sample2"> Sample Inputs 2 </button>

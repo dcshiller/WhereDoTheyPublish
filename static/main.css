@@ -78,6 +78,14 @@ form.leftside input {
   outline-color: rgba(200, 180, 113, 1);
 }
 
+form.leftside label:first-of-type input{
+  margin-bottom: 10px;
+}
+
+form.leftside label span {
+  text-align: justify;
+}
+
 div.rightside {
   position: absolute;
   right: 30px;
