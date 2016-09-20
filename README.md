@@ -1,20 +1,19 @@
-# CiteHound
+# Where do they publish?
 
 *Flexible Citation-Based Journal Rankings*
 
-[Live](http://citehound.derekshiller.com)
+[Live](http://wheredotheypublish.derekshiller.com)
 
-![CiteHound](static/CiteHound.png)
+![CiteHound](static/WDTP.png)
 
 
 ## Aspiration
 
-  This project is motivated by a dissatisfaction with current methods for ranking academic
-  journals. In short, the problem is that there is no appropriate objective means to compare journals that excel in different ways. Journals cannot be ranked independently of the subjective values of the ranker.
+  This project is motivated by a dissatisfaction with current methods for ranking academic journals. In short, the problem is that there is no appropriate objective means to compare journals that excel in different ways. Journals cannot be ranked independently of the subjective values of the ranker.
 
   This project aims to rectify this problem by ranking journals based on the the interests and values of the ranker, as captured by a list of the ranker's admired academics. The ranking produced should reflect the ideals of scholarship embodied by those academics.
 
-  The system for doing this should ultimately rely on citations. The journals that an academic chooses to cite from indicates are those that embody their values. Thus, by collecting and analyzing citation patterns, we can produce a ranking of journals.
+  While ideally the system for doing this should ultimately rely on citations, there is little available data. Instead, this project ranks journals based solely on publication numbers. It isn't a prestige ranking, but is instead intended to capture something about the styles embodied by different journals.
 
 ## Current Features
 
