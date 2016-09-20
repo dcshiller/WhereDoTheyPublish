@@ -12,7 +12,7 @@ import (
     "sort"
     "math"
     "math/rand"
-    "time"
+    // "time"
     // "bytes"
     "encoding/json"
 )
@@ -162,36 +162,36 @@ func rankingByPubsRequestHandler (w http.ResponseWriter, r *http.Request) () {
   w.Header().Set("Content-Type","application/json")
   w.Write(jsonSortedJournals)
 }
-
-func rankingByCitesRequestHandler (w http.ResponseWriter, r *http.Request) {
-  journalCount = make(map[string]int, 25)
-  author := parseAuthors(r)[0][0]
-  fmt.Println(author)
-  searchStr := strings.Join(strings.Split(author, " "), "%20")
-  urlPrefix := "http://philpapers.org/s/@author%20"
-  urlSuffix := "%20@pubType%20journal"
-  fmt.Println(urlPrefix + searchStr + urlSuffix)
-  // testUrl := "http://www.derekshiller.com/test/test2.html"
-  pubCodes := retrievePubCode(urlPrefix + searchStr + urlSuffix)
-  fmt.Println(pubCodes)
-  for i := 0; i < int(math.Min(10.0,float64(len(pubCodes)))); i++ {
-    //prefix :=  "http://philpapers.org/asearch.pl?hideAbstracts=on&sort=firstAuthor&publishedOnly=&categorizerOn=&sqc=&showCategories=on&freeOnly=&newWindow=on&start=1&direction=references&onlineOnly=&proOnly=on&langFilter=&eId="
-    prefix :=  "http://philpapers.org/asearch.pl?hideAbstracts=on&sort=firstAuthor&publishedOnly=&categorizerOn=&sqc=&showCategories=on&freeOnly=&newWindow=on&start=1&direction=references&onlineOnly=&proOnly=on&langFilter=&eId="
-    // suffix := "&noFilter=1&filterByAreas=&format=txt&limit=500&jlist=&ap_c1=&ap_c2="
-    suffix := "&noFilter=1&filterByAreas=&format=txt&limit=500&jlist=&ap_c1=&ap_c2="
-    nextCode := chooseCode(pubCodes)
-    fmt.Println(prefix + nextCode + suffix)
-    pubList := retrievePubList(prefix + nextCode + suffix)
-    // pubList := retrievePubList("http://www.derekshiller.com/test/test.html")
-    countJournals(pubList)
-    time.Sleep(time.Second * 3)
-  }
-  sortedJournals := findTop(journalCount)
-  fmt.Println(sortedJournals[0].Title)
-  jsonSortedJournals, _ := json.Marshal(sortedJournals)
-  w.Header().Set("Content-Type","application/json")
-  w.Write(jsonSortedJournals)
-}
+//
+// func rankingByCitesRequestHandler (w http.ResponseWriter, r *http.Request) {
+//   journalCount = make(map[string]int, 25)
+//   author := parseAuthors(r)[0][0]
+//   fmt.Println(author)
+//   searchStr := strings.Join(strings.Split(author, " "), "%20")
+//   urlPrefix := "http://philpapers.org/s/@author%20"
+//   urlSuffix := "%20@pubType%20journal"
+//   fmt.Println(urlPrefix + searchStr + urlSuffix)
+//   // testUrl := "http://www.derekshiller.com/test/test2.html"
+//   pubCodes := retrievePubCode(urlPrefix + searchStr + urlSuffix)
+//   fmt.Println(pubCodes)
+//   for i := 0; i < int(math.Min(10.0,float64(len(pubCodes)))); i++ {
+//     //prefix :=  "http://philpapers.org/asearch.pl?hideAbstracts=on&sort=firstAuthor&publishedOnly=&categorizerOn=&sqc=&showCategories=on&freeOnly=&newWindow=on&start=1&direction=references&onlineOnly=&proOnly=on&langFilter=&eId="
+//     prefix :=  "http://philpapers.org/asearch.pl?hideAbstracts=on&sort=firstAuthor&publishedOnly=&categorizerOn=&sqc=&showCategories=on&freeOnly=&newWindow=on&start=1&direction=references&onlineOnly=&proOnly=on&langFilter=&eId="
+//     // suffix := "&noFilter=1&filterByAreas=&format=txt&limit=500&jlist=&ap_c1=&ap_c2="
+//     suffix := "&noFilter=1&filterByAreas=&format=txt&limit=500&jlist=&ap_c1=&ap_c2="
+//     nextCode := chooseCode(pubCodes)
+//     fmt.Println(prefix + nextCode + suffix)
+//     pubList := retrievePubList(prefix + nextCode + suffix)
+//     // pubList := retrievePubList("http://www.derekshiller.com/test/test.html")
+//     countJournals(pubList)
+//     time.Sleep(time.Second * 3)
+//   }
+//   sortedJournals := findTop(journalCount)
+//   fmt.Println(sortedJournals[0].Title)
+//   jsonSortedJournals, _ := json.Marshal(sortedJournals)
+//   w.Header().Set("Content-Type","application/json")
+//   w.Write(jsonSortedJournals)
+// }
 
 func readJournalNames () {
   journalString, err := ioutil.ReadFile("./static/JournalList.txt")
@@ -201,25 +201,25 @@ func readJournalNames () {
     journalNames[journalsArr[i]] = true
   }
 }
-
-func retrievePubCode (url string) (codeArr []string) {
-  resp, err := http.Get(url)
-  check(err)
-  rawData, err := ioutil.ReadAll(resp.Body)
-  check(err)
-  //li id='e..' onclick
-  // fmt.Println(string(rawData))
-  // codeReg := regexp.MustCompile("/citations/(.{5,7})\"")  // .*['].[o][n][c]")
-  codeReg := regexp.MustCompile("/rec/(.{5,10})'")  // .*['].[o][n][c]")
-  // codeReg := regexp.MustCompile("[l][i].[i][d][=]['][e].*$") // .*['].[o][n][c]")
-  codeArr = codeReg.FindAllString(string(rawData), -1)
-  for i := 0; i < len(codeArr); i++ {
-    codeArr[i] = strings.Split(codeArr[i],"/rec/")[1]
-    codeArr[i] = strings.Trim(codeArr[i], "'")
-  }
-  // fmt.Println(strings.Join(codeArr, "\n"))
-  return codeArr
-}
+//
+// func retrievePubCode (url string) (codeArr []string) {
+//   resp, err := http.Get(url)
+//   check(err)
+//   rawData, err := ioutil.ReadAll(resp.Body)
+//   check(err)
+//   //li id='e..' onclick
+//   // fmt.Println(string(rawData))
+//   // codeReg := regexp.MustCompile("/citations/(.{5,7})\"")  // .*['].[o][n][c]")
+//   codeReg := regexp.MustCompile("/rec/(.{5,10})'")  // .*['].[o][n][c]")
+//   // codeReg := regexp.MustCompile("[l][i].[i][d][=]['][e].*$") // .*['].[o][n][c]")
+//   codeArr = codeReg.FindAllString(string(rawData), -1)
+//   for i := 0; i < len(codeArr); i++ {
+//     codeArr[i] = strings.Split(codeArr[i],"/rec/")[1]
+//     codeArr[i] = strings.Trim(codeArr[i], "'")
+//   }
+//   // fmt.Println(strings.Join(codeArr, "\n"))
+//   return codeArr
+// }
 
 func retrievePubList (url string) []publication {
   resp, err := http.Get(url)
@@ -254,6 +254,6 @@ func main() {
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
   http.HandleFunc("/", viewHandler)
   http.HandleFunc("/wheredotheypublish/", rankingByPubsRequestHandler)
-  http.HandleFunc("/wheredotheycite/", rankingByCitesRequestHandler)
+  // http.HandleFunc("/wheredotheycite/", rankingByCitesRequestHandler)
   http.ListenAndServe(":" + port, nil)
 }

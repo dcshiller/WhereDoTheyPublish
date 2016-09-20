@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>CiteHound</title>
+    <title>Where Do They Publish?</title>
     <link rel="stylesheet" type="text/css" href="/static/main.css" />
 
     <!-- <link rel="stylesheet" href="/static/main.css" media="screen" title="no title" charset="utf-8"> -->
@@ -58,11 +58,9 @@
         <h1>About</h1>
         <hr/>
         <article>
-          <p> This is an experimental project in journal rankings. One problem with current attempts to rank academic journals is that the standards to apply are controversial. Not everyone agrees about what constitutes good research. This means that rankings must use either subjective views of particular groups, or fall back on questionable objective measures like citation counts.</p>
+          <p> This project is motivated by the thought that rankings should take into account the user's own interests and values. There is no adequate one-size-fits all ranking system. This project attempts to implement a flexible ranking system. Input your tastes, as measured by people who's work you admire, and the system outputs a list of journals based on those tastes. </p>
 
-          <p> This project is motivated by the thought that rankings should take into account the user's own interests and values. There is no adequate one-size-fits all ranking system. The present ultimately project aims to allow users to rank journals based on the citations of those scholars who they admire. Input your tastes, as measured by people who's work you admire, and the system outputs a list of journals based on those tastes. </p>
-
-          <p> The ultimate goal is to produce a ranking of journals from the users' input in the following way. The user inputs his or her admired authors. The papers of the admired authors are searched for their citations. Each journal gets awarded a number of points for each cited paper, weighted by the annual production of that journal. Then each of those papers are themselves searched for the papers that <em> they </em> cite, and the process is repeated. Points awarded at this second stage are weighted down to reflect their distance from the initial input. The journals with the most points are ranked first. </p>
+          <p> The ranking provided here is not intended in any way to be a ranking of journal prestige, but instead to reflect something about which journals best reflect the interests and values of the input authors. Journals that are listed first are journals that include more work from the selected authors.</p>
 
           <p> The project is on-going. At this stage, the search feature ranks journals based solely on the number of papers published by the input authors. It searchs for them in the PhilPapers database, and counts the number of publications per journal. </p>
 
