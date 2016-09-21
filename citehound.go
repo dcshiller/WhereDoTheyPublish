@@ -10,9 +10,10 @@ import (
     "log"
     "strings"
     "sort"
+    "strconv"
     "math"
-    "math/rand"
-    // "time"
+    // "math/rand"
+    "time"
     // "bytes"
     "encoding/json"
 )
@@ -65,16 +66,16 @@ func check(err error) {
    }
 }
 
-func chooseCode(codeArr []string) string {
-  var code string = "undefined"
-  for string(code) == "undefined" {
-    randomNumber := rand.Intn(len(codeArr))
-    code = codeArr[randomNumber]
-    codeArr[randomNumber] = "undefined"
-  }
-
-  return code
-}
+// func chooseCode(codeArr []string) string {
+//   var code string = "undefined"
+//   for string(code) == "undefined" {
+//     randomNumber := rand.Intn(len(codeArr))
+//     code = codeArr[randomNumber]
+//     codeArr[randomNumber] = "undefined"
+//   }
+//
+//   return code
+// }
 
 func convertAuthorToPPFormat(author string) string {
   author = strings.Join(strings.Split(author, " "), "+")
@@ -143,6 +144,27 @@ func parseSinglePub ( entryStr string ) ( nextPub publication ) {
   journalStr := strings.Trim(journal[0], ")._ ")
   nextPub = publication{Title: titleStr, Author: "tbd", Journal: journalStr}
   return nextPub
+}
+
+func printJournal2014Counts () {
+  for jName := range journalNames {
+    codedJName := strings.Join(strings.Split(jName," "),"+")
+    prefix := "http://philpapers.org/search/advanced.pl?filterMode=advanced&newWindow=on&sort=relevance&appendMSets=on&minYear=2014&showCategories=on&maxYear=2014&hideAbstracts=on&advMode=fields&publication="
+    suffix := "&proOnly=on&limit=500&sqc=&format=txt&start=&jlist=&publishedOnly=&filterByAreas=&freeOnly=&langFilter=&ap_c1=&ap_c2="
+    fmt.Println(prefix + codedJName + suffix)
+    url := prefix + codedJName + suffix
+    resp, err := http.Get(url)
+      check(err)
+      rawData, err := ioutil.ReadAll(resp.Body)
+      check(err)
+      splitJName := strings.Join(strings.Split(jName, ""), "][")
+      splitJName = "[" + splitJName + "]"
+      entryReg := regexp.MustCompile("[_].*" + splitJName + "[_]")
+      stringArr := entryReg.FindAllString(string(rawData), -1)
+      fmt.Println(jName + " " + strconv.Itoa(len(stringArr)))
+      resp.Body.Close()
+    time.Sleep(time.Second * 5)
+  }
 }
 
 func rankingByPubsRequestHandler (w http.ResponseWriter, r *http.Request) () {
@@ -251,6 +273,7 @@ func main() {
   }
 
   readJournalNames()
+  printJournal2014Counts()
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
   http.HandleFunc("/", viewHandler)
   http.HandleFunc("/wheredotheypublish/", rankingByPubsRequestHandler)

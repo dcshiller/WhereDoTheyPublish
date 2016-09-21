@@ -35,16 +35,20 @@ function assignJournalLis () {
   for (let i = -1; i < message.length; i++) {
     var newEl = document.createElement("li")
     if (i == -1) {
-      newEl.innerHTML = `<strong> Count </strong> <center> Journal Title </center> `
-      pubList.appendChild(newEl)
+      if (message[1].Count == 0) {
+        newEl.innerHTML = `<span id="noResults"> No results found. </span>`
+      } else {
+        newEl.innerHTML = `<strong> Count </strong> <center> Journal Title </center> `
+      }
     } else if (message[i].Count > 0) {
       // newEl.innerHTML = `<strong>${message[i].Count}</strong> <span>${message[i].Title}`
       newEl.innerHTML = `<strong>${message[i].Count}</strong> <span>${message[i].Title}</span>`
-      pubList.appendChild(newEl)
+      // pubList.appendChild(newEl)
     }
+    pubList.appendChild(newEl)
   }
   document.getElementById("whereTheyPublishButton").disabled = false;
-  document.getElementById("whereTheyCiteButton").disabled = false;
+  // document.getElementById("whereTheyCiteButton").disabled = false;
 }
 }
 
@@ -84,9 +88,9 @@ function getWhereTheyPublish (e) {
     getRanking("whereTheyPublishButton", "/wheredotheypublish/", e)
 }
 
-function getWhereTheyCite (e) {
-    getRanking("whereTheyCiteButton", "/wheredotheycite/", e)
-}
+// function getWhereTheyCite (e) {
+//     getRanking("whereTheyCiteButton", "/wheredotheycite/", e)
+// }
 
 function move (coords, DOMelement, e) {
   DOMelement.style.left = coords.DOMOriginX + e.screenX - coords.clickOriginX + "px";
@@ -118,7 +122,7 @@ function writeAuthorName (e){
 
 function onLoad() {
   var whereTheyPublishButton = document.getElementById("whereTheyPublishButton")
-  var whereTheyCiteButton = document.getElementById("whereTheyCiteButton")
+  // var whereTheyCiteButton = document.getElementById("whereTheyCiteButton")
   var aboutButton = document.getElementById("aboutButton")
   var body = document.getElementsByTagName("body")[0];
   document.getElementById('sample1').addEventListener("click", addSample.bind(this,1))
@@ -130,9 +134,9 @@ function onLoad() {
   displayPanel.addEventListener("mousedown", beginMove.bind(this, displayPanel))
   document.addEventListener("mouseup", endMove)
   whereTheyPublishButton.addEventListener("click", getWhereTheyPublish)
-  whereTheyCiteButton.addEventListener("click", getWhereTheyCite)
-  whereTheyCiteButton.addEventListener("mouseover", showWarning)
-  whereTheyCiteButton.addEventListener("mouseleave", hideWarning)
+  // whereTheyCiteButton.addEventListener("click", getWhereTheyCite)
+  // whereTheyCiteButton.addEventListener("mouseover", showWarning)
+  // whereTheyCiteButton.addEventListener("mouseleave", hideWarning)
   aboutButton.addEventListener("click", showAbout)
   document.getElementById("authorFieldOne").addEventListener("input", writeAuthorName)
 }

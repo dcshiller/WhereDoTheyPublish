@@ -13,19 +13,20 @@ body {
   border-right: 3px groove rgba(218, 200, 143, 1);
   border-bottom: 3px groove rgba(218, 200, 143, 1);
   background: rgba(238, 220, 193, 1);
+  /*background: rgba(238, 220, 193, 1);*/
   border-radius: 20px;
   height: 500px;
   top: 30px;
   text-align: center;
-
 }
 
 form.leftside {
+  resize: both;
   width: calc(50% - 80px);
   height: 500px;
-  position: absolute;
   left: 30px;
   overflow: auto;
+  position: relative;
 }
 
 #inputFields {
@@ -35,29 +36,21 @@ form.leftside {
   /*right: calc(100% - 150px);*/
   /*right: 100px;*/
   margin: auto;
-  width: 300px;
+  position: relative;
+  padding-top: 30px;
+  width: 320px;
+  background: rgba(250, 230, 210, 1);
+  padding: 10px;
 }
 
 #buttonBar {
-  position: absolute;
-  bottom: 10%;
-  width: 400px;
-  left: calc(50% - 200px);
+  display: block;
+  padding-top: 10px;
+  /*width: 400px;*/
+  width: 100%;
+  text-align: center;
+  /*left: calc(50% - 200px);*/
 }
-
-/*.brownWrapper {
-  border: 2px solid  rgba(200, 180, 113, 1);
-  border-radius: 18px;
-  height: calc(100% - 4px);
-  width: calc(100% - 4px);
-}
-
-.tanWrapper {
-  border: 2px solid rgba(218, 200, 143, 1);
-  border-radius: 18px;
-  height: calc(100% - 4px);
-  width: calc(100% - 4px);
-}*/
 
 form.leftside hr, .rightside hr{
   margin-top: 20px;
@@ -84,6 +77,19 @@ form.leftside label:first-of-type input{
 
 form.leftside label span {
   text-align: justify;
+}
+
+form.leftside button {
+  margin-bottom: 2%;
+  border: 2px solid rgba(200, 180, 113, 1);
+  background: rgba(218, 200, 143, 1);
+  transition: background .75s;
+}
+
+form.leftside button:hover {
+  background: rgba(168, 150, 80, 1);
+  border: 2px solid rgba(140, 130,63, 1);
+  transition: background .75s, border .25s;
 }
 
 div.rightside {
@@ -126,10 +132,21 @@ div.rightside ul {
   overflow: auto;
   height: 70%;
   width: 70%;
+}
+
+div.rightside ul, #inputFields{
   margin: auto;
   border: 4px ridge  rgba(200, 180, 113, 1);
   background: rgba(250, 230, 210, 1);
 }
+div #noResults {
+  display: block;
+  width: 200px;
+  text-align: center;
+  margin-top: 50%;
+  margin-left: calc(50% - 100px);
+}
+
 div.rightside ul li {
   /*text-overflow: ellipsis;*/
   /*overflow: hidden;*/
