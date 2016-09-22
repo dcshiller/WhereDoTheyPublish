@@ -21,9 +21,16 @@ import (
 //Variables
 
 var journalCount = make(map[string]int, 25)
-var journalNames = make(map[string]bool, 172)
+var econJournalNames = make(map[string]bool, 1915)
+var histJournalNames = make(map[string]bool, 386)
+var philJournalNames = make(map[string]bool, 290)
 
 //Structs
+
+type ajaxRequestMessage struct {
+  Authors string `json: "authors"`
+  Filter string `json: "filter"`
+}
 
 type journalRank struct {
   Title string
@@ -32,10 +39,10 @@ type journalRank struct {
 
 type CR_JSONResponse struct {
   Status string `json:"status"`
-  Query query `json:"message"`
+  Message message `json:"message"`
 }
 
-type query struct {
+type message struct {
   Items []item `json:items`
 }
 
@@ -80,9 +87,7 @@ type returnData struct {
 //Functions
 
 func isAuthorAmongQuery (pub publication, authorList []string) bool {
-  fmt.Println(pub.Author)
   for _,listItem := range authorList {
-    fmt.Println(listItem)
     if pub.Author == listItem {
       return true
     }
@@ -103,39 +108,54 @@ func convertAuthorToCRFormat(author string) (authorStr string) {
 }
 
 func convertAuthorsToCRFormat(authors []string) string {
-  convertedAuthors := make([]string,1)
-  for i := 0; i < len(authors);i++{
-    convertedAuthors[i] = convertAuthorToCRFormat(authors[i])
+  convertedAuthors := make([]string,len(authors))
+  for index, author := range authors {
+    convertedAuthors[index] = convertAuthorToCRFormat(author)
   }
   return strings.Join(convertedAuthors, "&")
 }
 
-func countFilteredJournals (publications []publication) {
-  for i := 0 ; i < len(publications); i++ {
-    nextPubJournal := publications[i].Journal;
-    // recognizedJournal := journalNames[nextPubJournal]
-    // if journalCount[nextPubJournal] > 0 && recognizedJournal {
+func countFilteredJournals (publications []publication, filter string) {
+  journalListToCheck := make(map[string]bool, 120)
+  if filter == "Economics" {
+    journalListToCheck = econJournalNames
+  } else if filter == "History" {
+    journalListToCheck = histJournalNames
+  } else if filter == "Philosophy" {
+    journalListToCheck = philJournalNames
+  }
+  for _, pub := range publications {
+    nextPubJournal := strings.TrimPrefix(pub.Journal, "The ")
+    recognizedJournal := journalListToCheck[nextPubJournal]
+    if journalCount[nextPubJournal] > 0 && recognizedJournal {
       journalCount[nextPubJournal]++
-      // } else if recognizedJournal {journalCount[nextPubJournal] = 1}
+      } else if recognizedJournal {journalCount[nextPubJournal] = 1}
     }
 }
 
-func sortJournalsByQuantity (pubCount map[string]int) []journalRank {
-  allJournals := make([]journalRank, 501)
-  for key, value := range journalCount {
-    if len(key) > 2 {
-      nextJournal := journalRank{ Title: key, Count: value }
-      allJournals[i] = nextJournal
+func formatRetrieveAndCount (group []string, filter string) {
+  searchStr := convertAuthorsToCRFormat(group)
+  urlPrefix := "http://api.crossref.org/works?"
+  urlSuffix := "&rows=1000"
+  pubList := retrievePubList(urlPrefix + searchStr + urlSuffix, group)//
+  countFilteredJournals(pubList, filter)
+}
+
+func getLongest ( strArray []string) string {
+  maxLength := 0
+  longest := ""
+  for _, element := range strArray {
+    if len(element) >= maxLength {
+      maxLength = len(element)
+      longest = element
     }
   }
-  sort.Sort(rankedJournals(allJournals))
-  topJournals := allJournals[0:100]
-  return topJournals
+  return longest
 }
 
-func parseAuthorsToStringGroups (r *http.Request) ( [][]string ) {
-  body, err := ioutil.ReadAll(r.Body)
-  check(err)
+func parseAuthorsToStringGroups (body string) ( [][]string ) {
+  // body, err := ioutil.ReadAll(r.Body)
+  // check(err)
   authors := strings.Split(string(body), "|")
   lengthOrFour := int(math.Min(float64(len(authors)), 4.0))
   firstGroup := authors[0:lengthOrFour]
@@ -145,6 +165,7 @@ func parseAuthorsToStringGroups (r *http.Request) ( [][]string ) {
     secondGroup := authors[4:]
     groups = append(groups, secondGroup)
   }
+  fmt.Println(firstGroup)
   return groups
 }
 
@@ -159,7 +180,7 @@ func parseSinglePub ( itemStruct item ) ( nextPub publication ) {
     author = itemStruct.Authors[0].Given  + " " + itemStruct.Authors[0].Family
   } else { author = "" }
   if len(itemStruct.Journal) > 0 {
-    journal = itemStruct.Journal[0]
+    journal = getLongest(itemStruct.Journal)
   } else { journal = "none" }
   nextPub = publication{Title: title , Author: author, Journal: journal }
   return nextPub
@@ -167,9 +188,14 @@ func parseSinglePub ( itemStruct item ) ( nextPub publication ) {
 
 func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
   restartJournalCount()
-  groups := parseAuthorsToStringGroups(r)
-  for group := range groups {
-    formatRetrieveAndCount(group)
+  body, err := ioutil.ReadAll(r.Body)
+  check(err)
+  ajaxRequest := ajaxRequestMessage{}
+  json.Unmarshal(body, &ajaxRequest)
+  fmt.Println(ajaxRequest.Filter)
+  groups := parseAuthorsToStringGroups(ajaxRequest.Authors)
+  for _, group := range groups {
+    formatRetrieveAndCount(group, ajaxRequest.Filter)
   }
   sortedJournals := sortJournalsByQuantity(journalCount)
   jsonSortedJournals, _ := json.Marshal(sortedJournals)
@@ -177,25 +203,37 @@ func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
   w.Write(jsonSortedJournals)
 }
 
-func readJournalNamesIntoArray () {
-  journalString, err := ioutil.ReadFile("./static/JournalList.txt")
+func readJournalNamesIntoSet (fileName string, journalSet map[string]bool) {
+  journalString, err := ioutil.ReadFile(fileName)
   check(err)
   journalsArr := strings.Split(string(journalString), "\n")
   for i := 0; i < len(journalsArr); i++ {
-    journalNames[journalsArr[i]] = true
+    journalSet[journalsArr[i]] = true
   }
 }
+//
+// func removeExcessJournalNames () {
+//   journalString, err := ioutil.ReadFile("./static/JournalList2.txt")
+//   check(err)
+//   journalsArr := strings.Split(string(journalString), "\n")
+//   newArr := make([]string, 5000)
+//   for i := 0; i < len(journalsArr); i++ {
+//     if !(len(journalsArr[i]) < 6 ||
+//           journalsArr[i][0:4] == "ISSN" ||
+//           journalsArr[i][0:6] == "EconLi" ||
+//           journalsArr[i][0:4] == "Back" ||
+//           journalsArr[i][0:4] == "See:" ||
+//           journalsArr[i][0:6] == "Former") {
+//       newArr = append(newArr, journalsArr[i])
+//     }
+//   }
+//   x := strings.Join(newArr, "\n")
+//   ioutil.WriteFile("./static/JournalList22.txt", []byte(x), 0644)
+//   check(err)
+// }
 
 func restartJournalCount () {
   journalCount = make(map[string]int, 25)
-}
-
-func formatRetrieveAndCount (group []string) {
-  searchStr := convertAuthorsToCRFormat(group)
-  urlPrefix := "http://api.crossref.org/works?"
-  urlSuffix := "&rows=1000"
-  pubList := retrievePubList(urlPrefix + searchStr + urlSuffix, groups[i])//
-  countFilteredJournals(pubList)
 }
 
 func retrievePubList (url string, authorList []string ) []publication {
@@ -206,7 +244,7 @@ func retrievePubList (url string, authorList []string ) []publication {
   jsonResponse := CR_JSONResponse{}
   json.Unmarshal(rawData, &jsonResponse)
   publications := make([]publication, 1000)
-  for i, item := range jsonResponse.Query.Items {
+  for i, item := range jsonResponse.Message.Items {
     nextPub := parseSinglePub(item)
     if isAuthorAmongQuery(nextPub, authorList) {
       publications[i] = nextPub
@@ -217,6 +255,21 @@ func retrievePubList (url string, authorList []string ) []publication {
   }
   response.Body.Close()
   return publications;
+}
+
+func sortJournalsByQuantity (pubCount map[string]int) []journalRank {
+  allJournals := make([]journalRank, 501)
+  i := 0
+  for key, value := range journalCount {
+    if len(key) > 2 {
+      nextJournal := journalRank{ Title: key, Count: value }
+      allJournals[i] = nextJournal
+    }
+    i++
+  }
+  sort.Sort(rankedJournals(allJournals))
+  topJournals := allJournals[0:100]
+  return topJournals
 }
 
 func mainViewHandler (w http.ResponseWriter, r *http.Request) {
@@ -232,8 +285,12 @@ func main() {
   if port == "" {
     log.Fatal("$PORT must be set")
   }
+  fmt.Println("Get Ready...")
 
-  readJournalNamesIntoArray()
+  readJournalNamesIntoSet("./static/JournalListPhil.txt", philJournalNames);
+  readJournalNamesIntoSet("./static/JournalListEcon.txt", econJournalNames);
+  readJournalNamesIntoSet("./static/JournalListHist.txt", histJournalNames);
+  // removeExcessJournalNames()
   // printJournal2014Counts()
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
   http.HandleFunc("/", mainViewHandler)
