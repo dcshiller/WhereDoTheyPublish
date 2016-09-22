@@ -75,12 +75,14 @@ function getRanking (buttonId, url, e) {
   xhttp.onreadystatechange = assignJournalLis;
   xhttp.open("POST",url, true)
   let fields = document.getElementsByClassName('authorField')
-  params = ""
+  let authors = ""
   for (let i = 0; i < fields.length ; i++) {
     if (fields[i].value != ""){
-     params += (fields[i].value) + "|";
+     authors += (fields[i].value) + "|";
   }}
-  params = params.slice(0, -1);
+  authors = authors.slice(0, -1);
+  filterVal = document.getElementById('filterSelector').value
+  params = JSON.stringify({authors: authors, filter: filterVal})
   xhttp.send(params);
 }
 
@@ -101,13 +103,6 @@ function showAbout(e) {
   e.preventDefault();
   document.getElementById("intro").style.display = 'block';
 }
-
-function showWarning (e) {
-  warning.innerHTML = "Note, this feature is experimental and purposefully delayed to avoid putting any burden on PhilPapers. Data are sparse! It may take a little while and may have disappointing results.<br/>"
-}
-
-function hideWarning (e) {
-  warning.innerHTML = ""}
 
 function writeAuthorName (e){
   let field = document.getElementById('authorFieldOne');

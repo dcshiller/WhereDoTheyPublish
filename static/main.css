@@ -3,7 +3,7 @@ li {
 }
 
 body {
-  background: white;
+  background: tan;
 }
 
 .leftside, .rightside {
@@ -79,14 +79,14 @@ form.leftside label span {
   text-align: justify;
 }
 
-form.leftside button {
+form.leftside button, #buttonBar select {
   margin-bottom: 2%;
   border: 2px solid rgba(200, 180, 113, 1);
   background: rgba(218, 200, 143, 1);
   transition: background .75s;
 }
 
-form.leftside button:hover {
+form.leftside button:hover, #buttonBar select:hover {
   background: rgba(168, 150, 80, 1);
   border: 2px solid rgba(140, 130,63, 1);
   transition: background .75s, border .25s;
