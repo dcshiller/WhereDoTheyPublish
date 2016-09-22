@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    "regexp"
+    // "regexp"
     "io/ioutil"
     "html/template"
     "net/http"
@@ -10,10 +10,10 @@ import (
     "log"
     "strings"
     "sort"
-    "strconv"
+    // "strconv"
     "math"
     // "math/rand"
-    "time"
+    // "time"
     // "bytes"
     "encoding/json"
 )
@@ -30,6 +30,25 @@ type journalRank struct {
   Count int
 }
 
+type message struct {
+  Status string `json:"status"`
+  Query query `json:"message"`
+}
+
+type query struct {
+  Items []item `json:items`
+}
+
+type item struct {
+  Title []string `json:"title"`
+  Authors []author `json:"author"`
+  Journal []string `json:"container-title"`
+}
+
+type author struct {
+  Family string `json:"family"`
+  Given string `json:"given"`
+}
 
 type publication struct {
   Title string
@@ -66,28 +85,17 @@ func check(err error) {
    }
 }
 
-// func chooseCode(codeArr []string) string {
-//   var code string = "undefined"
-//   for string(code) == "undefined" {
-//     randomNumber := rand.Intn(len(codeArr))
-//     code = codeArr[randomNumber]
-//     codeArr[randomNumber] = "undefined"
-//   }
-//
-//   return code
-// }
-
-func convertAuthorToPPFormat(author string) string {
+func convertAuthorToCRFormat(author string) string {
   author = strings.Join(strings.Split(author, " "), "+")
-  author = "%28+%40author+" + author + "%29"
+  author = "query.author=" + author
   return author
 }
 
-func convertAuthorsToPPFormat(authors []string) string {
+func convertAuthorsToCRFormat(authors []string) string {
   for i := 0; i < len(authors);i++{
-    authors[i] = convertAuthorToPPFormat(authors[i])
+    authors[i] = convertAuthorToCRFormat(authors[i])
   }
-  return strings.Join(authors, "+%7C+")
+  return strings.Join(authors, "&")
 }
 
 func countJournals (publications []publication) {
@@ -133,50 +141,41 @@ func parseAuthors (r *http.Request) ( [][]string ) {
   return groups
 }
 
-func parseSinglePub ( entryStr string ) ( nextPub publication ) {
-  titleReg := regexp.MustCompile("[)].*[[:space:]][_]")
-  journalReg := regexp.MustCompile("[[:space:]][_].*[_][[:space:]]")
-  title := titleReg.FindAllString(entryStr, -1)
-  journal := journalReg.FindAllString(entryStr, -1)
-  if len(title) == 0 {title = []string{""}}
-  if len(journal) == 0 {journal = []string{""}}
-  titleStr := strings.Trim(title[0], ")._ ")
-  journalStr := strings.Trim(journal[0], ")._ ")
-  nextPub = publication{Title: titleStr, Author: "tbd", Journal: journalStr}
+func parseSinglePub ( itemStruct item ) ( nextPub publication ) {
+  var title string
+  var author string
+  var journal string
+  if len(itemStruct.Title) > 0 {
+    title = itemStruct.Title[0]
+  } else { title = "" }
+  if len(itemStruct.Authors) > 0 {
+    author = itemStruct.Authors[0].Given  + " " + itemStruct.Authors[0].Family
+  } else { author = "" }
+  if len(itemStruct.Journal) > 0 {
+    journal = itemStruct.Journal[0]
+  } else { journal = "none" }
+  nextPub = publication{Title: title , Author: author, Journal: journal }
+  // titleReg := regexp.MustCompile("[)].*[[:space:]][_]")
+  // journalReg := regexp.MustCompile("[[:space:]][_].*[_][[:space:]]")
+  // title := titleReg.FindAllString(entryStr, -1)
+  // journal := journalReg.FindAllString(entryStr, -1)
+  // if len(title) == 0 {title = []string{""}}
+  // if len(journal) == 0 {journal = []string{""}}
+  // titleStr := strings.Trim(title[0], ")._ ")
+  // journalStr := strings.Trim(journal[0], ")._ ")
+  // nextPub = publication{Title: titleStr, Author: "tbd", Journal: journalStr}
   return nextPub
-}
-
-func printJournal2014Counts () {
-  for jName := range journalNames {
-    codedJName := strings.Join(strings.Split(jName," "),"+")
-    prefix := "http://philpapers.org/search/advanced.pl?filterMode=advanced&newWindow=on&sort=relevance&appendMSets=on&minYear=2014&showCategories=on&maxYear=2014&hideAbstracts=on&advMode=fields&publication="
-    suffix := "&proOnly=on&limit=500&sqc=&format=txt&start=&jlist=&publishedOnly=&filterByAreas=&freeOnly=&langFilter=&ap_c1=&ap_c2="
-    fmt.Println(prefix + codedJName + suffix)
-    url := prefix + codedJName + suffix
-    resp, err := http.Get(url)
-      check(err)
-      rawData, err := ioutil.ReadAll(resp.Body)
-      check(err)
-      splitJName := strings.Join(strings.Split(jName, ""), "][")
-      splitJName = "[" + splitJName + "]"
-      entryReg := regexp.MustCompile("[_].*" + splitJName + "[_]")
-      stringArr := entryReg.FindAllString(string(rawData), -1)
-      fmt.Println(jName + " " + strconv.Itoa(len(stringArr)))
-      resp.Body.Close()
-    time.Sleep(time.Second * 5)
-  }
 }
 
 func rankingByPubsRequestHandler (w http.ResponseWriter, r *http.Request) () {
   journalCount = make(map[string]int, 25)
   groups := parseAuthors(r)
   for i :=0; i < len(groups) ; i++ {
-    searchStr := convertAuthorsToPPFormat(groups[i])
-    urlPrefix := "http://philpapers.org/asearch.pl?proOnly=on&freeOnly=&newWindow=on&sqc=&publishedOnly=&showCategories=on&langFilter=&searchStr="
-    urlSuffix := "&categorizerOn=&filterMode=keywords&onlineOnly=&sort=relevance&filterByAreas=&hideAbstracts=on&format=txt&start=&limit=500&jlist=&ap_c1=&ap_c2="
+    searchStr := convertAuthorsToCRFormat(groups[i])
+    urlPrefix := "http://api.crossref.org/works?"
+    urlSuffix := "&rows=1000"
     fmt.Println(urlPrefix + searchStr + urlSuffix)
     pubList := retrievePubList(urlPrefix + searchStr + urlSuffix)//
-    // pubList := retrievePubList("http://www.derekshiller.com/test/test.html")
     countJournals(pubList)
   }
   sortedJournals := findTop(journalCount)
@@ -184,36 +183,6 @@ func rankingByPubsRequestHandler (w http.ResponseWriter, r *http.Request) () {
   w.Header().Set("Content-Type","application/json")
   w.Write(jsonSortedJournals)
 }
-//
-// func rankingByCitesRequestHandler (w http.ResponseWriter, r *http.Request) {
-//   journalCount = make(map[string]int, 25)
-//   author := parseAuthors(r)[0][0]
-//   fmt.Println(author)
-//   searchStr := strings.Join(strings.Split(author, " "), "%20")
-//   urlPrefix := "http://philpapers.org/s/@author%20"
-//   urlSuffix := "%20@pubType%20journal"
-//   fmt.Println(urlPrefix + searchStr + urlSuffix)
-//   // testUrl := "http://www.derekshiller.com/test/test2.html"
-//   pubCodes := retrievePubCode(urlPrefix + searchStr + urlSuffix)
-//   fmt.Println(pubCodes)
-//   for i := 0; i < int(math.Min(10.0,float64(len(pubCodes)))); i++ {
-//     //prefix :=  "http://philpapers.org/asearch.pl?hideAbstracts=on&sort=firstAuthor&publishedOnly=&categorizerOn=&sqc=&showCategories=on&freeOnly=&newWindow=on&start=1&direction=references&onlineOnly=&proOnly=on&langFilter=&eId="
-//     prefix :=  "http://philpapers.org/asearch.pl?hideAbstracts=on&sort=firstAuthor&publishedOnly=&categorizerOn=&sqc=&showCategories=on&freeOnly=&newWindow=on&start=1&direction=references&onlineOnly=&proOnly=on&langFilter=&eId="
-//     // suffix := "&noFilter=1&filterByAreas=&format=txt&limit=500&jlist=&ap_c1=&ap_c2="
-//     suffix := "&noFilter=1&filterByAreas=&format=txt&limit=500&jlist=&ap_c1=&ap_c2="
-//     nextCode := chooseCode(pubCodes)
-//     fmt.Println(prefix + nextCode + suffix)
-//     pubList := retrievePubList(prefix + nextCode + suffix)
-//     // pubList := retrievePubList("http://www.derekshiller.com/test/test.html")
-//     countJournals(pubList)
-//     time.Sleep(time.Second * 3)
-//   }
-//   sortedJournals := findTop(journalCount)
-//   fmt.Println(sortedJournals[0].Title)
-//   jsonSortedJournals, _ := json.Marshal(sortedJournals)
-//   w.Header().Set("Content-Type","application/json")
-//   w.Write(jsonSortedJournals)
-// }
 
 func readJournalNames () {
   journalString, err := ioutil.ReadFile("./static/JournalList.txt")
@@ -223,36 +192,24 @@ func readJournalNames () {
     journalNames[journalsArr[i]] = true
   }
 }
-//
-// func retrievePubCode (url string) (codeArr []string) {
-//   resp, err := http.Get(url)
-//   check(err)
-//   rawData, err := ioutil.ReadAll(resp.Body)
-//   check(err)
-//   //li id='e..' onclick
-//   // fmt.Println(string(rawData))
-//   // codeReg := regexp.MustCompile("/citations/(.{5,7})\"")  // .*['].[o][n][c]")
-//   codeReg := regexp.MustCompile("/rec/(.{5,10})'")  // .*['].[o][n][c]")
-//   // codeReg := regexp.MustCompile("[l][i].[i][d][=]['][e].*$") // .*['].[o][n][c]")
-//   codeArr = codeReg.FindAllString(string(rawData), -1)
-//   for i := 0; i < len(codeArr); i++ {
-//     codeArr[i] = strings.Split(codeArr[i],"/rec/")[1]
-//     codeArr[i] = strings.Trim(codeArr[i], "'")
-//   }
-//   // fmt.Println(strings.Join(codeArr, "\n"))
-//   return codeArr
-// }
 
 func retrievePubList (url string) []publication {
   resp, err := http.Get(url)
   check(err)
   rawData, err := ioutil.ReadAll(resp.Body)
   check(err)
-  entryReg := regexp.MustCompile(".*-.")
-  stringArr := entryReg.FindAllString(string(rawData), -1)
-  publications := make([]publication, 501)
-  for i := 0 ; i < len(stringArr); i++ {
-      publications[i] = parseSinglePub(stringArr[i]);
+  messageStruct := message{}
+  json.Unmarshal(rawData, &messageStruct)
+  publications := make([]publication, 1000)
+  for i, item := range messageStruct.Query.Items {
+    nextPub := parseSinglePub(item)
+    publications[i] = nextPub
+    if nextPub.Author == "Derek Shiller" {
+      fmt.Println("found one")
+    }
+    fmt.Println(nextPub.Title)
+    fmt.Println(nextPub.Author)
+    fmt.Println(nextPub.Journal)
   }
   resp.Body.Close()
   return publications;
@@ -273,7 +230,7 @@ func main() {
   }
 
   readJournalNames()
-  printJournal2014Counts()
+  // printJournal2014Counts()
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
   http.HandleFunc("/", viewHandler)
   http.HandleFunc("/wheredotheypublish/", rankingByPubsRequestHandler)
