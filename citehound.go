@@ -178,6 +178,7 @@ func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
 }
 
 func readJournalNamesIntoArray () {
+  journalString, err := ioutil.ReadFile("./static/JournalList.txt")
   check(err)
   journalsArr := strings.Split(string(journalString), "\n")
   for i := 0; i < len(journalsArr); i++ {
