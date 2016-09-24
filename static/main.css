@@ -6,8 +6,8 @@ body {
   background: tan;
 }
 
-header {
-  width: 40%;
+body>header {
+  max-width: 400px;
   margin: auto;
   background: rgba(238, 220, 193, 1);
   border-radius: 20px;
@@ -18,7 +18,7 @@ header {
   border-bottom: 3px groove rgba(218, 200, 143, 1);
 }
 
-header h1 {
+body>header h1 {
   padding: 5px 0px 5px 0px;
 }
 
@@ -35,20 +35,28 @@ header h1 {
   top: 16%;
   text-align: center;
   position: absolute;
-  width: calc(50% - 40px);
+  width: calc(50% - 38px);
 }
+
 
 .leftside::webkit-scrollbar, .rightside::webkit-scrollbar {
   display: none;
 }
 
-form.leftside {
+.leftside {
   left: 30px;
   overflow: auto;
 }
 
+.leftside header {
+  height: 15%;
+}
+
+.leftside #aboveOptions {
+  height: 8%;
+}
 #inputFields {
-  height: 40%;
+  height: 45%;
   overflow: auto;
   /*position: absolute;*/
   /*right: calc(100% - 150px);*/
@@ -61,16 +69,17 @@ form.leftside {
   padding: 10px;
 }
 
-#buttonBar {
+#belowOptions {
   display: block;
   padding-top: 10px;
   /*width: 400px;*/
   width: 100%;
+  height: 20%;
   text-align: center;
   /*left: calc(50% - 200px);*/
 }
 
-form.leftside hr, .rightside hr{
+.leftside hr, .rightside hr{
   margin-top: 20px;
   margin-bottom: 20px;
   width: 70%;
@@ -78,26 +87,26 @@ form.leftside hr, .rightside hr{
   border-bottom: 2px solid rgba(200, 180, 113, 1);
 }
 
-form.leftside hr {
+.leftside hr {
   margin-bottom: 10%;
 }
 
-form.leftside input {
+.leftside input {
   padding-left: 5px;
   margin-bottom: 40px;
   background: rgba(252, 245, 233, 1);
   outline-color: rgba(200, 180, 113, 1);
 }
 
-form.leftside label:first-of-type input{
+.leftside label:first-of-type input{
   /*margin-bottom: 10px;*/
 }
 
-form.leftside label span {
+.leftside label span {
   text-align: justify;
 }
 
-form.leftside button, #buttonBar select, form.leftside ul li {
+.leftside button, #belowOptions select, .leftside ul li {
   margin-bottom: 2%;
   /*width: 100px;*/
   display: inline;
@@ -106,25 +115,25 @@ form.leftside button, #buttonBar select, form.leftside ul li {
   transition: background .75s;
 }
 
-form.leftside button:hover, #buttonBar select:hover, form.leftside ul li:hover {
+.leftside button:hover, #belowOptions select:hover, .leftside ul li:hover {
   background: rgba(168, 150, 80, 1);
   border: 2px solid rgba(140, 130,63, 1);
   transition: background .75s, border .25s;
 }
 
-form.leftside ul {
+.leftside ul {
   display: block;
   list-style-type: none;
   padding-left: 0px;
   padding-bottom: 10px;
   text-align: center;
 }
-form.leftside ul li {
+.leftside ul li {
   margin-right: 5px;
   padding: 3px;
 }
 /*
-form.leftside select:active, option:active {
+.leftside select:active, option:active {
   outline: none;
 }
 
@@ -132,38 +141,39 @@ form.leftside option::selection {
   background: rgba(148, 140, 60, 1);
 }*/
 
-form.leftside .selectable {
+.leftside .selectable {
   display: none;
 }
 
-form.leftside .selectable.shown {
+.leftside .selectable.shown {
   display: inline;
 }
 
-form.leftside .selectable.selected {
+.leftside .selectable.selected {
   display: inline;
 }
 
-form.leftside .selectable.selected.shown {
+.leftside .selectable.selected.shown {
   background: rgba(148, 140, 60, 1);
   border: 2px solid rgba(128, 120, 40, 1);
 }
 
-div.rightside {
+.rightside {
   right: 30px;
 }
 
-div.rightside #intro {
+.rightside #intro {
   position: absolute;
-  top: 20px;
+  top: 0px;
   bottom: 0px;
   left: 0px;
   right: 0px;
-  padding: 0px 80px;
+  /*padding: 0px 80px;*/
   border-radius: 20px;
   z-index: 1;
   background: rgba(238, 220, 193, 1);
 }
+
 #intro article {
   position: absolute;
   height: calc(100% - 175px);
@@ -180,7 +190,7 @@ div.rightside #intro {
   text-align: left;
 }
 
-div.rightside ul {
+.rightside ul {
   /*padding-bottom: 50px;*/
   padding-top: 20px;
   text-align: left;
@@ -189,39 +199,25 @@ div.rightside ul {
   width: 70%;
 }
 
-div.rightside ul, #inputFields{
+.rightside ul, #inputFields{
   margin: auto;
   border: 4px ridge  rgba(200, 180, 113, 1);
   background: rgba(250, 230, 210, 1);
 }
-div #noResults {
-  display: block;
-  width: 200px;
-  text-align: center;
-  margin-top: 50%;
-  margin-left: calc(50% - 100px);
-}
 
-div.rightside ul li {
-  /*text-overflow: ellipsis;*/
-  /*overflow: hidden;*/
-  /*width: 100%;*/
-  /*height: 1.5em;*/
-}
-
-div.rightside ul li span {
+.rightside ul li span {
   display: inline-block;
   width: calc(100% - 70px);
   vertical-align: top;
 }
 
-div.rightside ul li:first-child {
+.rightside ul li:first-child {
   /*border-bottom: 2px solid black;*/
   width: 60%;
   margin-bottom: 10px;
 }
 
-div.rightside center {
+.rightside center {
   display: inline-block;
   text-align: center;
   font-weight: bold;
@@ -229,7 +225,16 @@ div.rightside center {
   margin-left: 20px;
 }
 
-div.rightside ul strong {
+.rightside .middle {
+  display: block;
+  position: relative;
+  width: calc(100% + 40px);
+  text-align: center;
+  top: calc(50% - 30px);
+  left: -40px;
+}
+
+.rightside ul strong {
   width: 60px;
   display: inline-block;
   text-align: center;
