@@ -1,6 +1,8 @@
 var searchForm;
 var displayPanel;
 var boundMove;
+var pubList;
+
 
 function addSample (sampleNum, e) {
   e.preventDefault();
@@ -33,14 +35,18 @@ function assignJournalLis () {
   pubList.innerHTML = ""
   let message = JSON.parse(this.responseText)
   for (let i = -1; i < message.length; i++) {
+    var newEl = document.createElement("li")
     if (i == -1) {
+      clearInterval(window.statusListener)
       if (message[1].Count == 0) {
         pubList.innerHTML = `<span id="noResults" class="middle"> No results found. </span>`
+        removeSpinner()
+        break;
       } else {
         newEl.innerHTML = `<strong> Count </strong> <center> Journal Title </center> `
+        pubList.appendChild(newEl)
       }
     } else if (message[i].Count > 0 && message[i].Title != "") {
-      var newEl = document.createElement("li")
       newEl.innerHTML = `<strong>${message[i].Count}</strong> <span>${message[i].Title}</span>`
       pubList.appendChild(newEl)
     }
@@ -50,16 +56,60 @@ function assignJournalLis () {
 }
 }
 
+function incrementSpinner () {
+  let circles = document.getElementsByClassName("circle");
+  let activeCircle = document.querySelector('.active');
+
+  circleNum = activeCircle.dataset.circleNum
+  let newCircleNum = ((circleNum/1) + 1) % 3
+  console.log(newCircleNum)
+  let nextActiveCircle = document.querySelector(`[data-circle-num~="${newCircleNum}"]`)
+  activeCircle.className = "circle"
+  nextActiveCircle.className = "circle active"
+}
+
+function makeSpinner () {
+  let spinnerContainer = document.createElement("span")
+  spinnerContainer.id = "spinnerContainer"
+  for (let i = 0; i < 3; i++) {
+    let spinnerCircle = document.createElement("span")
+    spinnerCircle.className = "circle"
+    if (i == 0) {
+      spinnerCircle.className = "circle active"
+    }
+    spinnerCircle.dataset.circleNum = i
+    spinnerContainer.appendChild(spinnerCircle)
+  }
+  pubList.appendChild(spinnerContainer)
+}
+
+function removeSpinner () {
+  console.log("called")
+  let spinnerContainer = document.getElementById('spinnerContainer')
+  if (spinnerContainer) {spinnerContainer.remove()}
+}
+
 function enterWaitingState () {
   document.getElementById("whereTheyPublishButton").disabled = true;
   document.getElementById("intro").style.display = 'none';
   let pubList = document.getElementById("pubList")
-  pubList.innerHTML = "<span class='middle'> This could take a while</span>"
-
+  pubList.innerHTML = "<span id='statusUpdate' class='middle'> This could take a while.</span>"
+  let processStatus = function (response) {document.getElementById("statusUpdate").innerText = this.responseText}
+  // let listenForStatus = function () {
+  var timer = 0;
+  makeSpinner();
+  window.statusListener =  setInterval(function(){
+    incrementSpinner()
+    timer++
+    if (timer % 5 == 0) {let xhttp = new XMLHttpRequest();
+      xhttp.open("get", "http://localhost:8080/status/", true)
+      xhttp.send();
+    xhttp.onreadystatechange = processStatus
+  }}, 500)
+  // }
 }
 
 function getRanking (url, e) {
-
   e.preventDefault();
   enterWaitingState();
   let xhttp = new XMLHttpRequest();
@@ -72,7 +122,7 @@ function getRanking (url, e) {
      authors += (fields[i].value) + "|";
   }}
   authors = authors.slice(0, -1);
-  filterVal = document.getElementsByClassName('selected')[0].innerText
+  filterVal = document.getElementsByClassName('selected')[0].dataset.name
   console.log(filterVal)
   params = JSON.stringify({authors: authors, filter: filterVal})
   xhttp.send(params);
@@ -134,6 +184,8 @@ function onLoad() {
   // whereTheyCiteButton.addEventListener("mouseleave", hideWarning)
   aboutButton.addEventListener("click", showAbout)
   document.getElementById("authorFieldOne").addEventListener("input", writeAuthorName)
+  pubList = document.getElementById("pubList")
+
   let selectables = Array.prototype.slice.call(document.getElementsByClassName("selectable"), 0)
   selectables.forEach(function(el){el.addEventListener("click", selectLi)})
   document.getElementById("filterUl").addEventListener("click", showSelectables)

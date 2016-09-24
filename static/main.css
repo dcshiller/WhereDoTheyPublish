@@ -225,6 +225,15 @@ form.leftside option::selection {
   margin-left: 20px;
 }
 
+.rightside #spinnerContainer {
+    display: block;
+    position: absolute;
+    width: calc(100% + 40px);
+    text-align: center;
+    top: calc(50% + 60px);
+    left: -20px;
+}
+
 .rightside .middle {
   display: block;
   position: relative;
@@ -232,6 +241,19 @@ form.leftside option::selection {
   text-align: center;
   top: calc(50% - 30px);
   left: -40px;
+}
+
+.rightside .circle {
+  padding:  2px 10px 1px 10px;
+  border-radius: 15px;
+  background: grey;
+  margin-right: 10px;
+  transition: background .3s;
+}
+
+.rightside .circle.active {
+  background: black;
+  transition: background .3s;
 }
 
 .rightside ul strong {
