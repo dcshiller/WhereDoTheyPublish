@@ -10,12 +10,18 @@
   </head>
   <body>
 
+    <header>
+        <h1> Where Do They Publish? </h1>
+    </header>
+
     <form class="leftside" id="searchForm" >
 
-      <h1>Who</h1>
-      <hr/>
+      <header>
+        <h1>Who</h1>
+        <hr/>
+      </header>
 
-      <span>
+      <span id="aboveOptions">
         <button id="sample1"> Sample Inputs 1 </button>
         <button id="sample2"> Sample Inputs 2 </button>
         <button id="aboutButton"> About </button>
@@ -49,12 +55,22 @@
           <input class="authorField" type="text" name="author8" value="" placeholder="author name">
         </label> <br/>
       </div>
-      <span id="buttonBar">
-        <select name="fitler" id="filterSelector">
+      <span id="belowOptions">
+
+        <ul name="filter" id="filterUl">
+          <span>Filter By:</span>
+          <li class="selectable selected" data-name="Economics"> Economics </li>
+          <li class="selectable" data-name="History"> History </li>
+          <li class="selectable" data-name="Philosophy"> Philosophy </li>
+          <li class="selectable" data-name="none" id="nofilteroption"> No Filter </li>
+        </ul> </br>
+
+        <!-- <select name="fitler" id="filterSelector">
           <option value="Economics"> Economics </option>
           <option value="History"> History </option>
           <option value="Philosophy"> Philosophy </option>
-        </select> </br>
+          <option value="none" id="nofilteroption"> No Filter </option>
+        </select> </br> -->
         <button id="clearButton"> Clear </button>
 
         <button id="whereTheyPublishButton"> Where do they publish? </button> <br/>
@@ -63,8 +79,10 @@
 
     <div class="rightside" id="displayPanel">
       <div id="intro">
-        <h1>About</h1>
-        <hr/>
+        <header>
+          <h1>About</h1>
+          <hr/>
+        </header>
         <article>
           <p> This project is motivated by the thought that rankings should take into account the user's own interests and values. There is no adequate one-size-fits all ranking system. This project attempts to implement a flexible ranking system. Input your tastes, as measured by people who's work you admire, and the system outputs a list of journals based on those tastes. </p>
 
