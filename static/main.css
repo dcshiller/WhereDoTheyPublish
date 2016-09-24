@@ -69,6 +69,15 @@ body>header h1 {
   padding: 10px;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  background: rgba(228, 210, 183, 1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 140, 60, 1);
+}
+
 #belowOptions {
   display: block;
   padding-top: 10px;
@@ -246,13 +255,15 @@ form.leftside option::selection {
 .rightside .circle {
   padding:  2px 10px 1px 10px;
   border-radius: 15px;
-  background: grey;
+  /*background: grey;*/
   margin-right: 10px;
   transition: background .3s;
+  border: 2px solid rgba(168, 150, 80, 1);
 }
 
 .rightside .circle.active {
-  background: black;
+  background: rgba(148, 140, 60, 1);
+  border: 2px solid rgba(140, 130, 63, 1);
   transition: background .3s;
 }
 
