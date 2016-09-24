@@ -102,7 +102,7 @@ function enterWaitingState () {
     incrementSpinner()
     timer++
     if (timer % 5 == 0) {let xhttp = new XMLHttpRequest();
-      xhttp.open("get", "http://localhost:8080/status/", true)
+      xhttp.open("get", "http://wheredotheypublish.derekshiller.com/status/", true)
       xhttp.send();
     xhttp.onreadystatechange = processStatus
   }}, 500)
