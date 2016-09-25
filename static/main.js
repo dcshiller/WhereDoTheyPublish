@@ -6,18 +6,26 @@ var pubList;
 
 function addSample (sampleNum, e) {
   e.preventDefault();
-  firstSample = ["Allan Gibbard", "Terry Horgan", "Jack Woods", "Derek Parfit", "Richard Joyce", "Sharon Street", "Mark Schroeder", "Michael Ridge"  ]
-  secondSample = ["Peter Carruthers", "Daniel Dennett", "Patricia Churchland", "Susan Schneider", "Jerry Fodor", "David Papineau", "Ruth Millikan", "Murat Aydede" ]
+  firstSample = {Philosophy:["Allan Gibbard", "Terry Horgan", "Jack Woods", "Derek Parfit", "Richard Joyce", "Sharon Street", "Mark Schroeder", "Michael Ridge"  ],
+                 Economics:["", "", "", "", "", "", "", "" ],
+                 History:["", "", "", "", "", "", "", "" ],
+                 none:["","","","","","","",""]}
+  secondSample = {Philosophy:["Peter Carruthers", "Daniel Dennett", "Patricia Churchland", "Susan Schneider", "Jerry Fodor", "David Papineau", "Ruth Millikan", "Murat Aydede" ],
+                  Economics:["", "", "", "", "", "", "", "" ],
+                  History:["", "", "", "", "", "", "", "" ],
+                  none:["","","","","","","",""]}
   clear = ["", "", "", "", "", "", "", "" ]
 
   let fields = document.getElementsByClassName('authorField');
+  let filterVal = document.getElementsByClassName('selected')[0].dataset.name
   let sample;
+
   switch (sampleNum) {
       case 1 :
-        sample = firstSample
+        sample = firstSample[filterVal]
         break;
       case 2 :
-        sample = secondSample
+        sample = secondSample[filterVal]
         break;
       default :
         sample = clear
@@ -38,7 +46,7 @@ function assignJournalLis () {
     var newEl = document.createElement("li")
     if (i == -1) {
       clearInterval(window.statusListener)
-      if (message[1].Count == 0) {
+      if (message[0].Count == 0) {
         pubList.innerHTML = `<span id="noResults" class="middle"> No results found. </span>`
         removeSpinner()
         break;
@@ -62,7 +70,6 @@ function incrementSpinner () {
 
   circleNum = activeCircle.dataset.circleNum
   let newCircleNum = ((circleNum/1) + 1) % 3
-  console.log(newCircleNum)
   let nextActiveCircle = document.querySelector(`[data-circle-num~="${newCircleNum}"]`)
   activeCircle.className = "circle"
   nextActiveCircle.className = "circle active"
@@ -84,7 +91,6 @@ function makeSpinner () {
 }
 
 function removeSpinner () {
-  console.log("called")
   let spinnerContainer = document.getElementById('spinnerContainer')
   if (spinnerContainer) {spinnerContainer.remove()}
 }
@@ -123,7 +129,6 @@ function getRanking (url, e) {
   }}
   authors = authors.slice(0, -1);
   filterVal = document.getElementsByClassName('selected')[0].dataset.name
-  console.log(filterVal)
   params = JSON.stringify({authors: authors, filter: filterVal})
   xhttp.send(params);
 }
