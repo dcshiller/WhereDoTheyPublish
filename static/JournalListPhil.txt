@@ -1,45 +1,45 @@
-The Acorn
+Acorn
 Acta Analytica
 Acta Philosophica Fennica
 American Catholic Philosophical Quarterly
-American Journal of Bioethics
-American Journal of Semiotics
+American Journal Of Bioethics
+American Journal Of Semiotics
 American Philosophical Quarterly
-Analyse and Kritik
+Analyse And Kritik
 Analysis
 Analytic Philosophy
 Ancient Philosophy
 Apeiron
-Archiv für Geschichte der Philosophie
+Archiv Für Geschichte Der Philosophie
 Ars Disputandi
 Asian Philosophy
 Augustinian Studies
-Auslegung: A Journal of Philosophy
-Australasian Journal of Logic
-Australasian Journal of Philosophy
-Australasian Journal of Professional and Applied Ethics
-Avant: Trends in Interdisciplinary Studies
+Auslegung: A Journal Of Philosophy
+Australasian Journal Of Logic
+Australasian Journal Of Philosophy
+Australasian Journal Of Professional And Applied Ethics
+Avant: Trends In Interdisciplinary Studies
 Axiomathes
+Behavioral And Brain Sciences
 Berkeley Studies
-Behavioral and Brain Sciences
 Bioethics
-Biology and Philosophy
-British Journal for the History of Philosophy
-British Journal for the Philosophy of Science
-British Journal of Aesthetics
-Bulletin of the Hegel Society of Great Britain
-Bulletin of Symbolic Logic
-Business and Professional Ethics Journal
+Biology And Philosophy
+British Journal For The History Of Philosophy
+British Journal For The Philosophy Of Science
+British Journal Of Aesthetics
+Bulletin Of Symbolic Logic
+Bulletin Of The Hegel Society Of Great Britain
+Business And Professional Ethics Journal
 Business Ethics Quarterly
-Cambridge Quarterly of Healthcare Ethics
-Canadian Journal of Law and Jurisprudence
-Canadian Journal of Philosophy
+CLR James Journal
+Cambridge Quarterly Of Healthcare Ethics
+Canadian Journal Of Law And Jurisprudence
+Canadian Journal Of Philosophy
 Chiasmi International
 Classical Philology
 Classical Quaterly
-CLR James Journal
 Comparative Philosophy
-Consciousness and Cognition
+Consciousness And Cognition
 Constellations
 Constructivist Foundations
 Contemporary Aesthetics
@@ -48,7 +48,7 @@ Contemporary Pragmatism
 Continent
 Continental Philosophy Review
 Critica
-Croatian Journal of Philosophy
+Croatian Journal Of Philosophy
 Cultura
 Dao
 Deleuze Studies
@@ -57,141 +57,137 @@ Dialectica
 Dialogue
 Dionysius
 Disputatio
-Economics and Philosophy
-Educational Philosophy and Theory
+Economics And Philosophy
+Educational Philosophy And Theory
 Educational Theory
 Environmental Ethics
 Environmental Philosophy
 Episteme
-Episteme: Journal of Social Epistemology
+Episteme: Journal Of Social Epistemology
 Epoché
 Erkenntnis
-Essays in the Philosophy of Humanism
-Ethical Theory and Moral Practice
+Essays In The Philosophy Of Humanism
+Ethical Theory And Moral Practice
 Ethics
-Ethics and Global Politics
-Ethics and Information Technology
-Ethics and International Affairs
-European Journal of Analytic Philosophy
-European Journal of Philosophy
-European Journal of Political Theory
+Ethics And Global Politics
+Ethics And Information Technology
+Ethics And International Affairs
+European Journal Of Analytic Philosophy
+European Journal Of Philosophy
+European Journal Of Political Theory
 Existenz
 Facta Philosophica
-Faith and Philosophy
-Film and Philosophy
-Filosofia Theoretica: Journal of African Philosophy and Religion
+Faith And Philosophy
+Film And Philosophy
+Filosofia Theoretica: Journal Of African Philosophy And Religion
 Graduate Faculty Philosophy Journal
 Grazer Philosophische Studien
+Harvard Review Of Philosophy
 Hastings Center Report
-The Harvard Review of Philosophy
 Heidegger Studies
-History of Philosophy Quarterly
+Heythrop Journal
 Heythrop Quarterly
-The Heythrop Journal
+History Of Philosophy Quarterly
 Humana.Mente
-Humana.Mente - Journal of Philosophical Studies
-Humana.Mente Journal of Philosophical Studies
-Humana.Mente: Journal of Philosophical Studies
+Humana.Mente - Journal Of Philosophical Studies
+Humana.Mente Journal Of Philosophical Studies
+Humana.Mente: Journal Of Philosophical Studies
 Hume Studies
 Hyle
 Hypatia
 Idealistic Studies
 Inquiry
-Inquiry: An Interdisciplinary Journal of Philosophy
-Inquiry: Critical Thinking Across the Disciplines
-International Journal for Philosophy of Religion
-International Journal of Applied Philosophy
-International Journal of Philosophical Studies
+Inquiry: An Interdisciplinary Journal Of Philosophy
+Inquiry: Critical Thinking Across The Disciplines
+International Journal For Philosophy Of Religion
+International Journal Of Applied Philosophy
+International Journal Of Philosophical Studies
 International Philosophical Quarterly
-International Studies in Philosophy
-International Studies in Philosophy of Science
+International Studies In Philosophy
+International Studies In Philosophy Of Science
 Isis
-Journal for General Philosophy of Science
-Journal for Peace and Justice Studies
-Journal of Aesthetics and Art Criticism
-The Journal of Aesthetics and Art Criticism
-Journal of Applied Philosophy
-Journal of the British Scoeity for Phenomenology
-Journal of Business Ethics Education
-Journal of Chinese Philosophy
-Journal of Consciousness Studies
-Journal of Ethics
-Journal of Ethics and Social Philosophy
-Journal of Global Ethics
-Journal of the History of Philosophy
-Journal of Human Values
-Journal of Idealistic Studies
-Journal of Indian Philosophy
-Journal of Information Ethics
-Journal of Law, Medicine, and Ethics
-Journal of Medical Ethics
-Journal of Medicine and Philosophy
-Journal of Mind and Behavior
-Journal of Moral Philosophy
-Journal of Nietzsche Studies
-Journal of Philosophical Logic
-Journal of Philosophical Research
-Journal of Philosophy
-The Journal of Philosophy
-Journal of Philosophy of Education
-Journal of Political Philosophy
-Journal of Religious Ethics
-Journal of Scottish Philosophy
-Journal of Social Philosophy
-Journal of Speculative Philosophy
-Journal of Symbolic Logic
-Journal of Theological Studies
-The Journal of Theological Studies
-Journal of Value Inquiry
+Journal For General Philosophy Of Science
+Journal For Peace And Justice Studies
+Journal Of Aesthetics And Art Criticism
+Journal Of Applied Philosophy
+Journal Of Business Ethics Education
+Journal Of Chinese Philosophy
+Journal Of Consciousness Studies
+Journal Of Ethics
+Journal Of Ethics And Social Philosophy
+Journal Of Global Ethics
+Journal Of Human Values
+Journal Of Idealistic Studies
+Journal Of Indian Philosophy
+Journal Of Information Ethics
+Journal Of Law, Medicine, And Ethics
+Journal Of Medical Ethics
+Journal Of Medicine And Philosophy
+Journal Of Mind And Behavior
+Journal Of Moral Philosophy
+Journal Of Nietzsche Studies
+Journal Of Philosophical Logic
+Journal Of Philosophical Research
+Journal Of Philosophy
+Journal Of Philosophy Of Education
+Journal Of Political Philosophy
+Journal Of Religious Ethics
+Journal Of Scottish Philosophy
+Journal Of Social Philosophy
+Journal Of Speculative Philosophy
+Journal Of Symbolic Logic
+Journal Of The British Scoeity For Phenomenology
+Journal Of The History Of Philosophy
+Journal Of Theological Studies
+Journal Of Value Inquiry
 Kant-Studien
 Kantian Review
-Kennedy Institute of Ethics Journal
-Kriterion: Journal of Philosophy
+Kennedy Institute Of Ethics Journal
+Kriterion: Journal Of Philosophy
 Kritike
-Law and Philosophy
+Law And Philosophy
 Legal Theory
-The Leibniz Review
-Linguistics and Philosophy
-Linguistic and Philosophical Investigations
-Logic and Logical Philosophy
-Logique et Analyse
-Logical Analysis and History of Philosophy
+Leibniz Review
+Linguistic And Philosophical Investigations
+Linguistics And Philosophy
+Logic And Logical Philosophy
+Logical Analysis And History Of Philosophy
+Logique Et Analyse
 Metaphilosophy
 Metaphysica
-Midwest Studies in Philosophy
+Midwest Studies In Philosophy
 Mind
-Mind and Language
-Minds and Machines
-The Modern Schoolman
-The Monist
+Mind And Language
+Minds And Machines
+Modern Schoolman
+Monist
 Neuroethics
 New Nietzsche Studies
-The New Scholasticism
+New Scholasticism
 New Vico Studies
-Notre Dame Journal of Formal Logic
+Notre Dame Journal Of Formal Logic
 Noûs
 Organon
-The Owl of Minerva
-Oxford Journal of Legal Studies
-Oxford Studies in Ancient Philosophy
+Owl Of Minerva
+Oxford Journal Of Legal Studies
+Oxford Studies In Ancient Philosophy
 Pacific Philosophical Quarterly
-Perspectives on Science
-Phenomenology and the Cognitive Sciences
+Perspectives On Science
+Phenomenology And The Cognitive Sciences
 Philo
-The Philosopher
+Philosopher
 Philosophers' Imprint
-The Philosophers' Magazine
+Philosophers' Magazine
 Philosophia
-Philosophia: Philosophical Quarterly of Israel
 Philosophia Africana
 Philosophia Christi
 Philosophia Mathematica
 Philosophia Reformata
+Philosophia: Philosophical Quarterly Of Israel
 Philosophica
 Philosophical Explorations
-Philosophical Frontiers
 Philosophical Forum
-The Philosophical Forum
+Philosophical Frontiers
 Philosophical Inquiry
 Philosophical Investigations
 Philosophical Issues
@@ -199,87 +195,83 @@ Philosophical Papers
 Philosophical Perspectives
 Philosophical Psychology
 Philosophical Quarterly
-The Philosophical Quarterly
 Philosophical Review
-The Philosophical Review
 Philosophical Studies
 Philosophical Topics
 Philosophy
-Philosophy and Literature
-Philosophy and Phenomenological Research
-Philosophy and Public Affairs
-Philosophy and Social Criticism
-Philosophy and Theology
+Philosophy And Literature
+Philosophy And Phenomenological Research
+Philosophy And Public Affairs
+Philosophy And Social Criticism
+Philosophy And Theology
 Philosophy Compass
-Philosophy East and West
-Philosophy in the Contemporary World
-Philosophy in Review
+Philosophy East And West
+Philosophy In Review
+Philosophy In The Contemporary World
 Philosophy Now
-Philosophy of Management
-Philosophy of Photography
-Philosophy of Science
-Philosophy, Psychiatry, and Psychology
+Philosophy Of Management
+Philosophy Of Photography
+Philosophy Of Science
 Philosophy Today
+Philosophy, Psychiatry, And Psychology
 Phronesis
 Pli
-Pli: The Warwick Journal of Philosophy
+Pli: The Warwick Journal Of Philosophy
 Pluralist
 Polis
-Polish Journal of Philosophy
+Polish Journal Of Philosophy
 Political Studies
 Political Theory
 Polity
-Praxis Journal of Philosophy
-Proceedings of the American Catholic Philosophical Association
-Proceedings of the Aristotelian Society
+Praxis Journal Of Philosophy
+Proceedings Of The American Catholic Philosophical Association
+Proceedings Of The Aristotelian Society
 Professional Ethics
 Prolegomena
-Prolegomena - Journal of Philosophy
+Prolegomena - Journal Of Philosophy
 Psyche
 Public Affairs Quarterly
 Questions
 Quodlibet
 Radical Philosophy Review
 Ratio
-Rationality and Society
+Rationality And Society
 Reasoner
-The Reasoner
 Religious Studies
 Res Publica
-Review of Metaphysics
-The Review of Metaphysics
-Review of Philosophy and Psychology
-Russell: Journal of Bertrand Russell Archives
-Sats - Nordic Journal of Philosophy
-Science and Education
-Science and Engineering Ethics
+Review Of Metaphysics
+Review Of Philosophy And Psychology
+Review Of Symbolic Logic
+Russell: Journal Of Bertrand Russell Archives
+Sats - Nordic Journal Of Philosophy
+Science And Education
+Science And Engineering Ethics
 Semina Scientiarum
 Semiotica
 Sign Systems Studies
 Social Philosophy Today
-Social Theory and Practice
+Social Theory And Practice
 Sophia
 Sorites
-South African Journal of Philosophy
-Southern Journal of Philosophy
+South African Journal Of Philosophy
+Southern Journal Of Philosophy
 Southwest Philosophy Review
 Studia Logica
 Studia Neoaristotelica
 Studia Phaenomenologica
 Studia Philosophica Estonica
-Studies in History and Philosophy of Science
-Synthese
+Studies In History And Philosophy Of Science
 Symbolic Logic
-The Review of Symbolic Logic
+Synthese
 Teaching Ethics
 Teaching Philosophy
 Techné
 Teorema
 Theoria
-Theory and Decision
-Theory and Event
+Theory And Decision
+Theory And Event
 Think
 Thought
-Tulane Studies in Philosophy
+Tulane Studies In Philosophy
 Utilitas
-Zeitschrift für Philosophiche Forschung
+Zeitschrift Für Philosophiche Forschung
