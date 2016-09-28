@@ -7,7 +7,7 @@ var pubList;
 function addSample (sampleNum, e) {
   e.preventDefault();
   firstSample = {Philosophy:["Allan Gibbard", "Terry Horgan", "Jack Woods", "Derek Parfit", "Richard Joyce", "Sharon Street", "Mark Schroeder", "Michael Ridge"  ],
-                 Economics:["", "", "", "", "", "", "", "" ],
+                 Economics:["Raj Chetty", "Xavier Gabaix", "Emmanuel Saez", "Eammanuel Farhi", "Justin Wolfers", "Nathan Nunn", "Kristin Forbes", "" ],
                  History:["", "", "", "", "", "", "", "" ],
                  none:["","","","","","","",""]}
   secondSample = {Philosophy:["Peter Carruthers", "Daniel Dennett", "Patricia Churchland", "Susan Schneider", "Jerry Fodor", "David Papineau", "Ruth Millikan", "Murat Aydede" ],
