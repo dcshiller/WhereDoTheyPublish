@@ -80,18 +80,6 @@ type rankedJournals []journalRank
     return ranking[i].Count > ranking[j].Count
   }
 
-type alphabetic []string
-  func (stringArr alphabetic) Len() int {
-    return len(stringArr)
-  }
-
-  func (stringArr alphabetic) Swap(i,j int) {
-    stringArr[i], stringArr[j] = stringArr[j], stringArr[i]
-  }
-
-  func (stringArr alphabetic) Less(i, j int) bool {
-    return stringArr[i] < stringArr[j]
-  }
 
 type returnData struct {
   JournalCounts map[string]int
@@ -254,34 +242,6 @@ func readJournalNamesIntoSet (fileName string, journalSet map[string]bool) {
   }
 }
 
-func processJournalNames () {
-  journalString, err := ioutil.ReadFile("./static/JournalListEcon.txt")
-  check(err)
-  journalsArr := strings.Split(string(journalString), "\n")
-  newArr := make([]string, 100)
-  dictionary := make(map[string]bool, 100)
-  for i := 0; i < len(journalsArr); i++ {
-    // if !(len(journalsArr[i]) < 6 ||
-    //       journalsArr[i][0:4] == "ISSN" ||
-    //       journalsArr[i][0:6] == "EconLi" ||
-    //       journalsArr[i][0:4] == "Back" ||
-    //       journalsArr[i][0:4] == "See:" ||
-    //       journalsArr[i][0:6] == "Former") {
-    nextJournal := strings.TrimPrefix(journalsArr[i], "The ")
-    nextJournal = strings.Title(nextJournal)
-    nextJournal = strings.Trim(nextJournal, " ")
-    if !(dictionary[nextJournal]) {
-      newArr = append(newArr, nextJournal)
-    }
-      dictionary[nextJournal] = true
-    // }
-  }
-  sort.Sort(alphabetic(newArr))
-  x := strings.Join(newArr, "\n")
-  ioutil.WriteFile("./static/JournalList22.txt", []byte(x), 0644)
-  check(err)
-}
-
 func restartJournalCount () {
   journalCount = make(map[string]int, 25)
 }
@@ -326,7 +286,7 @@ func mainViewHandler (w http.ResponseWriter, r *http.Request) {
   t.Execute(w, nil)
 }
 
-func main() {
+func main () {
   port := os.Getenv("PORT")
   if (port == "") {port = "8080"}
 
@@ -337,7 +297,6 @@ func main() {
   readJournalNamesIntoSet("./static/JournalListPhil.txt", philJournalNames)
   readJournalNamesIntoSet("./static/JournalListEcon.txt", econJournalNames)
   readJournalNamesIntoSet("./static/JournalListHist.txt", histJournalNames)
-  if histJournalNames["Western Historical Quarterly"]   {fmt.Println("-->" + "yes")}
   // processJournalNames()
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
   http.HandleFunc("/", mainViewHandler)
