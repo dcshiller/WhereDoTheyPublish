@@ -23,6 +23,7 @@ var journalCount = make(map[string]int, 25)
 var econJournalNames = make(map[string]bool, 1915)
 var histJournalNames = make(map[string]bool, 386)
 var philJournalNames = make(map[string]bool, 290)
+var psychJournalNames = make(map[string]bool, 112)
 var statusMessage string = "This could take some time."
 
 
@@ -297,6 +298,8 @@ func main () {
   readJournalNamesIntoSet("./static/JournalListPhil.txt", philJournalNames)
   readJournalNamesIntoSet("./static/JournalListEcon.txt", econJournalNames)
   readJournalNamesIntoSet("./static/JournalListHist.txt", histJournalNames)
+  readJournalNamesIntoSet("./static/JournalListPsyc.txt", psycJournalNames)
+  // processJournalNames()
   // processJournalNames()
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
   http.HandleFunc("/", mainViewHandler)
