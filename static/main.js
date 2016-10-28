@@ -1,15 +1,4 @@
-var searchForm;
-var displayPanel;
-var boundMove;
-var pubList;
-var whereTheyPublishButton;
-var body;
-var aboutButton;
-var selectables;
-var fields;
-var intro;
-var elements;
-var filterUl;
+var searchForm, displayPanel, boundMove, pubList, whereTheyPublishButton, body, aboutButton, selectables, fields, intro, elements, filterUl;
 
 function addSample (sampleNum, e) {
   e.preventDefault();
@@ -114,15 +103,22 @@ function getRanking (url, e) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = assignJournalLis;
   xhttp.open("POST",url, true)
-  let authors = ""
+  authors = authors.slice(0, -1);
+  params = JSON.stringify({authors: getAuthors(), filter: getFilterVal()})
+  xhttp.send(params);
+}
+
+function getAuthors() {
+  let authors = "";
   for (let i = 0; i < fields.length ; i++) {
     if (fields[i].value != ""){
      authors += (fields[i].value) + "|";
   }}
-  authors = authors.slice(0, -1);
-  filterVal = document.getElementsByClassName('selected')[0].dataset.name
-  params = JSON.stringify({authors: authors, filter: filterVal})
-  xhttp.send(params);
+  return authors;
+}
+
+function getFilterVal() {
+  return document.getElementsByClassName('selected')[0].dataset.name;
 }
 
 function getWhereTheyPublish (e) {
@@ -237,16 +233,16 @@ function startSearch (e) {
   addSelectorListener(selectCategory)
 }
 
-function writeAuthorName (e){
-  let field = document.getElementById('authorFieldOne');
-  let nameSpan = document.getElementById('authorName');
-  let warning = document.getElementById('warning')
-  if (field.value == ""){
-    nameSpan.innerText = "author 1";
-    warning.innerHTML = ""}
-  else {nameSpan.innerText = field.value;
-   }
-}
+// function writeAuthorName (e){
+//   let field = document.getElementById('authorFieldOne');
+//   let nameSpan = document.getElementById('authorName');
+//   let warning = document.getElementById('warning')
+//   if (field.value == ""){
+//     nameSpan.innerText = "author 1";
+//     warning.innerHTML = ""}
+//   else {nameSpan.innerText = field.value;
+//    }
+// }
 
 
 function onLoad() {
