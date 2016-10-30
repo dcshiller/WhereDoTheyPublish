@@ -130,6 +130,8 @@ func countFilteredJournals (publications []publication, filter string) {
     journalListToCheck = histJournalNames
   } else if filter == "Philosophy" {
     journalListToCheck = philJournalNames
+  } else if filter == "Psychology" {
+    journalListToCheck = psychJournalNames
   }
 
   for _, pub := range publications {
@@ -298,7 +300,7 @@ func main () {
   readJournalNamesIntoSet("./static/JournalListPhil.txt", philJournalNames)
   readJournalNamesIntoSet("./static/JournalListEcon.txt", econJournalNames)
   readJournalNamesIntoSet("./static/JournalListHist.txt", histJournalNames)
-  readJournalNamesIntoSet("./static/JournalListPsyc.txt", psycJournalNames)
+  readJournalNamesIntoSet("./static/JournalListPsyc.txt", psychJournalNames)
   // processJournalNames()
   // processJournalNames()
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))

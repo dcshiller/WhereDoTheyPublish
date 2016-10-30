@@ -93,7 +93,7 @@ function startTimer () {
     if (timer % 10 == 0) {let xhttp = new XMLHttpRequest();
       xhttp.open("get", "http://wheredotheypublish.derekshiller.com/status/", true)
       xhttp.send();
-    xhttp0.onreadystatechange = (response) => { document.getElementById("statusUpdate").innerText = this.responseText } 
+    xhttp.onreadystatechange = (response) => { document.getElementById("statusUpdate").innerText = this.responseText } 
   }}, 500)
 }
 
@@ -103,7 +103,7 @@ function getRanking (url, e) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = assignJournalLis;
   xhttp.open("POST",url, true)
-  authors = authors.slice(0, -1);
+  // authors = getAuthors.slice(0, -1);
   params = JSON.stringify({authors: getAuthors(), filter: getFilterVal()})
   xhttp.send(params);
 }
