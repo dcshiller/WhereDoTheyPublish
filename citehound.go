@@ -14,6 +14,7 @@ import (
     "math"
     // "math/rand"
     // "bytes"
+    "github.com/dcshiller/citehound/titlecap"
     "encoding/json"
 )
 
@@ -136,7 +137,7 @@ func countFilteredJournals (publications []publication, filter string) {
 
   for _, pub := range publications {
     mainTitle := strings.Split(pub.Journal, ":")[0]
-    nextPubJournal := strings.Title(strings.TrimPrefix(mainTitle, "The "))
+    nextPubJournal := titlecap.Titlize(strings.TrimPrefix(mainTitle, "The "))
     recognizedJournal := journalListToCheck[nextPubJournal]
     // var boolVal string
     // if recognizedJournal {boolVal = "yes"} else {boolVal = "no"}

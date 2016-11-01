@@ -78,6 +78,7 @@ Journal of the American Psychoanalytic Association
 Journal of the Experimental Analysis of Behavior
 Mind & Language
 Music Perception
+Nature
 Perception
 Perceptual and Motor Skills
 Personal Relationships
@@ -103,6 +104,7 @@ Psychonomic Bulletin and Review
 Quality & Quantity
 Review of General Psychology
 Review of Philosophy and Psychology
+Science
 Suicide and Life-Threatening Behavior
 Trends in Cognitive Sciences
 Universitas Psychologica
