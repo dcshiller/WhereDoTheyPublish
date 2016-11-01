@@ -90,7 +90,7 @@ function startTimer () {
   window.statusListener =  setInterval(function(){
     incrementSpinner()
     timer++
-    if (timer % 10 == 0) {let xhttp = new XMLHttpRequest();
+    if (timer % 5 == 0) {let xhttp = new XMLHttpRequest();
       xhttp.open("get", "http://wheredotheypublish.derekshiller.com/status/", true)
       xhttp.send();
     xhttp.onreadystatechange = (response) => { document.getElementById("statusUpdate").innerText = this.responseText } 
