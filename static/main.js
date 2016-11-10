@@ -39,17 +39,17 @@ function assignJournalLis () {
     exitWaitingState()
     let message = JSON.parse(this.responseText)
     for (let i = -1; i < message.length; i++) {
-      var newEl = document.createElement("li")
+      var newEl = document.createElement("tr")
       if (i == -1) {
         if (message[0].Count == 0) {
           pubList.innerHTML = `<span id="noResults" class="middle"> No results found. </span>`
           break;
         } else {
-          newEl.innerHTML = `<strong> Count </strong> <center> Journal Title </center> `
+          newEl.innerHTML = `<th> <strong> Count </strong> </th> <th> Journal Title </th> `
           pubList.appendChild(newEl)
         }
       } else if (message[i].Count > 0 && message[i].Title != "") {
-        newEl.innerHTML = `<strong>${message[i].Count}</strong> <span>${message[i].Title}</span>`
+        newEl.innerHTML = `<td> <strong>${message[i].Count}</strong> </td> <td>${message[i].Title}</td>`
         pubList.appendChild(newEl)
       }
     }
@@ -69,7 +69,6 @@ function defineVars () {
   fields = document.getElementsByClassName('authorField')
   filterUl = document.getElementById("filterUl")
 }
-
 
 function enterWaitingState () {
   whereTheyPublishButton.disabled = true;

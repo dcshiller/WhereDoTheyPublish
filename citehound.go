@@ -15,18 +15,14 @@ import (
     // "math/rand"
     // "bytes"
     "github.com/dcshiller/citehound/titlecap"
+    "github.com/dcshiller/citehound/journal_loader"
     "encoding/json"
 )
 
 //Variables
 
 var journalCount = make(map[string]int, 25)
-var econJournalNames = make(map[string]bool, 1915)
-var histJournalNames = make(map[string]bool, 386)
-var philJournalNames = make(map[string]bool, 290)
-var psychJournalNames = make(map[string]bool, 112)
 var statusMessage string = "This could take some time."
-
 
 //Structs
 
@@ -124,26 +120,12 @@ func convertAuthorsToCRFormat(authors []string) string {
 }
 
 func countFilteredJournals (publications []publication, filter string) {
-  var journalListToCheck map[string]bool
-  if filter == "Economics" {
-    journalListToCheck = econJournalNames
-  } else if filter == "History" {
-    journalListToCheck = histJournalNames
-  } else if filter == "Philosophy" {
-    journalListToCheck = philJournalNames
-  } else if filter == "Psychology" {
-    journalListToCheck = psychJournalNames
-  }
-
   for _, pub := range publications {
     mainTitle := strings.Split(pub.Journal, ":")[0]
     nextPubJournal := titlecap.Titlize(strings.TrimPrefix(mainTitle, "The "))
-    recognizedJournal := journalListToCheck[nextPubJournal]
-    // var boolVal string
-    // if recognizedJournal {boolVal = "yes"} else {boolVal = "no"}
-    // if histJournalNames["Western Historical Quarterly"]   {fmt.Println("-->" + "yes")}
-    // fmt.Println(">>" + nextPubJournal + " " + boolVal)
-    if filter == "none" {recognizedJournal = true}
+    journal_loader.SetListToCompare("economics")
+    recognizedJournal := journal_loader.CheckVSList(nextPubJournal)
+    if filter == "none" { recognizedJournal = true }
     if journalCount[nextPubJournal] > 0 && recognizedJournal {
       journalCount[nextPubJournal]++
     } else if recognizedJournal {journalCount[nextPubJournal] = 1}
@@ -159,7 +141,7 @@ func formatRetrieveAndCount (group []string, filter string) {
   countFilteredJournals(pubList, filter)
 }
 
-func getLongest ( strArray []string) string {
+func getLongest ( strArray []string ) string {
   maxLength := 0
   longest := ""
   for _, element := range strArray {
@@ -172,8 +154,6 @@ func getLongest ( strArray []string) string {
 }
 
 func parseAuthorsToStringGroups (body string) ( [][]string ) {
-  // body, err := ioutil.ReadAll(r.Body)
-  // check(err)
   authors := strings.Split(string(body), "|")
   lengthOrFour := int(math.Min(float64(len(authors)), 4.0))
   firstGroup := authors[0:lengthOrFour]
@@ -235,17 +215,6 @@ func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
   w.Write(jsonSortedJournals)
 }
 
-func readJournalNamesIntoSet (fileName string, journalSet map[string]bool) {
-  journalString, err := ioutil.ReadFile(fileName)
-  check(err)
-  journalsArr := strings.Split(string(journalString), "\n")
-  for _,journal := range journalsArr {
-    mainTitle := strings.Split(journal, ":")[0]
-    mainTitle = strings.TrimPrefix(mainTitle, "The ")
-    journalSet[mainTitle] = true
-  }
-}
-
 func restartJournalCount () {
   journalCount = make(map[string]int, 25)
 }
@@ -262,9 +231,6 @@ func retrievePubList (url string, authorList []string ) []publication {
     nextPub := parseSinglePub(item)
     if isAuthorAmongQuery(nextPub, authorList) {
       publications = append(publications,nextPub)
-      // fmt.Println(nextPub.Title)
-      // fmt.Println(nextPub.Author)
-      // fmt.Println(nextPub.Journal)
     }
   }
   response.Body.Close()
@@ -298,12 +264,8 @@ func main () {
     log.Fatal("$PORT must be set")
   }
   fmt.Println("Get Ready...")
-  readJournalNamesIntoSet("./static/JournalListPhil.txt", philJournalNames)
-  readJournalNamesIntoSet("./static/JournalListEcon.txt", econJournalNames)
-  readJournalNamesIntoSet("./static/JournalListHist.txt", histJournalNames)
-  readJournalNamesIntoSet("./static/JournalListPsyc.txt", psychJournalNames)
-  // processJournalNames()
-  // processJournalNames()
+  journal_loader.LoadJournalNames()
+  journal_loader.SetListToCompare("econ")
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
   http.HandleFunc("/", mainViewHandler)
   http.HandleFunc("/wheredotheypublish/", rankingRequestHandler)
