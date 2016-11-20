@@ -2,7 +2,6 @@ package main
 
 import (
     "fmt"
-    // "regexp"
     "io/ioutil"
     "html/template"
     "net/http"
@@ -12,10 +11,9 @@ import (
     "sort"
     "strconv"
     "math"
-    // "math/rand"
-    // "bytes"
     "github.com/dcshiller/citehound/titlecap"
-    "github.com/dcshiller/citehound/journal_loader"
+    "github.com/dcshiller/citehound/journal_list"
+    "github.com/dcshiller/citehound/status_request_handler"
     "encoding/json"
 )
 
@@ -23,7 +21,8 @@ import (
 
 var journalCount = make(map[string]int, 25)
 var statusMessage string = "This could take some time."
-
+var listStore = journal_list.NewJournalListStore()
+var statusRequestHandler = status_request_handler.StatusHandler{StatusMessage: ""}
 //Structs
 
 type ajaxRequestMessage struct {
@@ -100,7 +99,7 @@ func isAuthorAmongQuery (pub publication, authorList []string) bool {
 
 func check(err error) {
   if err != nil {
-      statusMessage = "There was a problem."
+      statusRequestHandler.SetMessage("There was a problem.")
       panic(err)
    }
 }
@@ -123,8 +122,8 @@ func countFilteredJournals (publications []publication, filter string) {
   for _, pub := range publications {
     mainTitle := strings.Split(pub.Journal, ":")[0]
     nextPubJournal := titlecap.Titlize(strings.TrimPrefix(mainTitle, "The "))
-    journal_loader.SetListToCompare("economics")
-    recognizedJournal := journal_loader.CheckVSList(nextPubJournal)
+    listStore.SetListToCompare("economics")
+    recognizedJournal := listStore.CheckVSList(nextPubJournal)
     if filter == "none" { recognizedJournal = true }
     if journalCount[nextPubJournal] > 0 && recognizedJournal {
       journalCount[nextPubJournal]++
@@ -151,6 +150,11 @@ func getLongest ( strArray []string ) string {
     }
   }
   return longest
+}
+
+func prepList () {
+  listStore.LoadJournalNames()
+  listStore.SetListToCompare("economics")
 }
 
 func parseAuthorsToStringGroups (body string) ( [][]string ) {
@@ -184,15 +188,9 @@ func parseSinglePub ( itemStruct item ) ( nextPub publication ) {
   return nextPub
 }
 
-func statusRequestHandler (w http.ResponseWriter, r* http.Request) () {
-  jsonStatus := []byte(statusMessage)
-  w.Header().Set("Cope","application/json")
-  w.Write(jsonStatus)
-}
-
 func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
   fmt.Println("Initiating handling of request")
-  statusMessage = "Initiating handling of request."
+  statusRequestHandler.SetMessage("Initiating handling of request.")
   restartJournalCount()
   body, err := ioutil.ReadAll(r.Body)
   check(err)
@@ -200,17 +198,17 @@ func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
   json.Unmarshal(body, &ajaxRequest)
   fmt.Println(ajaxRequest.Filter)
   fmt.Println("Parsing authors into groups")
-  statusMessage = "Parsing authors into group."
+  statusRequestHandler.SetMessage("Parsing authors into group.")
   groups := parseAuthorsToStringGroups(ajaxRequest.Authors)
   for _, group := range groups {
-    fmt.Println("Submitting next Group")
-    statusMessage = "Submitting " + string(strings.Join(group,", ")) +" to CrossRef."
+    fmt.Println("Submitting next Group: " + strings.Join(group, ",") )
+    statusRequestHandler.SetMessage("Submitting " + string(strings.Join(group,", ")) +" to CrossRef.")
     formatRetrieveAndCount(group, ajaxRequest.Filter)
   }
   sortedJournals := sortJournalsByQuantity(journalCount)
   jsonSortedJournals, _ := json.Marshal(sortedJournals)
   fmt.Println("Returning list")
-  statusMessage = "Returning publication list."
+  statusRequestHandler.SetMessage("Returning publication list.")
   w.Header().Set("Cope","application/json")
   w.Write(jsonSortedJournals)
 }
@@ -263,12 +261,13 @@ func main () {
   if port == "" {
     log.Fatal("$PORT must be set")
   }
+  
   fmt.Println("Get Ready...")
-  journal_loader.LoadJournalNames()
-  journal_loader.SetListToCompare("econ")
+  
+  prepList()
   http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
   http.HandleFunc("/", mainViewHandler)
   http.HandleFunc("/wheredotheypublish/", rankingRequestHandler)
-  http.HandleFunc("/status/", statusRequestHandler)
+  http.HandleFunc("/status/", statusRequestHandler.HandleRequest)
   http.ListenAndServe(":" + port, nil)
 }
