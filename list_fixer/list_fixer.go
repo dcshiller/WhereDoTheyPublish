@@ -6,7 +6,7 @@ import (
   "sort"
   "fmt"
   "os"
-  "github.com/dcshiller/citehound/titlecap"
+  // "github.com/dcshiller/WhereDoTheyPublish/m"
 )
 
 type alphabetic []string
@@ -41,7 +41,7 @@ func processJournalNames (location string) {
     nextJournal := strings.TrimPrefix(journalsArr[i], "The ")
     nextJournal = strings.Split(nextJournal, "[")[0]
     fmt.Println(nextJournal)
-    nextJournal = titlecap.Titlize(nextJournal)
+    nextJournal = title_capitalizer.Titlize(nextJournal)
     nextJournal = strings.Trim(nextJournal, " ")
     if !(dictionary[nextJournal]) {
       newArr = append(newArr, nextJournal)

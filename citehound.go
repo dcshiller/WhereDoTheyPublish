@@ -14,6 +14,7 @@ import (
     "github.com/dcshiller/citehound/titlecap"
     "github.com/dcshiller/citehound/journal_list"
     "github.com/dcshiller/citehound/status_request_handler"
+    "github.com/dcshiller/citehound/query"
     "encoding/json"
 )
 
@@ -192,10 +193,12 @@ func rankingRequestHandler (w http.ResponseWriter, r *http.Request) () {
   fmt.Println("Initiating handling of request")
   statusRequestHandler.SetMessage("Initiating handling of request.")
   restartJournalCount()
+  query_parser.ParseQuery(r *http.Request)
   body, err := ioutil.ReadAll(r.Body)
   check(err)
-  ajaxRequest := ajaxRequestMessage{}
-  json.Unmarshal(body, &ajaxRequest)
+  query = query.Query{}.ParseParamsToQuery(r)
+  // ajaxRequest := ajaxRequestMessage{}
+  // json.Unmarshal(body, &ajaxRequest)
   fmt.Println(ajaxRequest.Filter)
   fmt.Println("Parsing authors into groups")
   statusRequestHandler.SetMessage("Parsing authors into group.")

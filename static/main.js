@@ -108,11 +108,12 @@ function getRanking (url, e) {
 }
 
 function getAuthors() {
-  let authors = "";
+  let authors = [];
   for (let i = 0; i < fields.length ; i++) {
     if (fields[i].value != ""){
-     authors += (fields[i].value) + "|";
+     authors.push(fields[i].value);
   }}
+  console.log(authors.join(", "))
   return authors;
 }
 
