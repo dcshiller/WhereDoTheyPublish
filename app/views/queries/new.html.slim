@@ -1,0 +1,51 @@
+header
+  h1 Where Do They Publish?
+
+= form_tag query_path, class: "leftside", id: "searchForm", remote: true
+  input name="authenticity_token" type="hidden" value= form_authenticity_token
+  h1 Who
+  hr
+
+  span id="aboveOptions"
+    button id="sample1" Sample Inputs One
+    button id="sample2" Sample Inputs Two 
+    button id="aboutButton" About
+ 
+  div id="inputFields"
+    - 8.times do |idx|
+      label Author #{(idx + 1).humanize.titlecase}:
+      input.authorField id="authorField#{idx + 1}" type="text" name="authors[]" value="" placeholder="author name"
+      br
+      span id="warning"
+    input id="filter" type="hidden" name="filter" value="Philosophy"
+
+  span id="belowOptions" 
+    ul name="filter" id="filterUl"
+      span Filter By:
+      li.category.selectable data-category="Social_Science" Social Science
+      li.selectable.Social_Science data-name="Economics" Economics 
+      li.selectable.Social_Science data-name="Psychology" Psychology 
+      li.category.selectable data-category="Humanities" Humanities
+      li.selectable.Humanities data-name="History" History 
+      li.selectable.selected.Humanities data-name="Philosophy" Philosophy 
+      li.selectable.category.no_filter data-name="none" id="nofilteroption" No Filter 
+    br
+    button id="clearButton" Clear
+  =submit_tag
+    |"Where do they publish?"
+
+div.rightside id="displayPanel"
+  div id="intro"
+    header
+      h1 About
+      hr
+    article
+        p As a young academic, I often wondered about where I should submit my articles. Journal rankings confer something about prestige, but they gloss over important differences between the values and interests of journals. Looking over article lists from authors or journals can be helpful, but it can be hard to see the big picture.
+        p This application is designed to help figure out which journals best reflect which interests and values. The idea is that one can figure this out by seeing where those people who best represent those interests and values publish.
+        p To use the application, input up to eight authors' names and select a filter. The field specific filters will match venue titles from the publications it finds to journals in the specific field. Do see why this is helpful, or to see if anything is being overlooked, you can always try a search without the filters.
+            | Journals that are listed first are journals that include more work from the selected authors
+        p All data comes from <a href="http://crossref.org/">CrossRefs</a> api. No information is stored on this website. The code for this project can be found at my <a href="http://github.com/dcshiller/citehound"> Github</a> page.
+
+  h1 Where
+  hr
+  table id="pubList"

@@ -1,0 +1,287 @@
+li {
+  list-style: none;
+}
+
+body {
+  background: tan;
+  margin: 0px;
+  font-size: 1vw;
+}
+
+body>header {
+  /*max-width: 400px;*/
+  /*width: 40%;*/
+  
+  width: 65vh;
+  height: 6%;
+  margin: 1% auto;
+  border-radius: 1.5vw;
+  text-align: center;
+}
+
+body>header h1 {
+  font-size: 5vh;
+  margin: 1% auto;
+  /*padding: 2px 0px 2px 0px;*/
+}
+
+body>header, .leftside, .rightside {
+  border-top: .15vw ridge rgba(218, 200, 143, 1);
+  border-left: .15vw ridge rgba(218, 200, 143, 1);
+  border-right: .15vw groove rgba(218, 200, 143, 1);
+  border-bottom: .15vw groove rgba(218, 200, 143, 1);
+  background: rgba(238, 220, 193, 1);
+}
+
+.leftside, .rightside {
+  border-radius: 1.5vw;
+  height: 75%;
+  max-height: 50vw;
+  top: 10%;
+  
+  /*max-height: 800px;
+  max-width: 800px;*/
+  text-align: center;
+  float: left;
+  position: absolute;
+  width: 48%;
+  overflow: auto;
+}
+
+
+.leftside::webkit-scrollbar, .rightside::webkit-scrollbar {
+  display: none;
+}
+
+.leftside {
+  left: 1.5%;
+}
+
+.leftside header, .rightside header {
+  font-size: 1vw;
+  height: 15%;
+}
+
+.leftside #aboveOptions {
+  height: 8%;
+}
+
+#inputFields {
+  height: 45%;
+  overflow: auto;
+  margin: auto;
+  position: relative;
+  padding-top: 3vw;
+  width: 60%;
+  background: rgba(250, 230, 210, 1);
+  padding: 1vw;
+}
+
+::-webkit-scrollbar {
+  width: .7vw;
+  background: rgba(228, 210, 183, 1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 140, 60, 1);
+}
+
+#belowOptions {
+  display: block;
+  padding-top: .7vw;
+  width: 100%;
+  height: 20%;
+  text-align: center;
+}
+
+.leftside hr, .rightside hr{
+  margin: 1.5vw inherit;
+  width: 70%;
+  border-top: .1vw solid black;
+  border-bottom: .1vw solid rgba(200, 180, 113, 1);
+}
+
+.leftside hr {
+  margin-bottom: 10%;
+}
+
+.leftside input {
+  padding-left: .4vw;
+  margin-bottom: 3vw;
+  background: rgba(252, 245, 233, 1);
+  outline-color: rgba(200, 180, 113, 1);
+  width: 70%;
+  outline-width: .2vw;
+  border: .1vw dashed rgba(220, 210, 213, 1);
+  padding: .2vw;
+  height: 2vw;
+  font-size: 1vw;
+}
+
+.leftside label span {
+  text-align: justify;
+}
+
+.leftside button, #belowOptions select, .leftside ul li {
+  margin-bottom: 2%;
+  display: inline;
+  border: .1vw solid rgba(200, 180, 113, 1);
+  background: rgba(218, 200, 143, 1);
+  font-size: 1vw;
+  padding: .2vw;
+  transition: background .75s;
+}
+
+.leftside button:hover, #belowOptions select:hover, .leftside ul li:hover {
+  background: rgba(168, 150, 80, 1);
+  border: .1vw solid rgba(140, 130,63, 1);
+  transition: background .75s, border .25s;
+}
+
+.leftside ul {
+  display: block;
+  list-style-type: none;
+  padding-left: 0px;
+  padding-bottom: .7vw;
+  text-align: center;
+}
+
+.leftside ul li {
+  margin-right: .4vw;
+  padding: .2vw;
+}
+
+.leftside .selectable {
+  display: none;
+}
+
+.leftside .selectable.shown {
+  display: inline;
+}
+
+.leftside .selectable.selected {
+  display: inline;
+}
+
+.leftside .selectable.selected.shown {
+  background: rgba(148, 140, 60, 1);
+  border: .1vw solid rgba(128, 120, 40, 1);
+}
+
+.rightside {
+  right: 1%;
+}
+
+.rightside #intro {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  /*padding: 0px 80px;*/
+  border-radius: 1.5vw;
+  z-index: 1;
+  background: rgba(238, 220, 193, 1);
+}
+
+#intro article {
+  position: absolute;
+  height: 80%;
+  bottom: 15%;
+  left: 10%;
+  right: 10%;
+  top: 20%;
+  font-size: 1vw; 
+  padding-right: 3vw;
+  /*width: calc(100% - 40px;)*/
+  /*right: 20px;*/
+  overflow: auto;
+}
+
+#intro p{
+  text-align: left;
+}
+
+.rightside ul {
+  /*padding-bottom: 50px;*/
+  padding-top: 1.5vw;
+  padding-left: 2vw;
+  text-align: left;
+  overflow: auto;
+  height: 70%;
+  width: 70%;
+}
+
+.rightside ul, #inputFields{
+  margin: auto;
+  border: .3vw ridge  rgba(200, 180, 113, 1);
+  background: rgba(250, 230, 210, 1);
+}
+
+.rightside ul li span {
+  display: inline-block;
+  /*width: calc(100% - 70px);*/
+  vertical-align: top;
+}
+
+.rightside ul li:first-child {
+  /*border-bottom: 2px solid black;*/
+  width: 60%;
+  margin-bottom: 1.5vw;
+}
+
+.rightside center {
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  width: 50%;
+  margin-left: 1.5vw;
+}
+
+.rightside #spinnerContainer {
+    display: block;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 35%;
+    left: 0px;
+}
+
+.rightside .middle {
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  top: 50%;
+  /*left: -6vw;*/
+}
+
+.rightside .circle {
+  padding:  .1vw 1.2vw;
+  border-radius: 200vw;
+  height: 2vw;
+  margin: 1vw;
+  display: inline-block;
+  /*margin-right: 1.5vw;*/
+  transition: background .3s;
+  border: .1vw solid rgba(168, 150, 80, 1);
+}
+
+.rightside .circle.active {
+  background: rgba(148, 140, 60, 1);
+  border: .1vw solid rgba(140, 130, 63, 1);
+  transition: background .3s;
+}
+
+.rightside ul strong {
+  /*width: 4.5vw;*/
+  margin: auto;
+  /*display: inline-block;*/
+  text-align: center;
+}
+
+.rightside #statusUpdate {
+  font-size: 1.5vw;
+}
+
+main.rightside {}
