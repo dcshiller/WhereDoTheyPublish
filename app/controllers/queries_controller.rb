@@ -1,8 +1,7 @@
 class QueriesController < ApplicationController
-  Query = Struct.new("Query", :authors, :category)
-
   def new
-    
+    @request_number = "#{rand(1_000_000)}"
+    StatusTracker.instance.track_status_for(@request_number)
   end
 
   def create
@@ -21,6 +20,6 @@ class QueriesController < ApplicationController
   private
 
   def query
-    Query.new(params[:authors] - [""], params[:filter])
+    Query.new(params[:authors] - [""], params[:filter], params['requestNumber'])
   end
 end

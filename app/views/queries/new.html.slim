@@ -17,6 +17,7 @@ header
       input.authorField id="authorField#{idx + 1}" type="text" name="authors[]" value="" placeholder="author name"
       br
       span id="warning"
+      input type="hidden" name="request_number" value=@request_number id="requestNumber"
     input id="filter" type="hidden" name="filter" value="Philosophy"
 
   span id="belowOptions" 
@@ -31,8 +32,7 @@ header
       li.selectable.category.no_filter data-name="none" id="nofilteroption" No Filter 
     br
     button id="clearButton" Clear
-  =submit_tag
-    |"Where do they publish?"
+  =submit_tag "Where do they publish?", class: "button", onclick: "enterWaitingState()"
 
 div.rightside id="displayPanel"
   div id="intro"

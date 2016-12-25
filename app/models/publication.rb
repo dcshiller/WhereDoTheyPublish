@@ -1,5 +1,5 @@
 class Publication
-  attr_reader :journals
+  attr_reader :journals, :authors
 
   def initialize(title: nil, titles: nil, author: nil, authors: nil, journal: nil, journals: nil)
     @titles = arrayify(title || titles)
@@ -24,7 +24,9 @@ class Publication
   end
 
   def author?(string_to_match)
-    authors.include? string_to_match
+    authors_without_middle_initials = remove_middle_initials_from authors
+    name_to_match = remove_middle_initials_from string_to_match
+    authors_without_middle_initials.include? name_to_match
   end
 
   def journal?(string_to_match)
@@ -32,9 +34,31 @@ class Publication
   end
 
   private
-  attr_reader :titles, :authors
+  attr_reader :titles
 
   def arrayify(obj)
-    obj.is_a?(Array) ? obj : [obj]
+    if obj.is_a? Array
+      obj.compact
+    elsif obj.nil?
+      []
+    else
+      [obj]
+    end
+  end
+
+  def remove_middle_initials_from(authors)
+    if authors.is_a? Array
+      authors.map do |author|
+        remove_middle_initial_from author
+      end
+    elsif authors.is_a? String
+      remove_middle_initial_from authors
+    end
+  end
+
+  def remove_middle_initial_from(author)
+    names = author.split(' ')
+    return names[0] if names.length < 2
+    names[0] .sp names[-1]
   end
 end

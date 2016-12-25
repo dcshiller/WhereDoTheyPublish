@@ -1,43 +1,9 @@
 var searchForm, displayPanel, boundMove, pubList, whereTheyPublishButton, body, aboutButton, selectables, fields, intro, elements, filterUl;
 
-function addSample (sampleNum, e) {
-  e.preventDefault();
-  firstSample = { Philosophy: ["Allan Gibbard", "Terry Horgan", "Jack Woods", "Derek Parfit", "Richard Joyce", "Sharon Street", "Mark Schroeder", "Michael Ridge"  ],
-                  Economics: ["Raj Chetty", "Xavier Gabaix", "Emmanuel Saez", "Eammanuel Farhi", "Justin Wolfers", "Nathan Nunn", "Kristin Forbes", "" ],
-                  Psychology: ["", "", "", "", "", "", "", "" ],
-                  History: ["", "", "", "", "", "", "", "" ],
-                  none: ["","","","","","","",""]}
-  secondSample = { Philosophy: ["Peter Carruthers", "Daniel Dennett", "Patricia Churchland", "Susan Schneider", "Jerry Fodor", "David Papineau", "Ruth Millikan", "Murat Aydede" ],
-                   Economics: ["", "", "", "", "", "", "", "" ],
-                   Psychology: ["", "", "", "", "", "", "", "" ],
-                   History: ["", "", "", "", "", "", "", "" ],
-                   none: ["","","","","","","",""]}
-  clear = ["", "", "", "", "", "", "", "" ]
-
-  let filterVal = document.getElementsByClassName('selected')[0].dataset.name
-  let sample;
-  
-  switch (sampleNum) {
-      case 1 :
-        sample = firstSample[filterVal]
-        break;
-      case 2 :
-        sample = secondSample[filterVal]
-        break;
-      default :
-        sample = clear
-        break;
-    }
-
-    for (let i = 0; i < 8; i++) {
-      fields[i].value = sample[i]
-    }
-}
 
 function assignJournalLis (arg) {
     enterWaitingState()
     exitWaitingState()
-    debugger
     let message = JSON.parse(arg)
     for (let i = -1; i < message.length; i++) {
       var newEl = document.createElement("tr")
@@ -69,31 +35,6 @@ function defineVars () {
   filterUl = document.getElementById("filterUl")
 }
 
-function enterWaitingState () {
-  // whereTheyPublishButton.disabled = true;
-  intro.style.display = 'none';
-  pubList.innerHTML = "<span id='statusUpdate' class='middle'> This could take a while.</span>"
-  // startTimer();
-}
-
-function exitWaitingState () {
-  pubList.innerHTML = ""
-  removeSpinner();
-  clearInterval(window.statusListener)
-}
-
-function startTimer () {
-  let timer = 0;
-  makeSpinner();
-  window.statusListener =  setInterval(function(){
-    incrementSpinner()
-    timer++
-    if (timer % 5 == 0) {let xhttp = new XMLHttpRequest();
-      xhttp.open("get", "http://wheredotheypublish.derekshiller.com/status/", true)
-      xhttp.send();
-    xhttp.onreadystatechange = (response) => { document.getElementById("statusUpdate").innerText = this.responseText } 
-  }}, 500)
-}
 
 function getRanking (url, e) {
   // e.preventDefault();
@@ -129,30 +70,6 @@ function hideCategories () {
   categories.forEach (function(el){el.className = el.className.split("shown").join("");})
 }
 
-function incrementSpinner () {
-  let activeCircle = document.querySelector('.active');
-  circleNum = activeCircle.dataset.circleNum
-  let newCircleNum = ((circleNum/1) + 1) % 3
-  let nextActiveCircle = document.querySelector(`[data-circle-num~="${newCircleNum}"]`)
-  activeCircle.className = "circle"
-  nextActiveCircle.className = "circle active"
-}
-
-function makeSpinner () {
-  let spinnerContainer = document.createElement("span")
-  spinnerContainer.id = "spinnerContainer"
-  for (let i = 0; i < 3; i++) {
-    let spinnerCircle = document.createElement("span")
-    spinnerCircle.className = "circle"
-    if (i == 0) {
-      spinnerCircle.className = "circle active"
-    }
-    spinnerCircle.dataset.circleNum = i
-    spinnerContainer.appendChild(spinnerCircle)
-  }
-  pubList.appendChild(spinnerContainer)
-}
-
 function removeSelectorListener (listener) {
   filterUl.removeEventListener("click", listener);
 }
@@ -160,12 +77,6 @@ function removeSelectorListener (listener) {
 function addSelectorListener (listener) {
   filterUl.addEventListener("click", listener);
 }
-
-function removeSpinner () {
-  let spinnerContainer = document.getElementById('spinnerContainer')
-  if (spinnerContainer) {spinnerContainer.remove()}
-}
-
 
 function selectLi (e) {
   e.preventDefault();
@@ -247,14 +158,14 @@ function startSearch (e) {
 
 function onLoad() {
   defineVars()
-  document.getElementById('sample1').addEventListener("click", addSample.bind(this,1))
-  document.getElementById('sample2').addEventListener("click", addSample.bind(this,2))
-  document.getElementById('clearButton').addEventListener("click", addSample.bind(this,3))
   // whereTheyPublishButton.addEventListener("click", getWhereTheyPublish)
   aboutButton.addEventListener("click", showAbout)
   // document.getElementById("authorFieldOne").addEventListener("input", writeAuthorName)
   addSelectorListener(startSearch)
 }
 
+function requestNumber() {
+  return document.getElementById("requestNumber").value
+}
 
 document.addEventListener("DOMContentLoaded", onLoad, false)

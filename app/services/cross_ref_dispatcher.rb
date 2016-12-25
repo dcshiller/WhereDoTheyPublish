@@ -3,23 +3,32 @@ class CrossRefDispatcher
 
   def initialize(query)
     @authors = query.authors
+    @response = []
     # @category = query.category
   end
 
   def dispatch
-    url = ""
-    return_message = Faraday.new(url).get(query_string)
-    @response = parse(return_message)
+    @authors.each do |author|
+      dispatch_query_for author
+    end
   end
 
-  def query_string
+  def dispatch_query_for(author)
+    url = ""
+    return_message = Faraday.new(url).get(query_string_for author)
+    response = parse(return_message)
+    @response += response
+  end
+
+  def query_string_for(author)
     url_prefix = "http://api.crossref.org/works?"
     url_suffix = "&rows=1000"
-    url_prefix + author_param_string + url_suffix
+    url_prefix + author_param_string_for(author) + url_suffix
   end
 
-  def author_param_string
-    authors.map { |author| "query.author=" + author.split(" ").join("+") }.join("&")
+  def author_param_string_for(author)
+    # authors.map { |author| "query.author=" + author.split(" ").join("+") }.join("&")
+    "query.author=#{author.split(" ").join("+")}"
   end
 
   def parse(response)

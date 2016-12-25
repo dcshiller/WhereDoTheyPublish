@@ -9,13 +9,13 @@ class Filterer
   def filter
     @filtered_list = publications.select do |pub|
       query.authors.any? { |author| pub.author? author } &&
-      pub.journals.any? { |journal| Journal.exists? {|j| j.name == journal && j.send{"#{category}"}} }
+      pub.journals.any? { |journal| Journal.where("#{category}": true, name: journal).exists? }
     end
   end
 
   private
 
   def category
-    query.category
+    query.category.downcase
   end
 end

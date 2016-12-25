@@ -122,7 +122,7 @@ body>header, .leftside, .rightside {
   text-align: justify;
 }
 
-.leftside button, #belowOptions select, .leftside ul li {
+.leftside button, .leftside .button, #belowOptions select, .leftside ul li {
   margin-bottom: 2%;
   display: inline;
   border: .1vw solid rgba(200, 180, 113, 1);
@@ -285,3 +285,8 @@ body>header, .leftside, .rightside {
 }
 
 main.rightside {}
+
+table {
+  margin: auto;
+  margin-top: 4vh;
+}
