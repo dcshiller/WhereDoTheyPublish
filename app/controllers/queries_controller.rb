@@ -20,6 +20,6 @@ class QueriesController < ApplicationController
   private
 
   def query
-    Query.new(params[:authors] - [""], params[:filter], params['requestNumber'])
+    Query.new(params[:authors] - [""], params[:filter], params['request_number'])
   end
 end

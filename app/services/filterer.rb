@@ -9,7 +9,7 @@ class Filterer
   def filter
     @filtered_list = publications.select do |pub|
       query.authors.any? { |author| pub.author? author } &&
-      pub.journals.any? { |journal| Journal.where("#{category}": true, name: journal).exists? }
+        pub.journal.send("#{category}".to_s)
     end
   end
 

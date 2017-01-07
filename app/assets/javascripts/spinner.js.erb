@@ -19,11 +19,11 @@ function startTimer () {
   window.statusListener =  setInterval(function(){
     incrementSpinner()
     timer++
-    if (timer % 5 == 0) {let xhttp = new XMLHttpRequest();
+    if (timer % 3 == 0) {let xhttp = new XMLHttpRequest();
       xhttp.open("get", <%= "'#{status_path}'" %> + `?request_number=${requestNumber()}`, true)
       xhttp.send();
     xhttp.onreadystatechange = (response) => { if (xhttp.readyState == 4){ document.getElementById("statusUpdate").innerText = xhttp.responseText } } 
-  }}, 500)
+  }}, 300)
 }
 
 function incrementSpinner () {
