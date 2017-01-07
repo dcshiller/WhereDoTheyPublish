@@ -12,8 +12,8 @@ function addSample (sampleNum, e) {
                    none: ["","","","","","","",""]}
   clear = ["", "", "", "", "", "", "", "" ]
 
-  let filterVal = document.getElementsByClassName('selected')[0].dataset.name
-  let sample;
+  var filterVal = document.getElementsByClassName('selected')[0].dataset.name
+  var sample;
   
   switch (sampleNum) {
       case 1 :
