@@ -467,7 +467,7 @@ namespace :db do
   end
   
   task add_names: :environment do
-    names = "Elisa Aaltola
+    authors = "Elisa Aaltola
       Nicola Abbagnano
       Bijan Abdolkarimi
       Taha Abdurrahman
