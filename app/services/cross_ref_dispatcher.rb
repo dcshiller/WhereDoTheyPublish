@@ -54,7 +54,7 @@ class CrossRefDispatcher
     journal = Journal.find_by(condensed_name: condensed_names) ||
               Journal.new(name: item["container-title"].longest.proper_titlecase)
     year = item.dig('issued', 'date-parts', 0, 0).to_i
-    Publication.find_by(title: item["title"].proper_titlecase, journal: journal, publication_year: year) ||
+    Publication.find_by(title: item["title"].map(&:proper_titlecase), journal: journal, publication_year: year) ||
       Publication.new(title: item["title"].longest, journal: journal, authors: authors,  publication_year: year)
   end
 end

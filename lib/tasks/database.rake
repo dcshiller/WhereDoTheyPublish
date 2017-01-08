@@ -14,6 +14,13 @@ namespace :db do
       sleep 3
     end
   end
+
+  task condense: :environment do 
+    Journal.find_each do |j|
+      j.condensed_name = Journal.condensed_name(j.name)
+      j.save
+    end
+  end
 #   
 #   task query_all_authors: :environment do
 #     authors = "Germain Grisez
@@ -1162,17 +1169,5 @@ namespace :db do
 #     end
 #   end
 # end
-# 
-# 
-#  Author.all.each do |author|
-#    if /(.*)/ =~ author.middle_initial
-#      current_middle = author.middle_initial
-#      match = current_middle.match(/(.*)/)
-#      name = match.to_a.first
-#      first_name = name.split(" ")[0]
-#      middle_name = name.split(" ")[1..-1]&.join(" ")
-#      author.first_name = first_name
-#      author.middle_initial = middle_name
-#      author.save
-#    end
+
  end

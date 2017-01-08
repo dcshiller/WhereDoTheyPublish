@@ -11,7 +11,7 @@ class String
     non_capped.each do |word|
       string.gsub! " #{word.titlecase} ", " #{word.downcase} "
     end
-    string[0] = string[0].upcase
+    string[0] = string[0]&.upcase.to_s
     string
   end
 end
