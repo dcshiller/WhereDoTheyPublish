@@ -1,5 +1,5 @@
 // // # <% self.class.include Rails.application.routes.url_helpers %>
-// var status_path = "status_path" // <%= "'#{status_path}'" %> 
+var status_path = "status_path" // <%= "'#{status_path}'" %> 
  
 function enterWaitingState () {
   // whereTheyPublishButton.disabled = true;

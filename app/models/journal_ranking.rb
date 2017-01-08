@@ -6,7 +6,7 @@ class JournalRanking
   end
 
   def include(publication)
-    ranking[publication.journal] += 1
+    ranking[publication.journal.name] += 1
   end
 
   def sort

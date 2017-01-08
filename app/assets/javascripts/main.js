@@ -2,7 +2,6 @@
 // 
 
 function assignJournalLis (arg) {
-    enterWaitingState();
     exitWaitingState();
     var message = JSON.parse(arg);
     for (var i = -1; i < message.length; i++) {
@@ -16,7 +15,7 @@ function assignJournalLis (arg) {
           pubList.appendChild(newEl);
         }
       } else if (message[i].Count > 0 && message[i].Title != "") {
-        newEl.innerHTML = '<td> <strong>${message[i].Count}</strong> </td> <td>${message[i].Title}</td>';
+        newEl.innerHTML = '<td> <strong>' + message[i].Count + '</strong> </td> <td>' + message[i].Title + '</td>';
         pubList.appendChild(newEl);
       }
     }

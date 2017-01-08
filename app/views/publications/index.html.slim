@@ -1,0 +1,6 @@
+table
+  - @publications.each do |publication|
+    tr
+      td= publication.title 
+      td= publication.authors.map(&:name).join(", ")
+      td= publication.journal.name
