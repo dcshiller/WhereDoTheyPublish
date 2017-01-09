@@ -1152,7 +1152,7 @@ namespace :db do
       Estanislao Zuleta
       Alenka Zupančič
       Jan Zwicky
-    ".split(args[:start])[1].split("\n")
+    ".split("\n")
     authors.each do |author|
       q = Query.new([author], 'philosophy', 1)
       start_count = Publication.count
