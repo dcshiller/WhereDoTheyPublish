@@ -745,79 +745,79 @@ namespace :db do
       # Errol Harris
       # H. L. A. Hart
       # Paul Feyerabend
-      authors = "David Bentley Hart
-      Sally Haslanger
-      John Haugeland
-      John Hawthorne
-      Werner Heisenberg
-      Ágnes Heller
-      Erich Heller
-      Futa Helu
-      Carl Gustav Hempel
-      Michel Henry
-      Abraham Joshua Heschel
-      Mary Hesse
-      John Hick
-      Stephen Hicks
-      Alice von Hildebrand
-      Jaakko Hintikka
-      Ted Honderich
-      Sidney Hook
-      Jennifer Hornsby
-      Paul Horwich
-      John Hospers
-      Paulin J. Hountondji
-      Rosalind Hursthouse
-      Robert Maynard Hutchins
-      Hsu Fu-kuan
-      Jean Hyppolite
-      Don Ihde
-      Evald Vassilievich Ilyenkov
-      Peter van Inwagen
-      Luce Irigaray
-      Terence Irwin
-      Frank Jackson
-      Fredric Jameson
-      Christopher Janaway
-      Erich Jantsch
-      Richard C. Jeffrey
-      Hans Jonas
-      Shelly Kagan
-      Robert Kane
-      Jerrold Katz
-      Walter Kaufmann
-      David Kaplan
-      David Kelley
-      Anthony Kenny
-      Mahmoud Khatami
-      Jaegwon Kim
-      Mark Kingwell
-      Robert Kirk
-      Richard Kirkham
-      Philip Kitcher
-      Martha Klein
-      Peter D. Klein
-      Brian Klug
-      William Calvert Kneale
-      Hans Köchler
-      Arthur Koestler
-      Alexandre Kojève
-      John Kok
-      Leszek Kolakowski
-      Hilary Kornblith
-      Stephan Körner
-      Christine Korsgaard
-      Peter Kreeft
-      Georg Kreisel
-      Saul Kripke
-      Julia Kristeva
-      Irving Kristol
-      Erik von Kuehnelt-Leddihn
-      Thomas Samuel Kuhn
-      Will Kymlicka
-      Jacques Lacan
-      Philippe Lacoue-Labarthe
-      Imre Lakatos
+      # David Bentley Hart
+      # Sally Haslanger
+      # John Haugeland
+      # John Hawthorne
+      # Werner Heisenberg
+      # Ágnes Heller
+      # Erich Heller
+      # Futa Helu
+      # Carl Gustav Hempel
+      # Michel Henry
+      # Abraham Joshua Heschel
+      # Mary Hesse
+      # John Hick
+      # Stephen Hicks
+      # Alice von Hildebrand
+      # Jaakko Hintikka
+      # Ted Honderich
+      # Sidney Hook
+      # Jennifer Hornsby
+      # Paul Horwich
+      # John Hospers
+      # Paulin J. Hountondji
+      # Rosalind Hursthouse
+      # Robert Maynard Hutchins
+      # Hsu Fu-kuan
+      # Jean Hyppolite
+      # Don Ihde
+      # Evald Vassilievich Ilyenkov
+      # Peter van Inwagen
+      # Luce Irigaray
+      # Terence Irwin
+      # Frank Jackson
+      # Fredric Jameson
+      # Christopher Janaway
+      # Erich Jantsch
+      # Richard C. Jeffrey
+      # Hans Jonas
+      # Shelly Kagan
+      # Robert Kane
+      # Jerrold Katz
+      # Walter Kaufmann
+      # David Kaplan
+      # David Kelley
+      # Anthony Kenny
+      # Mahmoud Khatami
+      # Jaegwon Kim
+      # Mark Kingwell
+      # Robert Kirk
+      # Richard Kirkham
+      # Philip Kitcher
+      # Martha Klein
+      # Peter D. Klein
+      # Brian Klug
+      # William Calvert Kneale
+      # Hans Köchler
+      # Arthur Koestler
+      # Alexandre Kojève
+      # John Kok
+      # Leszek Kolakowski
+      # Hilary Kornblith
+      # Stephan Körner
+      # Christine Korsgaard
+      # Peter Kreeft
+      # Georg Kreisel
+      # Saul Kripke
+      # Julia Kristeva
+      # Irving Kristol
+      # Erik von Kuehnelt-Leddihn
+      # Thomas Samuel Kuhn
+      # Will Kymlicka
+      # Jacques Lacan
+      # Philippe Lacoue-Labarthe
+      authors = "Imre Lakatos
       Michèle Le Dœuff
       Henri Lefebvre
       Keith Lehrer
