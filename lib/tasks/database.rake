@@ -467,139 +467,139 @@ namespace :db do
   end
   
   task :add_names, [:start] => :environment do |t, args|
-    authors = "Elisa Aaltola
-      Nicola Abbagnano
-      Bijan Abdolkarimi
-      Taha Abdurrahman
-      David Abram
-      Gerd B. Achenbach
-      Peter Achinstein
-      Hans Achterhuis
-      H. B. Acton
-      Marilyn McCord Adams
-      Robert Merrihew Adams
-      Mortimer Adler
-      Theodor Adorno
-      Sediq Afghan
-      Michel Aflaq
-      Giorgio Agamben
-      Hans Albert
-      Rogers Albritton
-      Virgil Aldrich
-      Gerda Alexander
-      Aleksandr Danilovich Aleksandrov
-      Robert Alexy
-      Diogenes Allen
-      William Alston
-      Louis Althusser
-      Günther Anders
-      Alan Ross Anderson
-      C. Anthony Anderson
-      Pamela Sue Anderson
-      G. E. M. Anscombe
-      Karl-Otto Apel
-      Kwame Anthony Appiah
-      Hannah Arendt
-      David Malet Armstrong
-      Zaki al-Arsuzi
-      Raymond Aron
-      Pandurang Shastri Athavale
-      Robert Audi
-      John Langshaw Austin
-      Alfred Jules Ayer
-      Joxe Azurmendi
-      Kent Bach
-      Alain Badiou
-      Archie J. Bahm
-      Annette Baier
-      Kurt Baier
-      Albena Bakratcheva
-      Tom Baldwin
-      Étienne Balibar
-      Hassan al-Banna
-      Yehoshua Bar-Hillel
-      Jonathan Barnes
-      Brian Barry
-      Norman P. Barry
-      William Barrett
-      Roland Barthes
-      Jon Barwise
-      Jacques Barzun
-      Jean Baudrillard
-      Monroe Beardsley
-      Jean Beaufret
-      William Bechtel
-      Lewis White Beck
-      Francis J. Beckwith
-      Nuel Belnap
-      Paul Benacerraf
-      Jonathan Bennett
-      Geoffrey Bennington
-      Frithjof Bergmann
-      Gustav Bergmann
-      Isaiah Berlin
-      Marshall Berman
-      Robert Bernasconi
-      Alfred Bernhart
-      Andrew Bernstein
-      Richard Bett
-      Jean-Yves Béziau
-      Homi K. Bhabha
-      Roy Bhaskar
-      Harry Binswanger
-      Max Black
-      Simon Blackburn
-      Maurice Blanchot
-      David Blitz
-      Ned Block
-      Allan Bloom
-      Norberto Bobbio
-      Jozef Maria Bochenski
-      Paul Boghossian
-      Hilary Bok
-      Sissela Bok
-      Dietrich Bonhoeffer
-      Laurence BonJour
-      George Boolos
-      Nick Bostrom
-      Pierre Bourdieu
-      Richard-Bevan Braithwaite
-      Myles Brand
-      Robert Brandom
-      Richard B. Brandt
-      Michael Bratman
-      Stephen E. Braude
-      Harry Brighouse
-      Berit Brogaard
-      Stephen Bronner
-      John Broome
-      Pascal Bruckner
-      Mario Bunge
-      Tyler Burge
-      John Burnheim
-      Myles Burnyeat
-      Panayot Butchvarov
-      Judith Butler
-      Charles Butterworth
-      Amílcar Cabral
-      John Campbell
-      Albert Camus
-      Georges Canguilhem
-      John D. Caputo
-      Nancy Cartwright
-      Quassim Cassam
-      Hector-Neri Castañeda
-      David Castle
-      Cornelius Castoriadis
-      Paola Cavalieri
-      Stanley Cavell
-      Michel de Certeau
-      David Chalmers
-      Timothy Chambers
-      David Charles
-      Haridas Chaudhuri
-      Albert Chernenko
-      Roderick Chisholm
+      # Elisa Aaltola
+      # Nicola Abbagnano
+      # Bijan Abdolkarimi
+      # Taha Abdurrahman
+      # David Abram
+      # Gerd B. Achenbach
+      # Peter Achinstein
+      # Hans Achterhuis
+      # H. B. Acton
+      # Marilyn McCord Adams
+      # Robert Merrihew Adams
+      # Mortimer Adler
+      # Theodor Adorno
+      # Sediq Afghan
+      # Michel Aflaq
+      # Giorgio Agamben
+      # Hans Albert
+      # Rogers Albritton
+      # Virgil Aldrich
+      # Gerda Alexander
+      # Aleksandr Danilovich Aleksandrov
+      # Robert Alexy
+      # Diogenes Allen
+      # William Alston
+      # Louis Althusser
+      # Günther Anders
+      # Alan Ross Anderson
+      # C. Anthony Anderson
+      # Pamela Sue Anderson
+      # G. E. M. Anscombe
+      # Karl-Otto Apel
+      # Kwame Anthony Appiah
+      # Hannah Arendt
+      # David Malet Armstrong
+      # Zaki al-Arsuzi
+      # Raymond Aron
+      # Pandurang Shastri Athavale
+      # Robert Audi
+      # John Langshaw Austin
+      # Alfred Jules Ayer
+      # Joxe Azurmendi
+      # Kent Bach
+      # Alain Badiou
+      # Archie J. Bahm
+      # Annette Baier
+      # Kurt Baier
+      # Albena Bakratcheva
+      # Tom Baldwin
+      # Étienne Balibar
+      # Hassan al-Banna
+      # Yehoshua Bar-Hillel
+      # Jonathan Barnes
+      # Brian Barry
+      # Norman P. Barry
+      # William Barrett
+      # Roland Barthes
+      # Jon Barwise
+      # Jacques Barzun
+      # Jean Baudrillard
+      # Monroe Beardsley
+      # Jean Beaufret
+      # William Bechtel
+      # Lewis White Beck
+      # Francis J. Beckwith
+      # Nuel Belnap
+      # Paul Benacerraf
+      # Jonathan Bennett
+      # Geoffrey Bennington
+      # Frithjof Bergmann
+      # Gustav Bergmann
+      # Isaiah Berlin
+      # Marshall Berman
+      # Robert Bernasconi
+      # Alfred Bernhart
+      # Andrew Bernstein
+      # Richard Bett
+      # Jean-Yves Béziau
+      # Homi K. Bhabha
+      # Roy Bhaskar
+      # Harry Binswanger
+      # Max Black
+      # Simon Blackburn
+      # Maurice Blanchot
+      # David Blitz
+      # Ned Block
+      # Allan Bloom
+      # Norberto Bobbio
+      # Jozef Maria Bochenski
+      # Paul Boghossian
+      # Hilary Bok
+      # Sissela Bok
+      # Dietrich Bonhoeffer
+      # Laurence BonJour
+      # George Boolos
+      # Nick Bostrom
+      # Pierre Bourdieu
+      # Richard-Bevan Braithwaite
+      # Myles Brand
+      # Robert Brandom
+      # Richard B. Brandt
+      # Michael Bratman
+      # Stephen E. Braude
+      # Harry Brighouse
+      # Berit Brogaard
+      # Stephen Bronner
+      # John Broome
+      # Pascal Bruckner
+      # Mario Bunge
+      # Tyler Burge
+      # John Burnheim
+      # Myles Burnyeat
+      # Panayot Butchvarov
+      # Judith Butler
+      # Charles Butterworth
+      # Amílcar Cabral
+      # John Campbell
+      # Albert Camus
+      # Georges Canguilhem
+      # John D. Caputo
+      # Nancy Cartwright
+      # Quassim Cassam
+      # Hector-Neri Castañeda
+      # David Castle
+      # Cornelius Castoriadis
+      # Paola Cavalieri
+      # Stanley Cavell
+      # Michel de Certeau
+      # David Chalmers
+      # Timothy Chambers
+      # David Charles
+      # Haridas Chaudhuri
+      # Albert Chernenko
+      authors = "Roderick Chisholm
       Noam Chomsky
       Alonzo Church
       Patricia Churchland
@@ -1152,7 +1152,7 @@ namespace :db do
       Estanislao Zuleta
       Alenka Zupančič
       Jan Zwicky
-    ".split(args[:start])[0].split("\n")
+    ".split(args[:start])[1].split("\n")
     authors.each do |author|
       q = Query.new([author], 'philosophy', 1)
       start_count = Publication.count
