@@ -599,75 +599,75 @@ namespace :db do
       # David Charles
       # Haridas Chaudhuri
       # Albert Chernenko
-      authors = "Roderick Chisholm
-      Noam Chomsky
-      Alonzo Church
-      Patricia Churchland
-      Paul Churchland
-      Frank Cioffi
-      Hélène Cixous
-      Andy Clark
-      Stephen R. L. Clark
-      David Cockburn
-      Gerald Cohen
-      L. Jonathan Cohen
-      Lucio Colletti
-      Robin Collins
-      André Comte-Sponville
-      Marcel Conche
-      Frederick Copleston
-      Jack Copeland
-      William Lane Craig
-      Jean Curthoys
-      Newton da Costa
-      Mary Daly
-      Jonathan Dancy
-      Arthur Danto
-      Donald Davidson
-      Brian Davies
-      Michael Davis
-      Simone de Beauvoir
-      Alain de Benoist
-      Alain de Botton
-      Bruno de Finetti
-      Paul de Man
-      Guy Debord
-      Gilles Deleuze
-      Bernard Delfgaauw
-      Daniel Dennett
-      Douglas Den Uyl
-      Jacques Derrida
-      Vincent Descombes
-      Sousa Dias
-      Daniel Dombrowski
-      Keith Donnellan
-      Fred Dretske
-      Hubert Dreyfus
-      Michael Dummett
-      Ronald Dworkin
-      Miroslaw Dzielski
-      William A. Earle
-      John Earman
-      Umberto Eco
-      Dorothy Edgington
-      James M. Edie
-      Paul Edwards
-      Mircea Eliade
-      Ignacio Ellacuria
-      Jacques Ellul
-      Jon Elster
-      John Etchemendy
-      Gareth Evans
-      Stanley Eveling
-      Emmanuel Chukwudi Eze
-      Emil Fackenheim
-      Frantz Fanon
-      Austin Marsden Farrer
-      Solomon Feferman
-      Herbert Feigl
-      Joel Feinberg
-      José Ferrater Mora
-      Paul Feyerabend
+      # Noam Chomsky
+      # Alonzo Church
+      # Patricia Churchland
+      # Paul Churchland
+      # Frank Cioffi
+      # Hélène Cixous
+      # Andy Clark
+      # Stephen R. L. Clark
+      # David Cockburn
+      # Gerald Cohen
+      # L. Jonathan Cohen
+      # Lucio Colletti
+      # Robin Collins
+      # André Comte-Sponville
+      # Marcel Conche
+      # Frederick Copleston
+      # Jack Copeland
+      # William Lane Craig
+      # Jean Curthoys
+      # Newton da Costa
+      # Mary Daly
+      # Jonathan Dancy
+      # Arthur Danto
+      # Donald Davidson
+      # Brian Davies
+      # Michael Davis
+      # Simone de Beauvoir
+      # Alain de Benoist
+      # Alain de Botton
+      # Bruno de Finetti
+      # Paul de Man
+      # Guy Debord
+      # Gilles Deleuze
+      # Bernard Delfgaauw
+      # Daniel Dennett
+      # Douglas Den Uyl
+      # Jacques Derrida
+      # Vincent Descombes
+      # Sousa Dias
+      # Daniel Dombrowski
+      # Keith Donnellan
+      # Fred Dretske
+      # Hubert Dreyfus
+      # Michael Dummett
+      # Ronald Dworkin
+      # Miroslaw Dzielski
+      # William A. Earle
+      # John Earman
+      # Umberto Eco
+      # Dorothy Edgington
+      # James M. Edie
+      # Paul Edwards
+      # Mircea Eliade
+      # Ignacio Ellacuria
+      # Jacques Ellul
+      # Jon Elster
+      # John Etchemendy
+      # Gareth Evans
+      # Stanley Eveling
+      # Emmanuel Chukwudi Eze
+      # Emil Fackenheim
+      # Frantz Fanon
+      # Austin Marsden Farrer
+      # Solomon Feferman
+      # Herbert Feigl
+      # Joel Feinberg
+      # José Ferrater Mora
+      # Roderick Chisholm
+      authors = "Paul Feyerabend
       Hartry Field
       Arthur Fine
       Kit Fine
