@@ -22,7 +22,7 @@ namespace :db do
     end
   end
   
-  task :query_all_authors, [:start] :environment do |t, args|
+  task :query_all_authors, [:start] => :environment do |t, args|
     authors = "Germain Grisez
       Adolf Grünbaum
       Félix Guattari
@@ -466,7 +466,7 @@ namespace :db do
     end
   end
   
-  task :add_names, [:start] :environment do |t, args|
+  task :add_names, [:start] => :environment do |t, args|
     authors = "Elisa Aaltola
       Nicola Abbagnano
       Bijan Abdolkarimi
@@ -1152,7 +1152,7 @@ namespace :db do
       Estanislao Zuleta
       Alenka Zupančič
       Jan Zwicky
-    ".split("\n")
+    ".split(args[:start]).split("\n")
     authors.each do |author|
       q = Query.new([author], 'philosophy', 1)
       start_count = Publication.count
