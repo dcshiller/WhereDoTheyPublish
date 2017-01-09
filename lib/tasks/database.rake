@@ -667,85 +667,85 @@ namespace :db do
       # Joel Feinberg
       # José Ferrater Mora
       # Roderick Chisholm
-      authors = "Paul Feyerabend
-      Hartry Field
-      Arthur Fine
-      Kit Fine
-      John Finnis
-      Owen Flanagan
-      Richard E. Flathman
-      Antony Flew
-      Luciano Floridi
-      Vilém Flusser
-      Jerry Fodor
-      Dagfinn Føllesdal
-      Philippa Foot
-      Michel Foucault
-      Bas van Fraassen
-      William K. Frankena
-      Harry Frankfurt
-      Oliver Shewell Franks
-      Michael Frede
-      Hans Wilhelm Frei
-      Erich Fromm
-      Northrop Frye
-      Lon L. Fuller
-      Hans-Georg Gadamer
-      Raimond Gaita
-      David Gauthier
-      Peter Geach
-      Ernest Gellner
-      Gerhard Gentzen
-      Alexander George
-      Bernard Gert
-      Edmund Gettier
-      Raymond Geuss
-      Alan Gewirth
-      Rashid al-Ghannushi
-      Allan Gibbard
-      Margaret Gilbert
-      Neil Gillman
-      René Girard
-      Ernst von Glasersfeld
-      Jonathan Glover
-      Kurt Gödel
-      Peter Goldie
-      Alvin Goldman
-      Lucien Goldmann
-      Jacob Golomb
-      Nicolás Gómez Dávila
-      Nelson Goodman
-      Paul Goodman
-      Allan Gotthelf
-      George Grant
-      John Gray
-      A. C. Grayling
-      Celia Green
-      Herbert Paul Grice
-      Germain Grisez
-      Adolf Grünbaum
-      Félix Guattari
-      Gotthard Günther
-      Samuel Guttenplan
-      Paul Guyer
-      Kwame Gyekye
-      Susan Haack
-      Jürgen Habermas
-      Peter Hacker
-      Ian Hacking
-      Manly Palmer Hall
-      Philip Hallie
-      Stuart Hampshire
-      Alastair Hannay
-      Norwood Russell Hanson
-      Donna Haraway
-      Michael Hardt
-      John E. Hare
-      R. M. Hare
-      Gilbert Harman
-      Errol Harris
-      H. L. A. Hart
-      David Bentley Hart
+      # Hartry Field
+      # Arthur Fine
+      # Kit Fine
+      # John Finnis
+      # Owen Flanagan
+      # Richard E. Flathman
+      # Antony Flew
+      # Luciano Floridi
+      # Vilém Flusser
+      # Jerry Fodor
+      # Dagfinn Føllesdal
+      # Philippa Foot
+      # Michel Foucault
+      # Bas van Fraassen
+      # William K. Frankena
+      # Harry Frankfurt
+      # Oliver Shewell Franks
+      # Michael Frede
+      # Hans Wilhelm Frei
+      # Erich Fromm
+      # Northrop Frye
+      # Lon L. Fuller
+      # Hans-Georg Gadamer
+      # Raimond Gaita
+      # David Gauthier
+      # Peter Geach
+      # Ernest Gellner
+      # Gerhard Gentzen
+      # Alexander George
+      # Bernard Gert
+      # Edmund Gettier
+      # Raymond Geuss
+      # Alan Gewirth
+      # Rashid al-Ghannushi
+      # Allan Gibbard
+      # Margaret Gilbert
+      # Neil Gillman
+      # René Girard
+      # Ernst von Glasersfeld
+      # Jonathan Glover
+      # Kurt Gödel
+      # Peter Goldie
+      # Alvin Goldman
+      # Lucien Goldmann
+      # Jacob Golomb
+      # Nicolás Gómez Dávila
+      # Nelson Goodman
+      # Paul Goodman
+      # Allan Gotthelf
+      # George Grant
+      # John Gray
+      # A. C. Grayling
+      # Celia Green
+      # Herbert Paul Grice
+      # Germain Grisez
+      # Adolf Grünbaum
+      # Félix Guattari
+      # Gotthard Günther
+      # Samuel Guttenplan
+      # Paul Guyer
+      # Kwame Gyekye
+      # Susan Haack
+      # Jürgen Habermas
+      # Peter Hacker
+      # Ian Hacking
+      # Manly Palmer Hall
+      # Philip Hallie
+      # Stuart Hampshire
+      # Alastair Hannay
+      # Norwood Russell Hanson
+      # Donna Haraway
+      # Michael Hardt
+      # John E. Hare
+      # R. M. Hare
+      # Gilbert Harman
+      # Errol Harris
+      # H. L. A. Hart
+      # Paul Feyerabend
+      authors = "David Bentley Hart
       Sally Haslanger
       John Haugeland
       John Hawthorne
@@ -892,10 +892,10 @@ namespace :db do
       Thomas Nagel
       Jean-Luc Nancy
       Jan Narveson
-      Hossein Nasr(born 1933)
-      Stephen Neale(born 1958)
+      Hossein Nasr
+      Stephen Neale
       Antonio Negri
-      Oskar Negt(born 1934)
+      Oskar Negt
       Alexander Nehamas
       John von Neumann
       Jay Newman
