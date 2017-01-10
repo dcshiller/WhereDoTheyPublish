@@ -817,61 +817,62 @@ namespace :db do
       # Will Kymlicka
       # Jacques Lacan
       # Philippe Lacoue-Labarthe
-      authors = "Imre Lakatos
-      Michèle Le Dœuff
-      Henri Lefebvre
-      Keith Lehrer
-      Yeshayahu Leibowitz
-      Brian Leiter
-      James G. Lennox
-      Ernest Lepore
-      Isaac Levi
-      Emmanuel Levinas
-      Claude Lévi-Strauss
-      Bernard-Henri Lévy
-      David Kellogg Lewis
-      Suzanne Lilar
-      Alphonso Lingis
-      Gilles Lipovetsky
-      Arthur Lipsett
-      Knud Ejler Løgstrup
-      Bernard Lonergan
-      Paul Lorenzen
-      Roderick T. Long
-      John R. Lucas
-      Peter Ludlow
-      William Lycan
-      Jean-François Lyotard
-      Dwight Macdonald
-      Tibor R. Machan
-      Alasdair MacIntyre
-      Louis Mackey
-      John Leslie Mackie
-      Penelope Maddy
-      Norman Malcolm
-      David Malament
-      Mostafa Malekian
-      Merab Mamardashvili
-      Jon Mandle
-      Claude Mangion
-      Ruth Barcan Marcus
-      Julián Marías
-      Donald A. Martin
-      Michael Martin
-      Abul A'la Maududi
-      George I. Mavrodes
-      Ron McClamrock
-      John McDowell
-      Colin McGinn
-      Terence McKenna
-      Marshall McLuhan
-      Jeff McMahan
-      John McMurtry
-      Alfred Mele
-      David Hugh Mellor
-      Eduardo Mendieta
-      Maurice Merleau-Ponty
-      Thomas Metzinger
+      # Imre Lakatos
+      # Michèle Le Dœuff
+      # Henri Lefebvre
+      # Keith Lehrer
+      # Yeshayahu Leibowitz
+      # Brian Leiter
+      # James G. Lennox
+      # Ernest Lepore
+      # Isaac Levi
+      # Emmanuel Levinas
+      # Claude Lévi-Strauss
+      # Bernard-Henri Lévy
+      # David Kellogg Lewis
+      # Suzanne Lilar
+      # Alphonso Lingis
+      # Gilles Lipovetsky
+      # Arthur Lipsett
+      # Knud Ejler Løgstrup
+      # Bernard Lonergan
+      # Paul Lorenzen
+      # Roderick T. Long
+      # John R. Lucas
+      # Peter Ludlow
+      # William Lycan
+      # Jean-François Lyotard
+      # Dwight Macdonald
+      # Tibor R. Machan
+      # Alasdair MacIntyre
+      # Louis Mackey
+      # John Leslie Mackie
+      # Penelope Maddy
+      # Norman Malcolm
+      # David Malament
+      # Mostafa Malekian
+      # Merab Mamardashvili
+      # Jon Mandle
+      # Claude Mangion
+      # Ruth Barcan Marcus
+      # Julián Marías
+      # Donald A. Martin
+      # Michael Martin
+      # Abul A'la Maududi
+      # George I. Mavrodes
+      # Ron McClamrock
+      # John McDowell
+      # Colin McGinn
+      # Terence McKenna
+      # Marshall McLuhan
+      # Jeff McMahan
+      # John McMurtry
+      # Alfred Mele
+      # David Hugh Mellor
+      # Eduardo Mendieta
+      # Maurice Merleau-Ponty
+      #{NEXT}
+      authors = "Thomas Metzinger
       Vincent Miceli
       Mary Midgley
       Alan Millar
