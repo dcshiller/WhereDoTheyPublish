@@ -872,53 +872,53 @@ namespace :db do
       # Eduardo Mendieta
       # Maurice Merleau-Ponty
       #{NEXT}
-      authors = "Thomas Metzinger
-      Vincent Miceli
-      Mary Midgley
-      Alan Millar
-      Fred Miller
-      Ruth Millikan
-      C. Wright Mills
-      Richard Montague
-      Max More
-      J. P. Moreland
-      Sidney Morgenbesser
-      Adam Morton
-      Mou Zongsan
-      Iris Murdoch
-      Mwalimu Julius
-      Kambarage Nyerere
-      Arne Næss
-      Ernest Nagel
-      Thomas Nagel
-      Jean-Luc Nancy
-      Jan Narveson
-      Hossein Nasr
-      Stephen Neale
-      Antonio Negri
-      Oskar Negt
-      Alexander Nehamas
-      John von Neumann
-      Jay Newman
-      Kai Nielsen
-      Nishitani Keiji
-      Kwame Nkrumah
-      Nel Noddings
-      Ernst Nolte
-      Calvin Normore
-      Christopher Norris
-      David L. Norton
-      Robert Nozick
-      Martha Nussbaum
-      Anthony O'Hear
-      Onora O'Neill
-      Michael Oakeshott
-      Albert Outler
-      Gwilyn Ellis Lane Owen
-      David Papineau
-      Derek Parfit
-      John Arthur Passmore
-      Jan Patočka
+      # Thomas Metzinger
+      # Vincent Miceli
+      # Mary Midgley
+      # Alan Millar
+      # Fred Miller
+      # Ruth Millikan
+      # C. Wright Mills
+      # Richard Montague
+      # Max More
+      # J. P. Moreland
+      # Sidney Morgenbesser
+      # Adam Morton
+      # Mou Zongsan
+      # Iris Murdoch
+      # Mwalimu Julius
+      # Kambarage Nyerere
+      # Arne Næss
+      # Ernest Nagel
+      # Thomas Nagel
+      # Jean-Luc Nancy
+      # Jan Narveson
+      # Hossein Nasr
+      # Stephen Neale
+      # Antonio Negri
+      # Oskar Negt
+      # Alexander Nehamas
+      # John von Neumann
+      # Jay Newman
+      # Kai Nielsen
+      # Nishitani Keiji
+      # Kwame Nkrumah
+      # Nel Noddings
+      # Ernst Nolte
+      # Calvin Normore
+      # Christopher Norris
+      # David L. Norton
+      # Robert Nozick
+      # Martha Nussbaum
+      # Anthony O'Hear
+      # Onora O'Neill
+      # Michael Oakeshott
+      # Albert Outler
+      # Gwilyn Ellis Lane Owen
+      # David Papineau
+      # Derek Parfit
+      # John Arthur Passmore
+      authors = "Jan Patočka
       Christopher Peacocke
       David Pearce
       David Pears
