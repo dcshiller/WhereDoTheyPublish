@@ -1055,19 +1055,19 @@ namespace :db do
       # Robert B. Talisse
       # Tang Junyi
       # Alfred Tarski
-      authors = "Charles Taylor
-      Richard Taylor
-      Placide Tempels
-      Neil Tennant
-      Irving Thalberg Jr.
-      Helmut Thielicke
-      Judith Jarvis Thomson
-      Tzvetan Todorov
-      Stephen Toulmin
-      Peter Tudvad
-      Ernst Tugendhat
-      Raimo Tuomela
-      Alan Turing
+      # Charles Taylor
+      # Richard Taylor
+      # Placide Tempels
+      # Neil Tennant
+      # Irving Thalberg Jr.
+      # Helmut Thielicke
+      # Judith Jarvis Thomson
+      # Tzvetan Todorov
+      # Stephen Toulmin
+      # Peter Tudvad
+      # Ernst Tugendhat
+      # Raimo Tuomela
+      authors = "Alan Turing
       Peter Unger
       Ivo Urbančič
       Alasdair Urquhart
