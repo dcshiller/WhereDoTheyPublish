@@ -918,27 +918,27 @@ namespace :db do
       # David Papineau
       # Derek Parfit
       # John Arthur Passmore
-      authors = "Jan Patočka
-      Christopher Peacocke
-      David Pearce
-      David Pears
-      Jean-Jacques Pelletier
-      Leonard Peikoff
-      Lorenzo Peña
-      Richard Stanley Peters
-      Philip Pettit
-      Gualtiero Piccinini
-      Herman Philipse
-      D. Z. Phillips
-      Giovanni Piana
-      Alexander Piatigorsky
-      Robert M. Pirsig
-      Alvin Plantinga
-      Thomas Pogge
-      Louis P. Pojman
-      Leonardo Polo
-      Richard Popkin
-      K. J. Popma
+      # Jan Patočka
+      # Christopher Peacocke
+      # David Pearce
+      # David Pears
+      # Jean-Jacques Pelletier
+      # Leonard Peikoff
+      # Lorenzo Peña
+      # Richard Stanley Peters
+      # Philip Pettit
+      # Gualtiero Piccinini
+      # Herman Philipse
+      # D. Z. Phillips
+      # Giovanni Piana
+      # Alexander Piatigorsky
+      # Robert M. Pirsig
+      # Alvin Plantinga
+      # Thomas Pogge
+      # Louis P. Pojman
+      # Leonardo Polo
+      # Richard Popkin
+      authors = "K. J. Popma
       Karl Popper
       Dag Prawitz
       Graham Priest
