@@ -1067,62 +1067,62 @@ namespace :db do
       # Peter Tudvad
       # Ernst Tugendhat
       # Raimo Tuomela
-      authors = "Alan Turing
-      Peter Unger
-      Ivo Urbančič
-      Alasdair Urquhart
-      Bas van Fraassen
-      Peter van Inwagen
-      Philippe Van Parijs
-      Francisco Varela
-      Juha Varto
-      Gianni Vattimo
-      Achille Varzi
-      Adolfo Sánchez Vázquez
-      Henry Babcock Veatch
-      Michel Villey
-      Gregory Vlastos
-      Eric Voegelin
-      Jules Vuillemin
-      Georg Henrik von Wright
-      Margaret Urban Walker
-      Doug Walton
-      Kendall Walton
-      Michael Walzer
-      Ernest Wamba dia Wamba
-      Hao Wang
-      Georgia Warnke
-      Geoffrey J. Warnock
-      Mary Warnock
-      Alan Watts
-      Brian Weatherson
-      Simone Weil
-      Morris Weitz
-      Carl Friedrich von Weizsäcker
-      Albrecht Wellmer
-      Cornel West
-      Jennifer Whiting
-      David Wiggins
-      John Daniel Wild
-      Dallas Willard
-      Bernard Williams
-      Timothy Williamson
-      Jessica Wilson
-      Margaret Dauler Wilson
-      Peter Winch
-      Kwasi Wiredu
-      John Wisdom
-      Charlotte Witt
-      Monique Wittig
-      Susan R. Wolf
-      Ursula Wolf
-      Richard Wollheim
-      Nicholas Wolterstorff
-      Paul Woodruff
-      Crispin Wright
-      Jerzy Wróblewski
-      Alison Wylie
-      Xu Liangying
+      # Alan Turing
+      # Peter Unger
+      # Ivo Urbančič
+      # Alasdair Urquhart
+      # Bas van Fraassen
+      # Peter van Inwagen
+      # Philippe Van Parijs
+      # Francisco Varela
+      # Juha Varto
+      # Gianni Vattimo
+      # Achille Varzi
+      # Adolfo Sánchez Vázquez
+      # Henry Babcock Veatch
+      # Michel Villey
+      # Gregory Vlastos
+      # Eric Voegelin
+      # Jules Vuillemin
+      # Georg Henrik von Wright
+      # Margaret Urban Walker
+      # Doug Walton
+      # Kendall Walton
+      # Michael Walzer
+      # Ernest Wamba dia Wamba
+      # Hao Wang
+      # Georgia Warnke
+      # Geoffrey J. Warnock
+      # Mary Warnock
+      # Alan Watts
+      # Brian Weatherson
+      # Simone Weil
+      # Morris Weitz
+      # Carl Friedrich von Weizsäcker
+      # Albrecht Wellmer
+      # Cornel West
+      # Jennifer Whiting
+      # David Wiggins
+      # John Daniel Wild
+      # Dallas Willard
+      # Bernard Williams
+      # Timothy Williamson
+      # Jessica Wilson
+      # Margaret Dauler Wilson
+      # Peter Winch
+      # Kwasi Wiredu
+      # John Wisdom
+      # Charlotte Witt
+      # Monique Wittig
+      # Susan R. Wolf
+      # Ursula Wolf
+      # Richard Wollheim
+      # Nicholas Wolterstorff
+      # Paul Woodruff
+      # Crispin Wright
+      # Jerzy Wróblewski
+      # Alison Wylie
+      authors = "Xu Liangying
       Cemal Yıldırım
       Francis Parker Yockey
       Arthur M. Young
