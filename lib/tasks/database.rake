@@ -963,62 +963,63 @@ namespace :db do
       # John Rawls
       # Joseph Raz
       # George Reisman
-      authors = "Nicholas Rescher
-      Janet Radcliffe Richards
-      Radovan Richta
-      Paul Ricoeur
-      R. R. Rockingham Gill
-      Avital Ronell
-      Richard Rorty
-      Gillian Rose
-      Alexander Rosenberg
-      Gian-Carlo Rota
-      Joseph Rovan
-      William L. Rowe
-      Michael Ruse
-      Gilbert Ryle
-      Robert Rynasiewicz
-      Mark Sainsbury
-      Nathan Salmon
-      Wesley Salmon
-      Michael J. Sandel
-      David H. Sanford
-      Prabhat Rainjan Sarkar
-      Jean-Paul Sartre
-      Crispin Sartwell
-      John Ralston Saul
-      Fernando Savater
-      Thomas Scanlon
-      Richard Schacht
-      Francis Schaeffer
-      Stephen Schiffer
-      Hubert Schleichert
-      J. B. Schneewind
-      Frithjof Schuon
-      Roger Scruton
-      John Searle
-      Wilfrid Sellars
-      Amartya Sen
-      Michel Serres
-      Neven Sesardić
-      Stanley Sfekas
-      Stewart Shapiro
-      Dariush Shayegan
-      Abner Shimony
-      Sydney Shoemaker
-      Richard Shusterman
-      Peter Singer
-      B. F. Skinner
-      John Skorupski
-      Brian Skyrms
-      Michael Slote
-      Peter Sloterdijk
-      J. J. C. Smart
-      Huston Smith
-      Michael A. Smith
-      Tara Smith
-      Raymond Smullyan
-      Joseph D. Sneed
+      # Nicholas Rescher
+      # Janet Radcliffe Richards
+      # Radovan Richta
+      # Paul Ricoeur
+      # R. R. Rockingham Gill
+      # Avital Ronell
+      # Richard Rorty
+      # Gillian Rose
+      # Alexander Rosenberg
+      # Gian-Carlo Rota
+      # Joseph Rovan
+      # William L. Rowe
+      # Michael Ruse
+      # Gilbert Ryle
+      # Robert Rynasiewicz
+      # Mark Sainsbury
+      # Nathan Salmon
+      # Wesley Salmon
+      # Michael J. Sandel
+      # David H. Sanford
+      # Prabhat Rainjan Sarkar
+      # Jean-Paul Sartre
+      # Crispin Sartwell
+      # John Ralston Saul
+      # Fernando Savater
+      # Thomas Scanlon
+      # Richard Schacht
+      # Francis Schaeffer
+      # Stephen Schiffer
+      # Hubert Schleichert
+      # J. B. Schneewind
+      # Frithjof Schuon
+      # Roger Scruton
+      # John Searle
+      # Wilfrid Sellars
+      # Amartya Sen
+      # Michel Serres
+      # Neven Sesardić
+      # Stanley Sfekas
+      # Stewart Shapiro
+      # Dariush Shayegan
+      # Abner Shimony
+      # Sydney Shoemaker
+      # Richard Shusterman
+      # Peter Singer
+      # B. F. Skinner
+      # John Skorupski
+      # Brian Skyrms
+      # Michael Slote
+      # Peter Sloterdijk
+      # J. J. C. Smart
+      # Huston Smith
+      # Michael A. Smith
+      # Tara Smith
+      # Raymond Smullyan
+      #{BREAK}
+      authors = "Joseph D. Sneed
       Scott Soames
       Elliott Sober
       Alan Soble

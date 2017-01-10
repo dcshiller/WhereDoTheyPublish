@@ -4,3 +4,5 @@ table
       td= publication.title 
       td= publication.authors.map(&:name).join(", ")
       td= publication.journal.name
+
+= will_paginate @publications
