@@ -1040,22 +1040,22 @@ namespace :db do
       # Charles Leslie Stevenson
       # Stephen Stich
       # Bernard Stiegler
-      authors = "Dejan Stojanović
-      Jeffrey Stout
-      David Stove
-      Galen Strawson
-      P. F. Strawson
-      Gisela Striker
-      Barry Stroud
-      Patrick Suppes
-      Richard Swinburne
-      David Sztybel
-      Javad Tabatabai
-      Nassim Nicholas Taleb
-      Robert B. Talisse
-      Tang Junyi
-      Alfred Tarski
-      Charles Taylor
+      # Dejan Stojanović
+      # Jeffrey Stout
+      # David Stove
+      # Galen Strawson
+      # P. F. Strawson
+      # Gisela Striker
+      # Barry Stroud
+      # Patrick Suppes
+      # Richard Swinburne
+      # David Sztybel
+      # Javad Tabatabai
+      # Nassim Nicholas Taleb
+      # Robert B. Talisse
+      # Tang Junyi
+      # Alfred Tarski
+      authors = "Charles Taylor
       Richard Taylor
       Placide Tempels
       Neil Tennant
