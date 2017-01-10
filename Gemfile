@@ -6,6 +6,7 @@ gem 'slim-rails'
 gem 'pry-rails'
 gem 'humanize'
 gem 'faraday'
+gem 'will_paginate'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'

@@ -938,32 +938,32 @@ namespace :db do
       # Louis P. Pojman
       # Leonardo Polo
       # Richard Popkin
-      authors = "K. J. Popma
-      Karl Popper
-      Dag Prawitz
-      Graham Priest
-      Arthur Prior
-      Harry Prosch
-      Hilary Putnam
-      Andrew Pyle
-      Qiu Renzong
-      Willard Van Orman Quine
-      Anthony Quinton
-      Sayyid Qutb
-      James Rachels
-      Ayn Rand
-      Karl Rahner
-      Peter Railton
-      Tariq Ramadan
-      Frank P. Ramsey*
-      Ian Thomas Ramsey
-      Paul Ramsey
-      Jacques Rancière
-      Douglas B. Rasmussen
-      John Rawls
-      Joseph Raz
-      George Reisman
-      Nicholas Rescher
+      # K. J. Popma
+      # Karl Popper
+      # Dag Prawitz
+      # Graham Priest
+      # Arthur Prior
+      # Harry Prosch
+      # Hilary Putnam
+      # Andrew Pyle
+      # Qiu Renzong
+      # Willard Van Orman Quine
+      # Anthony Quinton
+      # Sayyid Qutb
+      # James Rachels
+      # Ayn Rand
+      # Karl Rahner
+      # Peter Railton
+      # Tariq Ramadan
+      # Frank P. Ramsey
+      # Ian Thomas Ramsey
+      # Paul Ramsey
+      # Jacques Rancière
+      # Douglas B. Rasmussen
+      # John Rawls
+      # Joseph Raz
+      # George Reisman
+      authors = "Nicholas Rescher
       Janet Radcliffe Richards
       Radovan Richta
       Paul Ricoeur
