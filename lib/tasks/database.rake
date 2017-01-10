@@ -1019,28 +1019,28 @@ namespace :db do
       # Tara Smith
       # Raymond Smullyan
       #{BREAK}
-      authors = "Joseph D. Sneed
-      Scott Soames
-      Elliott Sober
-      Alan Soble
-      Robert C. Solomon
-      Joseph Soloveitchik
-      Richard Sorabji
-      Abdolkarim Soroush
-      David Sosa
-      Ernest Sosa
-      Thomas Sowell
-      David Spangler
-      Herbert Spiegelberg
-      Gayatri Chakravorty Spivak
-      Timothy Sprigge
-      Edward Stachura
-      Robert Stalnaker
-      Jason Stanley
-      Charles Leslie Stevenson
-      Stephen Stich
-      Bernard Stiegler
-      Dejan Stojanović
+      # Joseph D. Sneed
+      # Scott Soames
+      # Elliott Sober
+      # Alan Soble
+      # Robert C. Solomon
+      # Joseph Soloveitchik
+      # Richard Sorabji
+      # Abdolkarim Soroush
+      # David Sosa
+      # Ernest Sosa
+      # Thomas Sowell
+      # David Spangler
+      # Herbert Spiegelberg
+      # Gayatri Chakravorty Spivak
+      # Timothy Sprigge
+      # Edward Stachura
+      # Robert Stalnaker
+      # Jason Stanley
+      # Charles Leslie Stevenson
+      # Stephen Stich
+      # Bernard Stiegler
+      authors = "Dejan Stojanović
       Jeffrey Stout
       David Stove
       Galen Strawson
