@@ -1,16 +1,22 @@
 class CrossRefDispatcher
-  attr_reader :response, :authors, :query
+  attr_reader :response, :authors, :journal, :year, :query
 
   def initialize(query)
     @authors = query.authors
+    @journal = query.journal
+    @year = query.year
     @response = []
     @query = query
     # @category = query.category
   end
 
   def dispatch
-    @authors.each do |author|
-      dispatch_query_for author
+    if @authors.blank?
+      dispatch_query_for "" 
+    else
+      @authors.each do |author|
+        dispatch_query_for author
+      end
     end
   end
 
@@ -26,12 +32,19 @@ class CrossRefDispatcher
   def query_string_for(author, offset)
     url_prefix = "http://api.crossref.org/works?"
     url_suffix = "&rows=1000&offset=#{offset*1000}&filter=type:journal-article"
-    url_prefix + author_param_string_for(author) + url_suffix
+    url_suffix += ",from-pub-date:#{year}-01-01,until-pub-date:#{year + 1}-01-01" if @year
+    url_prefix + author_param_string_for(author) + journal_param_string_for(journal)+ url_suffix
   end
 
   def author_param_string_for(author)
+    return "" if author.blank?
     # authors.map { |author| "query.author=" + author.split(" ").join("+") }.join("&")
     "query.author=+#{author.split(" ").join("+")}"
+  end
+  
+  def journal_param_string_for(journal)
+    return "" unless @journal
+    "#{'&' if @author}query.container-title=#{journal}"
   end
 
   def parse(response)

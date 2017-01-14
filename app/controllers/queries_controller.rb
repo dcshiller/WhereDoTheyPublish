@@ -1,6 +1,6 @@
 class QueriesController < ApplicationController
   def show
-    @query = Query.new("", "")
+    @query = Query.new("", "", "", "")
     @focused = "Projects"
     @focused_projects = "Where?"
   end

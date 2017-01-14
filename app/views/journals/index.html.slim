@@ -4,7 +4,7 @@
   hr
   ul
     - @journals.each do |journal|
-      li= journal.name
+      li= link_to journal.name, journal_path(journal)
 
   footer
     = will_paginate @journals

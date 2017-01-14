@@ -14,6 +14,23 @@ namespace :db do
       sleep 3
     end
   end
+  task :get_journal => :environment do |t|
+      continue = true
+      year = 2016
+      while continue do
+        q = Query.new("", 'philosophy', 'mind', year, 1)
+        start_count = Publication.count
+        cr = CrossRefDispatcher.new(q)
+        cr.dispatch
+        pubs = cr.response
+        PubSaver.save(pubs)
+        puts year
+        puts Publication.count - start_count
+        year -= 1
+        continue = false if Publication.count - start_count == 0
+        sleep 2
+      end
+  end
 
   task condense: :environment do 
     Journal.find_each do |j|
