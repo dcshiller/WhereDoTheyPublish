@@ -12,8 +12,8 @@ class QueriesController < ApplicationController
     first_name = name.split(" ")[0]&.titlecase
     last_name = name.split(" ")[-1]&.titlecase
     author = Author.find_by(first_name: first_name, last_name: last_name)
-    author_ids = []
-    author_ids = params["author_ids"].split(",").compact.map(&:to_i) + [author.id]
+    puts params["author_ids"]
+    author_ids = params["author_ids"].split(",").compact.map(&:to_i) + [author&.id].compact
     @authors = (Author.where(id: author_ids)).compact
     @publications = @authors.map(&:publications).flatten
     @journal_count = {}
