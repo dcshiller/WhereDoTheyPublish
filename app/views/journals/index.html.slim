@@ -1,6 +1,11 @@
+=render "partials/data_specifier_bar"
 
-ul
-- @journals.each do |journal|
-  li= journal.name
+#content_div
+  h1 Journals
+  hr
+  ul
+    - @journals.each do |journal|
+      li= journal.name
   
-  
+  footer
+    = will_paginate @journals

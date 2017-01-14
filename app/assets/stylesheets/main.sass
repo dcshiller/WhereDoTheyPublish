@@ -1,0 +1,83 @@
+body
+  background: grey
+  position: relative
+  z-index: -2
+
+#main_title
+  font-family: 'Permanent Marker', cursive
+  // margin: 5% 0
+  color: lightgrey
+  position: fixed
+  top: calc(50% - 12vh)
+  left: 40%
+  // width: 80%
+  height: 24vh
+  padding: 1vh
+  // text-align: center
+  text-shadow: 1px 1px black
+  // color: rgba(30, 15, 50, 1)
+  font-size: 5vh
+  z-index: -1
+
+#side_bar
+  position: fixed
+  top: calc(50% - 12vh)
+  left: 10%
+  width: 10%
+  bottom: 0
+  margin: auto
+
+#specifier_bar
+  position: fixed
+  top: calc(50% - 12vh)
+  left: calc(10% + 19vh)
+  bottom: 0
+  width: 10vh
+
+ul.menu 
+  list-style: none
+  padding: 0
+  width: 20vh
+  height: 24vh
+  overflow: hidden
+  float:  right
+  li.unfocused
+    background: darken(lightgrey, 20%)
+  li
+    font-family: 'Permanent Marker', cursive
+    font-size: 2vh
+    background: ivory
+    padding: 1vh
+    margin: 1vh
+    border-radius: 5px
+    height: 3vh
+    text-align: center
+    box-shadow: 1px 1px rgba(20, 20, 20, .4)
+    border: 1px solid rgba(20, 20, 20, .4)
+    background: radial-gradient(ellipse, white 70%, ivory 90%, grey)
+    a
+      color: inherit
+      
+#content_div
+  position: fixed
+  top: 10%
+  bottom: 10%
+  right: 15%
+  left: 40%
+  background: ivory
+  overflow-x: scroll
+  padding: 3vw
+  margin: 1vh
+  border-radius: 5px
+  text-align: center
+  box-shadow: 1px 1px rgba(20, 20, 20, .4)
+  border: 1px solid rgba(20, 20, 20, .4)
+  background: radial-gradient(ellipse, white 90%, ivory 95%, lightgrey)
+  ul
+    list-style: none
+  footer
+    position: fixed
+    bottom: calc(10% + 4vh)
+    width: 50%
+    .pagination
+      width: 80%

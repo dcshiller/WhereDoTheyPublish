@@ -1,6 +1,11 @@
+=render "partials/data_specifier_bar"
 
-ul
-- @authors.each do |author|
-  li= author.first_name .sp author.middle_initial .sp author.last_name
+#content_div
+  h1 Authors
+  hr  
+  ul
+    - @authors.each do |author|
+      li= link_to (author.first_name .sp author.middle_initial .sp author.last_name), author_path(author.id)
 
-= will_paginate @authors
+  footer
+    = will_paginate @authors

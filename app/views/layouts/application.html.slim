@@ -1,0 +1,24 @@
+html
+  head
+    title Wheredotheypublish
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet"
+
+
+  body
+    .one.columns
+      p
+    div#side_bar.two.columns
+      ul.menu
+        li class=(@focused == "About" || @focused == "All" ? "focused" : "unfocused") About
+        li class=(@focused == "Projects"  || @focused == "All" ? "focused" : "unfocused") Projects 
+        li class=(@focused == "Data"  || @focused == "All" ? "focused" : "unfocused") = link_to "Data", data_path
+    = yield
+    h1#main_title 
+      | Philosophy 
+      br
+      | Data 
+      br
+      | Project
