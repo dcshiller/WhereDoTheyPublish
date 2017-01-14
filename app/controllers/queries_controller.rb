@@ -1,32 +1,26 @@
 class QueriesController < ApplicationController
-  def new
-    @request_number = "#{rand(1_000_000)}"
-    StatusTracker.instance.track_status_for(@request_number)
+  def show
+    @query = Query.new("", "")
+    @focused = "Projects"
+    @focused_projects = "Where?"
   end
 
   def create
-    dispatcher = CrossRefDispatcher.new(query)
-    dispatcher.dispatch
-    PubSaver.save(dispatcher.response)
-    # publications = dispatcher.response
-    # filterer = Filterer.new(query: query, publications: publications)
-    # filterer.filter
-    # publications = filterer.filtered_list
-    authors = query.authors.map do |author|
-      first_name = author.split(" ")[0]
-      last_name = author.split(" ")[-1]
-      author = Author.find_by(first_name: first_name, last_name: last_name)
+    @focused = "Projects"
+    @focused_projects = "Where?"
+    name = params["authors"]
+    first_name = name.split(" ")[0]&.titlecase
+    last_name = name.split(" ")[-1]&.titlecase
+    author = Author.find_by(first_name: first_name, last_name: last_name)
+    author_ids = []
+    author_ids = params["author_ids"].split(",").map(&:to_i) + [author.id]
+    @authors = (Author.where(id: author_ids)).compact
+    @publications = @authors.map(&:publications).flatten
+    @journal_count = {}
+    @publications.map(&:journal).each do |journal|
+      @journal_count[journal] = @publications.count {|pub| pub.journal == journal}
     end
-    publications = Publication.joins(:authorships).where("authorships.author": authors)
-    counter = Counter.new(publications)
-    counter.count
-    @ranked_journals = counter.ranked_journals
-    respond_to { |format| format.js }
-  end
-
-  private
-
-  def query
-    @query ||= Query.new(params[:authors] - [""], params[:filter], params['request_number'])
+    @journal_count = @journal_count.sort {|a,b| b[1] <=> a[1]}
+    render :show
   end
 end

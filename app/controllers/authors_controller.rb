@@ -6,8 +6,9 @@ class AuthorsController < ApplicationController
   end
 
   def show
+    @focused = "Data"
+    @focused_datatype = "Authors"
     @author = Author.find(params[:id])
     @publications = @author.publications.paginate(page: params[:page], per_page: 10)
   end
-
 end

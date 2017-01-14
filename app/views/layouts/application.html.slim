@@ -13,12 +13,16 @@ html
     div#side_bar.two.columns
       ul.menu
         li class=(@focused == "About" || @focused == "All" ? "focused" : "unfocused") About
-        li class=(@focused == "Projects"  || @focused == "All" ? "focused" : "unfocused") Projects 
+        li class=(@focused == "Projects"  || @focused == "All" ? "focused" : "unfocused") = link_to "Projects", projects_path 
         li class=(@focused == "Data"  || @focused == "All" ? "focused" : "unfocused") = link_to "Data", data_path
+
+    =render "partials/data_specifier_bar" if @focused == "Data"
+    =render "partials/project_specifier_bar" if @focused == "Projects"
+
     = yield
-    h1#main_title 
-      | Philosophy 
+    h1#main_title
+      | Philosophy
       br
-      | Data 
+      | Data
       br
       | Project
