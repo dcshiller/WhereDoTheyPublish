@@ -2,7 +2,7 @@
 #form_query = form_tag :query do
   h2 Include?
   = text_field_tag :authors
-  = hidden_field_tag :author_ids, @authors&.map(&:id)&.join(",")
+  = hidden_field_tag :author_ids, @authors&.compact&.map(&:id)&.join(",")
   = submit_tag "+"
   
   hr 
