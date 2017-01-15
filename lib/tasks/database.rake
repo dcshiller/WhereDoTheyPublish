@@ -18,7 +18,7 @@ namespace :db do
       continue = true
       year = 2016
       while continue do
-        q = Query.new("", 'philosophy', 'mind', year, 1)
+        q = Query.new("", 'philosophy', 'dialectica', year, 1)
         start_count = Publication.count
         cr = CrossRefDispatcher.new(q)
         cr.dispatch
