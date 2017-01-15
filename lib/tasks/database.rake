@@ -16,9 +16,10 @@ namespace :db do
   end
   task :get_journal => :environment do |t|
       continue = 4
-      year = 1936
-      while continue > 0 do
-        q = Query.new("", 'philosophy', 'monist', year, 1)
+      min = 1985
+      year = 2016
+      while continue > 0 && year > min do
+        q = Query.new("", 'philosophy', 'mind+and+language', year, 1)
         start_count = Publication.count
         cr = CrossRefDispatcher.new(q)
         cr.dispatch
