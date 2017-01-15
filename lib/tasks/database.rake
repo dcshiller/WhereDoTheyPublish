@@ -27,7 +27,7 @@ namespace :db do
         puts year
         puts Publication.count - start_count
         year -= 1
-        continue -= if Publication.count - start_count == 0
+        continue -= 1 if Publication.count - start_count == 0
         sleep 2
       end
   end
