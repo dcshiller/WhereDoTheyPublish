@@ -16,7 +16,7 @@ namespace :db do
   end
   task :get_journal => :environment do |t|
       continue = 4
-      year = 2016
+      year = 1936
       while continue > 0 do
         q = Query.new("", 'philosophy', 'monist', year, 1)
         start_count = Publication.count
