@@ -14,12 +14,12 @@ namespace :db do
       sleep 3
     end
   end
-  task :get_journal => :environment do |t|
+  task :get_journal, [:name, :start, :end] => :environment do |t, args|
       continue = 4
-      min = 2012
-      year = 2016
+      min = args[:end].to_i || 2012
+      year = args[:start].to_i || 2016 
       while year > min do
-        q = Query.new("", 'philosophy', 'mind+and+language', year, 1)
+        q = Query.new("", 'philosophy', args[:name], year, 1)
         start_count = Publication.count
         cr = CrossRefDispatcher.new(q)
         cr.dispatch
