@@ -1,12 +1,11 @@
-Biology+and+Philosophy,2016,1985
-British+Journal+for+the+History+of+Philosophy,2016,1992
-British+Journal+for+the+Philosophy+of+Science,2016, 1949
-British+Journal+of+Aesthetics,2016,1959
-Bulletin+of+Symbolic+Logic,2016,1994
-Bulletin+of+the+Hegel+Society+of+Great+Britain,2016,1978
-Business+and+Professional+Ethics+Journal,2016,1980
-Business+Ethics+Quarterly,2016,1990
-Cambridge+Quarterly+of+Healthcare+Ethics,2016,1991
-Canadian+Journal+of+Philosophy,2016,1970
-Chiasmi+International,2016,1998
-CLR+James+Journal,2016,1989
+ScheduledQuery.create(query: "British+Journal+for+the+History+of+Philosophy",start: 2016, end: 1992)
+ScheduledQuery.create(query: "British+Journal+for+the+Philosophy+of+Science",2start: 016,  end: 1949)
+ScheduledQuery.create(query: "British+Journal+of+Aesthetics",start: 2016, end: 1959)
+ScheduledQuery.create(query: "Bulletin+of+Symbolic+Logic",start: 2016, end: 1994)
+ScheduledQuery.create(query: "Bulletin+of+the+Hegel+Society+of+Great+Britain",start: 2016, end: 1978)
+ScheduledQuery.create(query: "Business+and+Professional+Ethics+Journal",start: 2016, end: 1980)
+ScheduledQuery.create(query: "Business+Ethics+Quarterly",start: 2016, end: 1990)
+ScheduledQuery.create(query: "Cambridge+Quarterly+of+Healthcare+Ethics",start: 2016, end: 1991)
+ScheduledQuery.create(query: "Canadian+Journal+of+Philosophy",start: 2016, end: 1970)
+ScheduledQuery.create(query: "Chiasmi+International",start: 2016, end: 1998)
+ScheduledQuery.create(query: "CLR+James+Journal",start: 2016, end: 1989)

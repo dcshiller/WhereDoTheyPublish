@@ -16,15 +16,12 @@ namespace :db do
   end
 
   task get_next: :environment do
-    target  = "db/queries.txt"
-    lines = File.readlines(target)
-    return unless lines.count > 1
-    next_line = lines.shift
-    query, start_date, end_date = next_line.split(",")
-    min = end_date.to_i
-    year = start_date.to_i
+    query = ScheduledQuery.where(complete: false).first
+    return unless query
+    min = query.end
+    year = query.start
     while year > min do
-      q = Query.new("", 'philosophy', query, year, 1)
+      q = Query.new("", 'philosophy', query.query, year, 1)
       cr = CrossRefDispatcher.new(q)
       cr.dispatch
       pubs = cr.response
@@ -34,7 +31,7 @@ namespace :db do
       puts Publication.count
       sleep rand(15)
     end
-    File.write(target, lines.join)
+    query.update_attributes(complete: true)
   end
   
   task :get_journal, [:name, :start, :end] => :environment do |t, args|

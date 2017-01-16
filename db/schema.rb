@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107145029) do
+ActiveRecord::Schema.define(version: 20170116204206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20170107145029) do
     t.datetime "updated_at",       null: false
     t.index ["journal_id"], name: "index_publications_on_journal_id", using: :btree
     t.index ["title"], name: "index_publications_on_title", using: :btree
+  end
+
+  create_table "scheduled_queries", force: :cascade do |t|
+    t.string  "query"
+    t.string  "type"
+    t.integer "start"
+    t.integer "end"
+    t.boolean "complete", default: false
   end
 
 end

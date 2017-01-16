@@ -1,0 +1,2 @@
+class ScheduledQuery < ApplicationRecord
+end
