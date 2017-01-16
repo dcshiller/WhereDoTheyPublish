@@ -1,0 +1,10 @@
+
+#content_div
+  h1 Journal #{@journal.name}
+  hr
+  | Article Count: #{@publications.count}
+  - @publications.each do |publication|
+    li= publication.title .sp publication.publication_year
+
+  footer
+    = will_paginate @publications

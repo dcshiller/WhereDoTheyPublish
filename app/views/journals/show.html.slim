@@ -2,9 +2,19 @@
 #content_div
   h1 Journal #{@journal.name}
   hr
-  ul
-    - @publications.each do |publication|
-      li= publication.title .sp publication.publication_year
+  | Article Count: #{@publication_count}
+  br
+  br
+  table
+    thead
+      tr
+        th Year
+        th Article Count
+    tbody
+    - @years.pluck(:publication_year).each do |year|
+      tr
+        td= link_to year.to_s, journal_year_path(@journal, year: year.to_s)
+        td= @years.count('*')[year]
 
   footer
-    = will_paginate @publications
+    = will_paginate @years
