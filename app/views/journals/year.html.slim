@@ -1,10 +1,21 @@
 
 #content_div
   h1 Journal #{@journal.name}
+  h2.center = @year 
+  .center Article Count: #{@publications.count}
   hr
-  | Article Count: #{@publications.count}
-  - @publications.each do |publication|
-    li= publication.title .sp publication.publication_year
+  br
+  br
+  table
+    thead
+      th.left Title
+      th.left Author
+  
+    tbody
+      - @publications.each do |publication|
+        tr
+          td= publication.title
+          td= publication.authors.map(&:name).join(", ")
 
   footer
     = will_paginate @publications
