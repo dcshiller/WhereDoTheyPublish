@@ -6,8 +6,8 @@
     table
       - @publications.each do |publication|
         tr
-          td= publication.title&.html_safe
-          td= publication.authors.map(&:name).join(", ")
+          td= publication.title.blank? ? publication.title&.html_safe : "(title missing)"
+          td= publication.authors.map(&:name).compact.join(", ")
           td= publication.journal.name
 
   footer

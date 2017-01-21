@@ -1,22 +1,22 @@
 
 #content_div
   #display_panel
-    h1 Journal #{@journal.name}
-    h2.center = @year 
-    .center Article Count: #{@publications.count}
-    hr
-    br
-    br
-    table
-      thead
-        th.left Title
-        th.left Author
-    
+    - if params[:page].nil? || params[:page] == "1"
+      h1 #{@journal.name}
+      h2.center Journal
+      h2.center = @year 
+      .center Article Count: #{@publications.count}
+      hr
+    table.standard.two_columns
       tbody
         - @publications.each do |publication|
           tr
-            td= publication.title
-            td= publication.authors.map(&:name).join(", ")
+            td= publication.title || "(title missing)"
+            td 
+              - publication.authors.each.with_index do |author, idx|
+                = link_to author.name, author_path(author)
+                - if idx + 1 < publication.authors.count && publication.authors.count > 1
+                  | , 
 
   footer
     = will_paginate @publications

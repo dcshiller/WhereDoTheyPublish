@@ -3,9 +3,12 @@
   #display_panel
     h1 Author #{@author.name}
     hr  
-    ul
+    table.standard
       - @publications.each do |publication|
-        li= publication.title
+        tr
+          td= publication.publication_year
+          td= publication.title || "(title missing)"
+          td= link_to publication.journal.name, journal_year_path(publication.journal, publication.publication_year)
 
   footer
     = will_paginate @publications

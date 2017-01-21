@@ -1,3 +1,5 @@
+$tablegrey: #edeeef
+
 body
   background: grey
   position: relative
@@ -76,6 +78,8 @@ ul.menu
   background: radial-gradient(ellipse, white 90%, ivory 95%, lightgrey)
   h1
     text-align: center
+  hr
+    margin-bottom: 3vh
   ul
     list-style: none
   footer
@@ -83,11 +87,15 @@ ul.menu
     bottom: calc(10% + 4vh)
     width: 50%
     .pagination
-      width: 80%
+      background: rgba(255,255,255,.9)
+      width: 100%
+      text-align: center
   #display_panel
     height: calc(100% - 8vw)
     width: calc(100% - 8vw)
+    overflow: scroll
     padding: 4vw
+    padding-bottom: 0
     
 #form_query
   position: fixed
@@ -115,3 +123,29 @@ ul.menu
   columns: 10vw 3
   margin: auto
   min-height: 20vh
+
+table.standard
+  border-collapse: collapse
+  tr
+  tr:nth-of-type(2n)
+    background: $tablegrey
+  td
+    vertical-align: top
+    padding: .5vw .5vw
+    overflow: scroll
+  a
+    color: inherit
+    text-decoration: underline
+  &.three_columns
+    td:nth-of-type(1)
+      font-weight: bold
+      width: 10%
+    td:nth-of-type(2)
+      width: 50%
+    td:nth-of-type(3)
+      width: 20%
+  &.two_columns
+    td:nth-of-type(1)
+      width: 70%
+    td:nth-of-type(2)
+      width: 30%
