@@ -1,10 +1,11 @@
 
 #content_div
-  h1 Author #{@author.name}
-  hr  
-  ul
-    - @publications.each do |publication|
-      li= publication.title
+  #display_panel
+    h1 Author #{@author.name}
+    hr  
+    ul
+      - @publications.each do |publication|
+        li= publication.title
 
   footer
     = will_paginate @publications

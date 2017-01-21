@@ -1,13 +1,14 @@
 
 #content_div
-  h1 Publications
-  hr
-  table
-    - @publications.each do |publication|
-      tr
-        td= publication.title&.html_safe
-        td= publication.authors.map(&:name).join(", ")
-        td= publication.journal.name
+  #display_panel
+    h1 Publications
+    hr
+    table
+      - @publications.each do |publication|
+        tr
+          td= publication.title&.html_safe
+          td= publication.authors.map(&:name).join(", ")
+          td= publication.journal.name
 
   footer
     = will_paginate @publications

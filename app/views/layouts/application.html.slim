@@ -12,7 +12,7 @@ html
       p
     div#side_bar.two.columns
       ul.menu
-        li class=(@focused == "About" || @focused == "All" ? "focused" : "unfocused") About
+        li class=(@focused == "About" || @focused == "All" ? "focused" : "unfocused") = link_to "About", "#"
         li class=(@focused == "Projects"  || @focused == "All" ? "focused" : "unfocused") = link_to "Projects", projects_path 
         li class=(@focused == "Data"  || @focused == "All" ? "focused" : "unfocused") = link_to "Data", data_path
 

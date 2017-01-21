@@ -11,8 +11,9 @@
     br
 
 #content_div
-  h1 Where Do They Publish?
-  ul
-    - @journal_count&.each do | journal, count|
-      li= journal.name + " " + count.to_s
+  #display_panel
+    h1 Where Do They Publish?
+    ul
+      - @journal_count&.each do | journal, count|
+        li= journal.name + " " + count.to_s
       

@@ -1,10 +1,11 @@
 
 #content_div
-  h1 Journals
-  hr
-  ul
-    - @journals.each do |journal|
-      li= link_to journal.name, journal_path(journal)
+  #display_panel
+    h1 Journals
+    hr
+    ul
+      - @journals.each do |journal|
+        li= link_to journal.name, journal_path(journal)
 
   footer
     = will_paginate @journals
