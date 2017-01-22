@@ -1,5 +1,8 @@
 $tablegrey: #edeeef
 
+.bold
+  font-weight: bold
+
 body
   background: grey
   position: relative
@@ -105,14 +108,30 @@ ul.menu
   position: fixed
   background: ivory
   top: 10%
+  padding: 2vw 5vw 2vw 2vw
   margin: 1vh
   border-radius: 5px
   bottom: 10%
   box-shadow: 1px 1px rgba(20, 20, 20, .4)
   border: 1px solid rgba(20, 20, 20, .4)
   background: radial-gradient(ellipse, white 90%, ivory 95%, lightgrey)
-  right: 5%
+  width: calc(17% - 7vw)
   left: 85%
+  input[type="text"]
+    margin-right: 4px
+    width: calc(100% - 4vw)
+    background: ivory
+  input[type="submit"]
+    width: 3vw
+    margin: auto
+    // margin-top: 1vh
+    // display: block
+    background: grey
+    border-radius: 20px
+  table
+    tr:not(:first-of-type)
+      td
+        border-top: 1px dotted grey 
 
 .center
   text-align: center

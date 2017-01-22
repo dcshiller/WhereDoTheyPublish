@@ -5,10 +5,13 @@
   = hidden_field_tag :author_ids, @authors&.compact&.map(&:id)&.join(",")
   = submit_tag "+"
   
-  hr 
-  - @authors&.each do |author|
-    = author.name 
-    br
+  hr
+  table
+    - @authors&.each do |author|
+      tr
+        td.bold
+          | (#{author.publications.count}) 
+        td= link_to author.name, author_path(author)
 
 #content_div
   #display_panel
@@ -16,4 +19,3 @@
     ul
       - @journal_count&.each do | journal, count|
         li= journal.name + " " + count.to_s
-      

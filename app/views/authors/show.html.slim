@@ -1,7 +1,8 @@
 
 #content_div
   #display_panel
-    h1 Author #{@author.name}
+    h1 #{@author.name}
+    h2.center Author
     hr  
     table.standard
       - @publications.each do |publication|
