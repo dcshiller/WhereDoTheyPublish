@@ -14,7 +14,7 @@ class JournalsController < ApplicationController
   end
 
   def year
-    @year = params[:year]
+    @year = params[:year].to_i
     @journal = Journal.find(params[:journal_id])
     @publications = @journal.publications.where(publication_year: @year).paginate(page: params[:page], per_page: 9).order(:title)
     @focused = "Data"
