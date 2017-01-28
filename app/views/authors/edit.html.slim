@@ -1,0 +1,10 @@
+#content_div
+  #display_panel
+    h1 #{@author.name}
+    h2.center Author
+    hr  
+    - simple_form_for @author do |f|
+      = f.input :first_name
+      = f.input :middle_initial
+      = f.input :last_name
+      = f.submit

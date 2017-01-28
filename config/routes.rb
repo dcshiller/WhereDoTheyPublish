@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root to: "pages#welcome"
   resource :query, only: [:show, :create]
-  resource :status, only: [:show]
-  resources :authors, only: [:index, :show]
+  resources :authors, only: [:index, :show, :edit, :update, :update]
   resources :journals, only: [:index, :show] do
     get 'year/:year', to: 'journals#year', as: "year"
   end

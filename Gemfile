@@ -6,6 +6,7 @@ gem 'slim-rails'
 gem 'pry-rails'
 gem 'humanize'
 gem 'faraday'
+gem 'simple_form'
 gem 'will_paginate'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use postgresql as the database for Active Record
@@ -34,6 +35,12 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'minitest-rails'
+  gem 'faker'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

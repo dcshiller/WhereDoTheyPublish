@@ -11,4 +11,13 @@ class AuthorsController < ApplicationController
     @author = Author.find(params[:id])
     @publications = @author.publications.paginate(page: params[:page], per_page: 10).order(:publication_year)
   end
+
+  def edit
+    @focused = "Data"
+    @focused_datatype = "Authors"
+    @author = Author.find(params[:id])
+  end
+
+  def update
+  end
 end

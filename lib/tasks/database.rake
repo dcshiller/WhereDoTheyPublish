@@ -15,6 +15,15 @@ namespace :db do
     end
   end
 
+  task :read_file => :environment do |t, args|
+    lines = File.readlines("data/apq")
+    arr = []
+    lines.each do |line|
+      puts line
+      Parser.new.parse_line(line).save
+    end
+  end
+
   task get_next: :environment do
     query = ScheduledQuery.where(complete: false).first
     return unless query
