@@ -2,4 +2,6 @@
   .two_columns
     ul.menu
       li class=(@focused_projects == "Where?" || @focused_projects == "All" ? "focused" : :unfocused)
-        = link_to "Where?", query_path
+        = link_to "Where?", where_do_they_publish_projects_path
+      li class=(@focused_projects == "Affinity" || @focused_projects == "All" ? "focused" : :unfocused)
+        = link_to "Affinity", journal_affinity_projects_path

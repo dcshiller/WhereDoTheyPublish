@@ -8,30 +8,6 @@ body
   position: relative
   z-index: -2
 
-#main_title
-  font-family: 'Permanent Marker', cursive
-  // margin: 5% 0
-  color: lightgrey
-  position: fixed
-  top: calc(50% - 14vh)
-  left: 56%
-  // width: 80%
-  height: 24vh
-  padding: 1vh
-  // text-align: center
-  text-shadow: 1px 1px black
-  // color: rgba(30, 15, 50, 1)
-  font-size: 5vh
-  z-index: -1
-
-#side_bar
-  position: fixed
-  top: calc(50% - 12vh)
-  left: 10%
-  width: calc(10% + 2vw)
-  bottom: 0
-  margin: auto
-
 #specifier_bar
   position: fixed
   top: calc(50% - 12vh)
@@ -65,73 +41,6 @@ ul.menu
       color: inherit
       display: block
       width: 8vw
-      
-#content_div
-  position: fixed
-  top: 10%
-  bottom: 10%
-  right: 15%
-  left: calc(10% + 22vw)
-  background: ivory
-  overflow-x: scroll
-  margin: 1vh
-  border-radius: 5px
-  box-shadow: 1px 1px rgba(20, 20, 20, .4)
-  border: 1px solid rgba(20, 20, 20, .4)
-  background: radial-gradient(ellipse, white 90%, ivory 95%, lightgrey)
-  h1
-    text-align: center
-  hr
-    margin-bottom: 3vh
-  ul
-    list-style: none
-  footer
-    position: fixed
-    bottom: calc(10% + 4vh)
-    width: 50%
-    .pagination
-      background: rgba(255,255,255,.9)
-      width: 100%
-      text-align: center
-  #display_panel
-    height: calc(100% - 8vw)
-    width: calc(100% - 8vw)
-    overflow: scroll
-    padding: 4vw
-    padding-bottom: 0
-  a.small-year
-    font-size: 2vh
-    margin: 1vw 1vw
-    color: inherit
-    
-#form_query
-  position: fixed
-  background: ivory
-  top: 10%
-  padding: 2vw 5vw 2vw 2vw
-  margin: 1vh
-  border-radius: 5px
-  bottom: 10%
-  box-shadow: 1px 1px rgba(20, 20, 20, .4)
-  border: 1px solid rgba(20, 20, 20, .4)
-  background: radial-gradient(ellipse, white 90%, ivory 95%, lightgrey)
-  width: calc(17% - 7vw)
-  left: 85%
-  input[type="text"]
-    margin-right: 4px
-    width: calc(100% - 4vw)
-    background: ivory
-  input[type="submit"]
-    width: 3vw
-    margin: auto
-    // margin-top: 1vh
-    // display: block
-    background: grey
-    border-radius: 20px
-  table
-    tr:not(:first-of-type)
-      td
-        border-top: 1px dotted grey 
 
 .center
   text-align: center
@@ -147,29 +56,3 @@ ul.menu
   margin: auto
   min-height: 20vh
 
-table.standard
-  border-collapse: collapse
-  width: 100%
-  tr
-  tr:nth-of-type(2n)
-    background: $tablegrey
-  td
-    vertical-align: top
-    padding: .5vw .5vw
-    overflow: scroll
-  a
-    color: inherit
-    text-decoration: underline
-  &.three_columns
-    td:nth-of-type(1)
-      font-weight: bold
-      width: 10%
-    td:nth-of-type(2)
-      width: 50%
-    td:nth-of-type(3)
-      width: 20%
-  &.two_columns
-    td:nth-of-type(1)
-      width: 70%
-    td:nth-of-type(2)
-      width: 30%

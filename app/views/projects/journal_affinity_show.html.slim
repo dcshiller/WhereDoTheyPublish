@@ -1,0 +1,15 @@
+
+#content_div
+  #display_panel
+    h1 Journal Affinities
+    = form_tag :journal_affinity_projects do
+      h2 Include?
+      = select_tag :journal_1, options_from_collection_for_select(@journals, :id, :name, @journal_1&.id)
+      = select_tag :journal_2, options_from_collection_for_select(@journals, :id, :name, @journal_2&.id)
+      br
+      = submit_tag "Compare"
+    hr
+    - if @journal_1 && @journal_2
+      p= link_to @journal_1&.name, journal_path(@journal_1)
+      p= link_to @journal_2&.name, journal_path(@journal_2)
+      p #{@affinity} %
