@@ -17,7 +17,7 @@ class Journal < ActiveRecord::Base
     authors_count = authors.count
     other_authors_count = other_journal.authors.count
     # co_pub_ids = authors.merge(Author.group(:id).where("COUNT(authorships.id) > 5").pluck(:id) & other_journal.authors.pluck(:id)
-    co_pub_ids = authors.merge(Author.joins(:authorships).group("authors.id").having("COUNT(authorships.id) > 5")).pluck(:id) & other_journal.authors.pluck(:id)
+    co_pub_ids = authors.merge(Author.having_five_pubs).pluck(:id) & other_journal.authors.pluck(:id)
     co_pub_authors_count = co_pub_ids.count
     (co_pub_authors_count.to_f * 100 / [authors_count, other_authors_count].min).round(2)
   end

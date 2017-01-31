@@ -13,6 +13,8 @@ class Author < ActiveRecord::Base
     joins(:publications).
     merge(Publication.published_between(author.plausible_publication_range))
   end
+  scope :having_five_pubs, -> { joins(:authorships).group("authors.id").having("COUNT(authorships.id) > 5") }
+  scope :published_in, -> (journal) { joins(:journals).where("journals.id": journal.id) }
 
   def name?(name_to_match)
     (first_name .sp last_name) == (name_to_match.split(" ")[0] .sp name_to_match.split(" ")[1]) ||

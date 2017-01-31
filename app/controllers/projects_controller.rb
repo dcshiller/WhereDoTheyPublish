@@ -36,10 +36,11 @@ class ProjectsController < ApplicationController
 
   def journal_affinity_query
     @focused = "Projects"
-    @focused_projects = "Journal Affinity"
+    @focused_projects = "Affinity"
     @journals = Journal.order(:name)
     @journal_1, @journal_2 = Journal.where(id: [params[:journal_1], params[:journal_2]])
     @affinity = @journal_1.co_publication_percentage @journal_2 unless [@journal_1.publications.count, @journal_2.publications.count].any?(&:zero?)
+    @authors = Author.distinct.published_in(@journal_1) & Author.published_in(@journal_2)
     render :journal_affinity_show
   end
 end

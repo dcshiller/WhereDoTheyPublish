@@ -1,9 +1,9 @@
 .row#specifier_bar
   .two_columns
     ul.menu
-      li class=(@focused_datatype == "Authors" || @focused_datatype == "All" ? "focused" : :unfocused)
+      li class=(@focused_datatype == "Authors" ? "focused" : :unfocused)
         = link_to "Authors", authors_path
-      li class=(@focused_datatype == "Journals" || @focused_datatype == "All" ? "focused" : :unfocused)
+      li class=(@focused_datatype == "Journals" ? "focused" : :unfocused)
         = link_to "Journals", journals_path
-      li class=(@focused_datatype == "Publications" || @focused_datatype == "All" ? "focused" : :unfocused)
+      li class=(@focused_datatype == "Publications" ? "focused" : :unfocused)
         = link_to "Publications", publications_path
