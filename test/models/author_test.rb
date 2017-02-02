@@ -2,8 +2,6 @@ require 'test_helper'
 
 class AuthorTest < ActiveSupport::TestCase
 
-  test "finds "
-
   test "merges authors" do
     a1 = create :author, :with_publication
     a2 = create :author, :with_publication

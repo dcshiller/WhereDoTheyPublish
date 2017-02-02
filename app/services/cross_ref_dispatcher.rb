@@ -22,10 +22,8 @@ class CrossRefDispatcher
 
   def dispatch_query_for(author, offset = 0)
     url = ""
-    query.update_status("#{author} submitted.")
     return_message = Faraday.new(url).get(query_string_for author, offset)
     response = parse(return_message)
-    query.update_status("#{author} results received.")
     @response += response
   end
 

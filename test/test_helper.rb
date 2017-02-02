@@ -8,4 +8,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+
+  def there_must_be(number, countable)
+    assert_equal number, countable.count
+  end
 end
