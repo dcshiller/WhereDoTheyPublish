@@ -5,7 +5,7 @@ namespace :cleanup do
 
   task copy_display_names: :environment do
     Publication.find_each do |pub|
-      pub.display_title = pub.title.chomp(".")
+      pub.display_title = pub.title&.chomp(".")
       pub.save
     end
   end
