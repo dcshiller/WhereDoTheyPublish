@@ -3,7 +3,7 @@
     h1 #{@author.name}
     h2.center Author Edit
     hr
-    = simple_form_for @author do |f|
+    = simple_form_for @author, html: {class: "center"} do |f|
       = f.input :first_name
       = f.input :middle_initial
       = f.input :last_name

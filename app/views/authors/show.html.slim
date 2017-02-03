@@ -3,6 +3,7 @@
   #display_panel
     h1 #{@author.name}
     h2.center Author
+    .center= link_to "(edit)", edit_author_path(@author)
     hr  
     table.standard
       - @publications.each do |publication|

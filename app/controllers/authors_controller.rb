@@ -22,9 +22,10 @@ class AuthorsController < ApplicationController
     @focused = "Data"
     @focused_datatype = "Authors"
     @author = Author.find(params[:id])
-    other_author = (Author.where(author_params).to_a - @author).first
+    other_author = (Author.where(author_params).to_a - [@author]).first
     unless other_author.blank?
-      other_author.merge_into(@author)
+      @author.merge_into(other_author)
+      @author = other_author
     else
       @author.update_attributes(author_params)
     end
