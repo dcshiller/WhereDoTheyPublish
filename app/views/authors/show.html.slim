@@ -9,7 +9,7 @@
       - @publications.each do |publication|
         tr
           td= publication.publication_year
-          td= publication.title || "(title missing)"
+          td= link_to publication.proper_title || "(title missing)", edit_publication_path(publication), class: "no_link_display"
           td= link_to publication.journal.name, journal_year_path(publication.journal, publication.publication_year)
 
   footer

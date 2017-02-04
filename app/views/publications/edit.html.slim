@@ -1,0 +1,10 @@
+
+#content_div
+  #display_panel
+    h1= @publication.proper_title
+    h4.center Publication
+    hr
+      = simple_form_for @publication, html: {class: "center"} do |f|
+        = f.input :display_title
+        = f.input :publication_year, as: :numeric
+        = f.submit

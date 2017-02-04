@@ -12,6 +12,10 @@ class Publication < ActiveRecord::Base
     titles == string_to_match
   end
 
+  def proper_title
+    (display_title || title).html_safe
+  end
+
   def author?(name_to_match)
     authors.any? { |a| a.name? name_to_match }
   end

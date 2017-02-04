@@ -1,8 +1,10 @@
 
 #content_div
   #display_panel
-    h1 Journal #{@journal.name}
+    h1 #{@journal.name}
+    h4.center Journal
     .center Article Count: #{@publication_count}
+    .center= link_to "(edit)", edit_journal_path(@journal)
     hr
     br
     br
@@ -12,6 +14,6 @@
         | &nbsp &nbsp &nbsp
         = @years.count('*')[year]
         br
-  
+
   footer
     = will_paginate @years

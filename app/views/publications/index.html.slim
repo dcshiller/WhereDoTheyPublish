@@ -6,7 +6,7 @@
     table
       - @publications.each do |publication|
         tr
-          td= publication.title.blank? ? "(title missing)" : publication.title&.html_safe
+          td= link_to publication.proper_title || "(title missing)", edit_publication_path(publication), class: "no_link_display"
           td= publication.authors.map(&:name).compact.join(", ")
           td= publication.journal.name
 
