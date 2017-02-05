@@ -11,7 +11,11 @@ class AuthorMerger
       possibility = possible_full_names.first
       if possible_full_names.one? && author.publication_consistent?(possibility)
         unless Rails.env.test?
-          puts author.name .sp " => " .sp possible_full_names.first.name
+          pubs1 = author.journals.limit(3).pluck(:name).inspect
+          pubs2 = possibility.journals.limit(3).pluck(:name).inspect
+          puts pubs1
+          puts pubs2
+          puts author.name .sp author.id.to_s .sp " => " .sp possibility.name .sp possibility.id.to_s
           print "confirm? "
           merge_confirm = gets.chomp
           puts "#{merge_confirm }\n"
