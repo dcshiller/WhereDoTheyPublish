@@ -46,6 +46,10 @@ class Author < ActiveRecord::Base
     ]
   end
 
+  def publication_consistent?(other_author)
+    Author.publication_consistent(self).where(id: other_author).any?
+  end
+
   def plausible_duplicates
     Author.name_consistent(self).publication_consistent(self)
   end

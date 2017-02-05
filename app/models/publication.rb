@@ -6,7 +6,7 @@ class Publication < ActiveRecord::Base
   validates :journal, presence: true
 
   scope :philosophy, ->{ where(philosophy: true)}
-  scope :published_between, -> (years) {where(publication_year: years)}
+  scope :published_between, -> (years) {where(publication_year: years[0]...years[1])}
 
   def title?(string_to_match)
     titles == string_to_match
