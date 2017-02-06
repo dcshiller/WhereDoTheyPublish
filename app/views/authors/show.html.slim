@@ -3,6 +3,7 @@
   #display_panel
     h1 #{@author.name}
     h2.center Author
+    | Unity Rating: #{@author.unity_rating}
     .center= link_to "(edit)", edit_author_path(@author)
     hr  
     table.standard

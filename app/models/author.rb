@@ -46,6 +46,12 @@ class Author < ActiveRecord::Base
     ]
   end
 
+  def unity_rating
+    pairs = journals.distinct.to_a.combination(2)
+    return 0 if pairs.count == 0
+    (pairs.sum {|a,b| a.co_publication_percentage(b)} / pairs.count).round(2)
+  end
+
   def publication_consistent?(other_author)
     Author.publication_consistent(self).where(id: other_author).any?
   end
