@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202014206) do
+ActiveRecord::Schema.define(version: 20170206232535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "affinities", force: :cascade do |t|
+    t.integer  "first_journal_id"
+    t.integer  "second_journal_id"
+    t.float    "affinity"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["first_journal_id", "second_journal_id"], name: "index_affinities_on_first_journal_id_and_second_journal_id", unique: true, using: :btree
+  end
 
   create_table "authors", force: :cascade do |t|
     t.string   "first_name"
