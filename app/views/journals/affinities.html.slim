@@ -1,0 +1,12 @@
+
+#content_div
+  #display_panel
+    h1 #{@journal.name}
+    h2.center Journal
+    h2.center
+    hr
+    table.standard.two_columns
+      tbody
+        - @affinities.each do |affinity|
+          tr
+            td= affinity.affinity

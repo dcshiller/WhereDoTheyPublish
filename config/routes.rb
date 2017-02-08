@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :authors, only: [:index, :show, :edit, :update, :update]
   resources :journals, only: [:index, :show, :edit, :update] do
     get 'year/:year', to: 'journals#year', as: "year"
+    get 'affinities', to: 'journals#affinities', as: "affinities"
   end
   resources :publications, only: [:index, :edit, :update]
   get :data, to: "data#index"
