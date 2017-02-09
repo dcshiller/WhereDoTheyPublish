@@ -8,13 +8,13 @@ html
 
 
   body
-    .one.columns
-      p
-    div#side_bar.two.columns
-      ul.menu
-        li class=(@focused == "About" || @focused == "All" ? "focused" : "unfocused") = link_to "About", "#"
+    navbar
+      ul
+        li class=(@focused == "About" || @focused == "All" ? "focused" : "unfocused") = link_to "About", about_path
         li class=(@focused == "Projects"  || @focused == "All" ? "focused" : "unfocused") = link_to "Projects", projects_path 
         li class=(@focused == "Data"  || @focused == "All" ? "focused" : "unfocused") = link_to "Data", data_path
+      p
+    div#side_bar
 
     =render "partials/data_specifier_bar" if @focused == "Data"
     =render "partials/project_specifier_bar" if @focused == "Projects"

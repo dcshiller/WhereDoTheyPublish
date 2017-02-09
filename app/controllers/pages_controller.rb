@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
   def welcome
-    @focused = "All"
+  end
+
+  def about
+    @focused = "About"
   end
 end

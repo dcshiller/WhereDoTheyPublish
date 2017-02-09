@@ -1,7 +1,7 @@
 
 #content_div
   #display_panel
-    h1 #{@journal.name}
+    h1= link_to @journal.name, journal_path(@journal)
     h2.center Journal
     h2.center
     hr
@@ -9,4 +9,6 @@
       tbody
         - @affinities.each do |affinity|
           tr
-            td= affinity.affinity
+            td #{affinity.affinity}%
+            - other_journal = ([affinity.journal_one, affinity.journal_two] - [@journal]).first
+            td= link_to other_journal.name, journal_affinities_path(other_journal)

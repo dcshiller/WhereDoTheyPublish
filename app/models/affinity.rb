@@ -16,7 +16,7 @@ class Affinity < ActiveRecord::Base
     if journal_two.nil?
       Journal.all.map { |j| Affinity.for(journal_one, j) }
     else
-      (Affinity.where(journal_one: journal_one, journal_two: journal_two) || 
+      (Affinity.where(journal_one: journal_one, journal_two: journal_two) | 
         Affinity.where(journal_one: journal_two, journal_two: journal_one)).first
     end
   end

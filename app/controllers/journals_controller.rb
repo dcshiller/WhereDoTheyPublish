@@ -27,7 +27,7 @@ class JournalsController < ApplicationController
 
   def affinities
     @journal = Journal.find(params[:journal_id])
-    @affinities = Affinity.for(@journal).compact.reject{ |a| a.affinity.nan?}.sort_by(&:affinity)
+    @affinities = Affinity.for(@journal).compact.reject{ |a| a.affinity.nan?}.sort_by(&:affinity).reverse
     # [20*(params[:page])..20*(params[:page])]
   end
 

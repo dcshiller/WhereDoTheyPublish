@@ -1,0 +1,25 @@
+navbar
+  background: black
+  height: 4vh
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+
+  ul
+    align-items: center
+    display: flex
+    margin: auto
+    padding: .5vh 20vw
+    li
+      text-align: center
+      font-size: 3vh
+      font-weight: 800
+      margin: auto
+      width: 20vw
+      a
+        color: grey
+      &.focused a
+        color: white
+        text-shadow: grey dotted thick
+        -webkit-text-stroke: 1px rgba(10,10,10,.3)
