@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206232535) do
+ActiveRecord::Schema.define(version: 20170210001549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,11 +45,13 @@ ActiveRecord::Schema.define(version: 20170206232535) do
   create_table "journals", force: :cascade do |t|
     t.string  "name"
     t.integer "official_version"
-    t.boolean "economics",        default: false
-    t.boolean "history",          default: false
-    t.boolean "philosophy",       default: false
-    t.boolean "psychology",       default: false
+    t.boolean "economics",         default: false
+    t.boolean "history",           default: false
+    t.boolean "philosophy",        default: false
+    t.boolean "psychology",        default: false
     t.string  "condensed_name"
+    t.integer "publication_start"
+    t.integer "publication_end"
     t.index ["condensed_name"], name: "index_journals_on_condensed_name", using: :btree
     t.index ["name"], name: "index_journals_on_name", using: :btree
   end

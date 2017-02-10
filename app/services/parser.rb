@@ -18,7 +18,7 @@ class Parser
   def get_last_name(name)
     parts = name.split(",")
     last_name = parts[0]
-    parts[0]
+    parts[0].strip
   end
 
   def get_middle_initial(name)
