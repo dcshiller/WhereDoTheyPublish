@@ -14,7 +14,7 @@ namespace :db do
     authors = [args[:author1]]
     authors.each do |author|
       # author = Author.new(first_name: "Derek", last_name: "Shiller")
-      q = Query.new([author], 'philosophy', 1)
+      q = Query.new([author], 'philosophy', nil, nil, 1)
       start_count = Publication.count
       cr = CrossRefDispatcher.new(q)
       cr.dispatch
