@@ -7,6 +7,8 @@ class Publication < ActiveRecord::Base
 
   scope :philosophy, ->{ where(philosophy: true)}
   scope :published_between, -> (years) {where(publication_year: years[0]...years[1])}
+  scope :year, -> (value){ where(publication_year: value) }
+
 
   def title?(string_to_match)
     titles == string_to_match

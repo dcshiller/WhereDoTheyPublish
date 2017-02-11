@@ -20,6 +20,7 @@
                 = link_to author.name, author_path(author)
                 - if idx + 1 < publication.authors.count && publication.authors.count > 1
                   | , 
+            td= link_to "X", publication_path(publication), method: "delete", remote: true, data: { confirm: "Are you sure: #{publication.proper_title}" }, onclick: "history.go(0)"
 
   footer
     = will_paginate @publications

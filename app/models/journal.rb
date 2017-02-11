@@ -5,6 +5,10 @@ class Journal < ActiveRecord::Base
 
   scope :philosophy, -> { where(philosophy: true) }
 
+  def years
+    publication_start..(publication_end || 2017)
+  end
+
   def self.condensed_name(name)
     cn = name.remove("The ", "A ", "'")
     cn = cn.split(":").first
@@ -20,5 +24,9 @@ class Journal < ActiveRecord::Base
     co_pub_ids = authors.having_five_pubs.pluck(:id) & other_journal.authors.having_five_pubs.pluck(:id)
     co_pub_authors_count = co_pub_ids.count
     (co_pub_authors_count.to_f * 100 / [authors_count, other_authors_count].min).round(2)
+  end
+
+  def proper_name
+    display_name || name
   end
 end

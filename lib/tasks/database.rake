@@ -25,8 +25,9 @@ namespace :db do
     end
   end
 
-  task :read_file => :environment do |t, args|
-    lines = File.readlines("data/apq")
+  task :read_file, [:filename] => :environment do |t, args|
+    filename = args[:filename]
+    lines = File.readlines("data/#{filename}")
     arr = []
     lines.each do |line|
       puts line

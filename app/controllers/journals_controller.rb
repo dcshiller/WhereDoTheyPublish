@@ -16,7 +16,7 @@ class JournalsController < ApplicationController
 
   def update
     @journal.update_attributes(journal_params)
-    render :show
+    redirect_to journal_path
   end
 
   def year
@@ -43,6 +43,6 @@ class JournalsController < ApplicationController
   end
 
   def journal_params
-    params.require(:journal).permit(:name, :publication_start, :publication_end)
+    params.require(:journal).permit(:name, :publication_start, :publication_end, :display_name)
   end
 end

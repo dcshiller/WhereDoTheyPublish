@@ -20,6 +20,11 @@ class PublicationsController < ApplicationController
     render :edit
   end
 
+  def destroy
+    @publication = Publication.find(params[:id])
+    @publication.destroy
+  end
+
   private
 
   def publication_params

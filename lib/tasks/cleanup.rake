@@ -1,6 +1,6 @@
 namespace :cleanup do
   task remove_nil_authors: :environment do
-    NilDeleter.delete!
+    AuthorCleaner.delete_nils!
   end
 
   task copy_display_names: :environment do

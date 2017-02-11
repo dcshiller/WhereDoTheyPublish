@@ -1,9 +1,10 @@
 
 #content_div
   #display_panel
-    h1 #{@journal.name}
+    h1 #{@journal.proper_name}
     h4.center Journal
-    .center Article Count: #{@publication_count}
+    .center #{@journal.publication_start} - #{@journal.publication_end}
+    .center Article Count: #{@journal.publications.count}
     .center= link_to "affinities", journal_affinities_path(@journal)
     .center= link_to "(edit)", edit_journal_path(@journal)
     hr

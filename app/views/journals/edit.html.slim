@@ -1,12 +1,13 @@
 
 #content_div
   #display_panel
-    h1= @journal.name
+    h1= @journal.proper_name
     h4.center Journal
     .center Article Count: #{@publication_count}
     hr
       = simple_form_for @journal, html: {class: "center"} do |f|
         = f.input :name
+        = f.input :display_name
         = f.input :publication_start, as: :numeric
         = f.input :publication_end, as: :numeric
         = f.submit

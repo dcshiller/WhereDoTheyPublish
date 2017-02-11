@@ -1,8 +1,8 @@
 class Parser
   TITLES = %w[ de van von le De Van Von Le ]
   def parse_line(line)
-    apq = Journal.find_by(name: "American Philosophical Quarterly")
-    Publication.new(journal: apq, title: get_title(line), authors: get_authors(line), publication_year: get_year(line))
+    journal = Journal.find_by(name: "Acorn")
+    Publication.new(journal: journal, title: get_title(line), authors: get_authors(line), publication_year: get_year(line))
   end
 
   def get_year(line)
@@ -37,7 +37,7 @@ class Parser
   end
 
   def get_title(line)
-    /\).*?American/.match(line)[0][3..-11]&.proper_titlecase&.strip
+    /\).*?Acorn/.match(line)[0][3..-11]&.proper_titlecase&.strip
   end
 
   def get_authors(line)
