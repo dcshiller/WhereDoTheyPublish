@@ -59,13 +59,15 @@ namespace :db do
         sleep rand(15)
       end
     else
-      q = Query.new(author, 'philosophy', journal, nil, 1)
-      cr = CrossRefDispatcher.new(q)
-      cr.dispatch
-      pubs = cr.response
-      PubSaver.save(pubs)
-      puts "done"
-      sleep rand(5)
+      time = Time.current
+      while Time.current < time + 5.minutes
+        q = Query.new(author, 'philosophy', journal, nil, 1)
+        cr = CrossRefDispatcher.new(q)
+        cr.dispatch
+        pubs = cr.response
+        PubSaver.save(pubs)
+        sleep rand(5)
+      end
     end
     query.update_attributes(complete: true)
   end
