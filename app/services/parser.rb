@@ -1,8 +1,15 @@
 class Parser
   TITLES = %w[ de van von le De Van Von Le ]
+  attr_reader :journal_name, :divider
+
+  def initialize(journal_name, divider)
+    @divider = divider
+    @journal_name = journal_name
+  end
+
   def parse_line(line)
-    journal = Journal.find_by(name: "Acorn")
-    Publication.new(journal: journal, title: get_title(line), authors: get_authors(line), publication_year: get_year(line))
+    journal = Journal.find_by(name: journal_name)
+    Publication.new(journal: journal, title: get_title(line, divider), authors: get_authors(line), publication_year: get_year(line))
   end
 
   def get_year(line)
@@ -36,8 +43,8 @@ class Parser
     last_name.strip
   end
 
-  def get_title(line)
-    /\).*?Acorn/.match(line)[0][3..-11]&.proper_titlecase&.strip
+  def get_title(line, divider)
+    /\).*?#{divider}/.match(line)[0][3..-1*(divider.length+1)]&.proper_titlecase&.strip.chomp(".")
   end
 
   def get_authors(line)
