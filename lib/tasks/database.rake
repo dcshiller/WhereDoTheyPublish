@@ -42,11 +42,11 @@ namespace :db do
   task get_next: :environment do
     query = ScheduledQuery.where(complete: false).first
     return unless query
-    min = query.end
-    year = query.start
     journal = (query.query if query.query_type == 'journal') || ""
-    author = ([query.query.gsub(" ", "_")] if query.query_type == 'author') || ""
     unless journal.blank?
+      min = query.end
+      year = query.start
+      author = ([query.query.gsub(" ", "_")] if query.query_type == 'author') || ""
       while year > min do
         q = Query.new(author, 'philosophy', journal, year, 1)
         cr = CrossRefDispatcher.new(q)
@@ -62,6 +62,10 @@ namespace :db do
     else
       time = Time.current
       while Time.current < time + 5.minutes
+        min = query.end
+        year = query.start
+        journal = (query.query if query.query_type == 'journal') || ""
+        author = ([query.query.gsub(" ", "_")] if query.query_type == 'author') || ""
         p = Publication.count
         q = Query.new(author, 'philosophy', journal, nil, 1)
         cr = CrossRefDispatcher.new(q)
