@@ -2,7 +2,7 @@ class PubSaver
   def self.save(pub_list, options = {})
     pub_list.each do |pub|
       authors = get_authors(pub)
-      if pub.journal.persisted? && !pub.persisted? && pub.journal.philosophy
+      if pub.journal.persisted? && !pub.persisted?
         assign_authorships(pub, authors)
       end
     end
@@ -19,7 +19,7 @@ class PubSaver
     authors = pub.authors.map do |author|
       if author.persisted? 
         author
-      elsif pub.journal && pub.journal.philosophy
+      elsif pub.journal
         this_author = Author.find_by(first_name: author.first_name, middle_initial: author.middle_initial, last_name: author.last_name)
         this_author || Author.create(first_name: author.first_name, middle_initial: author.middle_initial, last_name: author.last_name)
       end

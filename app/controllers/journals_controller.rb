@@ -7,8 +7,8 @@ class JournalsController < ApplicationController
   end
 
   def show
-    @publication_count = @journal.publications.count
-    @years = @journal.publications.order(publication_year: :desc).group(:publication_year).paginate(page: params[:page], per_page: 80)
+    @publication_count = @journal.articles.count
+    @years = @journal.articles.order(publication_year: :desc).group(:publication_year).paginate(page: params[:page], per_page: 80)
   end
 
   def edit
@@ -22,7 +22,7 @@ class JournalsController < ApplicationController
   def year
     @year = params[:year].to_i
     @journal = Journal.find(params[:journal_id])
-    @publications = @journal.publications.where(publication_year: @year).paginate(page: params[:page], per_page: 9).order(:title)
+    @publications = @journal.articles.where(publication_year: @year).paginate(page: params[:page], per_page: 9).order(:title)
   end
 
   def affinities

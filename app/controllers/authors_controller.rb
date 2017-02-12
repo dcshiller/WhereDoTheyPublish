@@ -7,7 +7,7 @@ class AuthorsController < ApplicationController
   end
 
   def show
-    @publications = @author.publications.paginate(page: params[:page], per_page: 10).order(:publication_year)
+    @publications = @author.publications.articles.paginate(page: params[:page], per_page: 10).order(:publication_year)
   end
 
   def edit

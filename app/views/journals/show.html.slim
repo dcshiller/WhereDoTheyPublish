@@ -4,7 +4,7 @@
     h1 #{@journal.proper_name}
     h4.center Journal
     .center #{@journal.publication_start} - #{@journal.publication_end}
-    .center Article Count: #{@journal.publications.count}
+    .center Article Count: #{@journal.articles.count}
     .center= link_to "affinities", journal_affinities_path(@journal)
     .center= link_to "(edit)", edit_journal_path(@journal)
     hr

@@ -5,6 +5,10 @@ class Journal < ActiveRecord::Base
 
   scope :philosophy, -> { where(philosophy: true) }
 
+  def articles
+    publications.articles
+  end
+
   def years
     publication_start..(publication_end || 2017)
   end
