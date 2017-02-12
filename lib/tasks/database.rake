@@ -68,8 +68,10 @@ namespace :db do
         cr.dispatch
         pubs = cr.response
         PubSaver.save(pubs)
-        puts Publication.count - p
-        query.update_attributes(complete: true)
+        additional_count = Publication.count - p
+        puts additional_count
+        query.update_attributes(complete: true, additional_count: additional_count)
+        query = ScheduledQuery.where(complete: false).first
         sleep rand(5)
       end
     end

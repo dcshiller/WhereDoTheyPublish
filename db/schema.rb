@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170211115435) do
+ActiveRecord::Schema.define(version: 20170212171505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,8 +73,9 @@ ActiveRecord::Schema.define(version: 20170211115435) do
     t.string  "type"
     t.integer "start"
     t.integer "end"
-    t.boolean "complete",   default: false
+    t.boolean "complete",         default: false
     t.string  "query_type"
+    t.integer "additional_count"
   end
 
 end
