@@ -54,6 +54,7 @@ namespace :db do
         pubs = cr.response
         PubSaver.save(pubs)
         year -= 1
+        query.update_attributes(complete: true)
         puts year
         puts Publication.count
         sleep rand(15)
@@ -61,15 +62,17 @@ namespace :db do
     else
       time = Time.current
       while Time.current < time + 5.minutes
+        p = Publication.count
         q = Query.new(author, 'philosophy', journal, nil, 1)
         cr = CrossRefDispatcher.new(q)
         cr.dispatch
         pubs = cr.response
         PubSaver.save(pubs)
+        puts Publication.count - p
+        query.update_attributes(complete: true)
         sleep rand(5)
       end
     end
-    query.update_attributes(complete: true)
   end
   
   task :get_journal, [:name, :start, :end] => :environment do |t, args|
