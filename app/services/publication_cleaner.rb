@@ -27,7 +27,10 @@ class PublicationCleaner
       "Announcements",
       "Notes on Contributors%",
       "Preface",
-      "Forward"
+      "Forward",
+      "Index of Authors",
+      "Index of Books Received",
+      "New Books:%"
     ]
     errata.each do |string|
       Publication.where("title LIKE ?", string).update_all(publication_type: "errata")
