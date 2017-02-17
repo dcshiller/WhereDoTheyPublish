@@ -17,4 +17,11 @@ class AuthorCleanerTest < ActiveSupport::TestCase
     there_must_be 1, Publication
     there_must_be 1, Authorship
   end
+
+  test "delete with no pubs" do
+    create :author, :with_publication, first_name: "Achille", middle_initial: nil, last_name: "Varzi"
+    create :author, first_name: "David", middle_initial: nil, last_name: "Lewis"
+    AuthorCleaner.delete_with_no_pubs!
+    there_must_be 1, Author
+  end
 end

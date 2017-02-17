@@ -38,6 +38,7 @@ class PublicationCleaner
       "New Books:%",
       "American Philosophical Association %",
       "Index to Volume%",
+      "Index of Books",
       "Program of the Meetings"
     ]
     errata.each do |string|
