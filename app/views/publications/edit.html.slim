@@ -7,4 +7,5 @@
       = simple_form_for @publication, html: {class: "center"} do |f|
         = f.input :display_title
         = f.input :publication_year, as: :numeric
+        = f.input :publication_type, as: :select, collection: ["article", "book review", "errata"]
         = f.submit

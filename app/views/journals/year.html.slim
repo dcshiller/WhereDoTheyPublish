@@ -20,7 +20,9 @@
                 = link_to author.name, author_path(author)
                 - if idx + 1 < publication.authors.count && publication.authors.count > 1
                   | , 
-            td= link_to "X", publication_path(publication), method: "delete", remote: true, data: { confirm: "Are you sure: #{publication.proper_title}" }, onclick: "history.go(0)"
+            td= link_to "B", publication_path(publication, publication: { publication_type: "book review" } ), method: "patch", remote: true, data: { confirm: "Are you sure you want to mark this as a book review: #{publication.proper_title}" }, onclick: "history.go(0)"
+            td= link_to "E", publication_path(publication, publication: { publication_type: "errata"} ), method: "patch", remote: true, data: { confirm: "Are you sure you want to mark this as errata: #{publication.proper_title}" }, onclick: "history.go(0)"
+            td= link_to "X", publication_path(publication), method: "delete", remote: true, data: { confirm: "Are you sure you want to delete this: #{publication.proper_title}" }, onclick: "history.go(0)"
 
   footer
     = will_paginate @publications

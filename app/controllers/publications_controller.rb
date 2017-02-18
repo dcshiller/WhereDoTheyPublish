@@ -28,6 +28,6 @@ class PublicationsController < ApplicationController
   private
 
   def publication_params
-    params.require(:publication).permit(:publication_year, :display_title)
+    params.require(:publication).permit(:publication_year, :display_title, :publication_type)
   end
 end

@@ -5,10 +5,11 @@ class PublicationCleaner
       "Review of %",
       "%(Editors)%",
       "%(Eds.)%",
-      "% Pp. %"
+      "% Pp. %",
+      ", By % %"
     ]
     review_titles.each do |string|
-      Publication.where("title LIKE ?", string).update_all(publication_type: "book review")
+      Publication.articles.where("title LIKE ?", string).update_all(publication_type: "book review")
     end
     errata = [
       "Editorial%",
@@ -42,7 +43,7 @@ class PublicationCleaner
       "Program of the Meetings"
     ]
     errata.each do |string|
-      Publication.where("title LIKE ?", string).update_all(publication_type: "errata")
+      Publication.articles.where("title LIKE ?", string).update_all(publication_type: "errata")
     end
   end
 end
