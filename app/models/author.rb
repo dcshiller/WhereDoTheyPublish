@@ -4,15 +4,6 @@ class Author < ActiveRecord::Base
   has_many :journals, through: :publications
 
   scope :middle_initial_consistent, ->(mi){ where("middle_initial ~* ?", "^" + mi.to_s + ".*") }
-  scope :name_consistent, -> (author) do
-    where("middle_initial ~* ?", "^" + author.middle_initial.chomp(".") + ".*").
-    where("first_name ~* ?", "^" + author.first_name.chomp(".") + ".*").
-    where("last_name ~* ?", "^" + author.last_name + ".*")
-  end
-  scope :publication_consistent, -> (author) do
-    joins(:publications).
-    merge(Publication.published_between(author.plausible_publication_range))
-  end
   scope :having_five_pubs, -> { joins(:authorships).group("authors.id").having("COUNT(authorships.id) > 5") }
   scope :published_in, -> (journal) { joins(:journals).where("journals.id": journal.id) }
 
@@ -38,25 +29,9 @@ class Author < ActiveRecord::Base
     ]
   end
 
-  def plausible_publication_range
-    diff = [(15 + active_range[0] - active_range[1]), 0].max
-    [
-      active_range[0] - 5 - diff,
-      active_range[1] + 5 + diff,
-    ]
-  end
-
   def unity_rating
     pairs = journals.distinct.to_a.combination(2)
     return 0 if pairs.count == 0
     (pairs.sum {|a,b| a.co_publication_percentage(b)} / pairs.count).round(2)
-  end
-
-  def publication_consistent?(other_author)
-    Author.publication_consistent(self).where(id: other_author).any?
-  end
-
-  def plausible_duplicates
-    Author.name_consistent(self).publication_consistent(self)
   end
 end

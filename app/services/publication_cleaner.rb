@@ -49,13 +49,15 @@ class PublicationCleaner
   end
 
   def self.dequote!
-    quoted = Publication.where("title LIKE '\"%\"'")
-    quoted.each do |pub|
-      title = pub.display_title || pub.title
-      if title[0] == "\"" && title[-1] == "\"" && title.count("\"") == 2
-        pub.display_title = title[1..-2]
-        pub.save
-        puts pub.display_title
+    ["\"", "\'"].each do |mark|
+      quoted = Publication.where("title LIKE '#{mark}%#{mark}'")
+      quoted.each do |pub|
+        title = pub.display_title || pub.title
+        if title[0] == mark && title[-1] == mark && title.count(mark) == 2
+          pub.display_title = title[1..-2]
+          pub.save
+          puts pub.display_title
+        end
       end
     end
   end

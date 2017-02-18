@@ -3,21 +3,20 @@ class Affinity < ActiveRecord::Base
   belongs_to :journal_two, class_name: "Journal", foreign_key: 'second_journal_id'
 
   def self.calculate_affinity(journal_one, journal_two)
-    unless Affinity.where(journal_one: [journal_one, journal_two], journal_two: [journal_one, journal_two]).
-                    where("first_journal_id != second_journal_id").exists?
-      return if journal_one == journal_two
-      affinity = Affinity.create(journal_one: journal_one, journal_two: journal_two)
-      affinity_rating = journal_one.co_publication_percentage(journal_two)
-      affinity.update_attributes(affinity: affinity_rating)
-    end
+    return if journal_two.name <= journal_one.name
+    affinity = Affinity.find_or_create_by(journal_one: journal_one, journal_two: journal_two)
+    return if affinity.updated_at && affinity.updated_at > 1.day.ago
+    affinity_rating = journal_one.co_publication_percentage(journal_two)
+    affinity.update_attributes(affinity: affinity_rating)
   end
 
   def self.for(journal_one, journal_two = nil)
     if journal_two.nil?
-      Journal.all.map { |j| Affinity.for(journal_one, j) }
+      Affinity.where(journal_one: journal_one).or(Affinity.where(journal_two: journal_one))
+    elsif journal_one.name < journal_two.name
+      Affinity.where(journal_one: journal_one, journal_two: journal_two)
     else
-      (Affinity.where(journal_one: journal_one, journal_two: journal_two) | 
-        Affinity.where(journal_one: journal_two, journal_two: journal_one)).first
+      Affinity.where(journal_one: journal_two, journal_two: journal_one)
     end
   end
 end
