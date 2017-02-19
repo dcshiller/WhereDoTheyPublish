@@ -2,6 +2,7 @@
 namespace :db do
   task calculate_affinities: :environment do
     Journal.find_each do |journal_one|
+      return unless Affinity.where(journal_one: journal_one).where.not(affinity: nil).count >= Journal.count - 1
       Journal.find_each do |journal_two|
         Affinity.calculate_affinity(journal_one, journal_two)
         print("-")

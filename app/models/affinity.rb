@@ -1,6 +1,6 @@
 class Affinity < ActiveRecord::Base
-  belongs_to :journal_one, class_name: "Journal", foreign_key: 'first_journal_id'
-  belongs_to :journal_two, class_name: "Journal", foreign_key: 'second_journal_id'
+  belongs_to :journal_one, class_name: "Journal", foreign_key: 'first_journal_id', dependent: :destroy
+  belongs_to :journal_two, class_name: "Journal", foreign_key: 'second_journal_id', dependent: :destroy
 
   def self.calculate_affinity(journal_one, journal_two)
     return if journal_two.name <= journal_one.name
