@@ -5,23 +5,51 @@ class AuthorMatcher
     @author = author
   end
 
-  def match_likelihood(other_author)
-    
+  def match?
+    match_score > 1
   end
 
-  private
+  def match_score(other_author)
+    info_value(other_author).to_f/20
+  end
+
+  # private
 
   def info_value(other_author)
     value = 0
-    %(first_name middle_initial last_name).each do |name|
-      value += 1 if author.send(name)
-      value += 1 if author.send(name) && author.send(name).count > 2
-      value += 1 if author.send(name) && author.send(name).count > 8
+    value += name_info_value
+    value += publication_info_value(other_author)
+    value += publication_match_value(other_author)
+    value
+  end
+
+  def name_info_value
+    value = 0
+    %w(first_name middle_initial last_name).each do |name|
+      value += 2 if author.send(name)
+      value += 5 if author.send(name) && author.send(name).length > 2
+      value += 2 if author.send(name) && author.send(name).length > 8
     end
-    value -= 5 if last_name && last_name.count < 2
-    value += 2 if Author.where(last_name: last_name).count < 3
-    value += 4 if author.publications.count > 3 && other_author.publications.count > 3
+    value -= 10 if author.last_name && author.last_name.length < 2
+    value += 5 if Author.where(last_name: author.last_name).count < 3
+    value += 2 if Author.where(last_name: author.last_name).count < 10
+    value
+  end
+
+  def publication_info_value(other_author)
+    value = 0
     value += 3 if author.journals.count > 3 && other_author.journals.count > 3
+    value
+  end
+
+  def publication_match_value(other_author)
+    value = 0.0
+    value -= 35 unless other_author.publications.where("publication_year < ? OR publication_year > ?", plausible_publication_range[0], plausible_publication_range[1]).blank?
+    author.journals.limit(10).uniq.to_a.product(other_author.journals.limit(10)).each do |a,x|
+      value += 0.5 if (Affinity.for(a,x)&.affinity || 0) > 20
+      value += 0.5 if (Affinity.for(a,x)&.affinity || 0) > 10
+      value -= 0.3 if (Affinity.for(a,x)&.affinity || 1) < 3
+    end
     value
   end
 
@@ -34,10 +62,11 @@ class AuthorMatcher
   end
 
   def plausible_duplicates
-    Author.where("middle_initial ~* ?", "^" + author.middle_initial.chomp(".") + ".*").
+    Author.distinct.
+           where("middle_initial ~* ?", "^" + author.middle_initial.chomp(".") + ".*").
            where("first_name ~* ?", "^" + author.first_name.chomp(".") + ".*").
-           where("last_name ~* ?", "^" + author.last_name + ".*")
+           where("last_name ~* ?", "^" + author.last_name + ".*").
            joins(:publications).
-           merge(Publication.published_between(author.plausible_publication_range))
+           merge(Publication.published_between(plausible_publication_range))
   end
 end

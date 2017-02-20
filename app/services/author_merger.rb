@@ -9,12 +9,23 @@ class AuthorMerger
                                   .where("middle_initial LIKE '#{matcher_2.join("% ")}%'") 
                                   .where(last_name: matcher_3) - [author]
       possibility = possible_full_names.first
-      if possible_full_names.one? && author.publication_consistent?(possibility)
+      if possible_full_names.one?
         unless Rails.env.test?
-          pubs1 = author.journals.limit(3).pluck(:name).inspect
-          pubs2 = possibility.journals.limit(3).pluck(:name).inspect
+          pubs1 = author.journals.limit(10).pluck(:name).uniq.inspect
+          pubsy1 = author.publications.order("RANDOM()").limit(10).pluck(:publication_year).inspect
+          pubst1 = author.publications.order("RANDOM()").limit(2).pluck(:title).inspect
+          pubs2 = possibility.journals.limit(10).pluck(:name).uniq.inspect
+          pubsy2 = possibility.publications.order("RANDOM()").limit(10).pluck(:publication_year).inspect
+          pubst2 = possibility.publications.order("RANDOM()").limit(2).pluck(:title).inspect
+          match_score = AuthorMatcher.new(author).match_score(possibility)
           puts pubs1
+          puts ":" .sp pubsy1
+          puts ">" .sp pubst1
+          puts "-------"
           puts pubs2
+          puts ":" .sp pubsy2
+          puts ">" .sp pubst2
+          puts match_score
           puts author.name .sp author.id.to_s .sp " => " .sp possibility.name .sp possibility.id.to_s
           print "confirm? "
           merge_confirm = gets.chomp

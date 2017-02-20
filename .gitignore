@@ -16,3 +16,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+latest.dump.1
+latest.dump.2
+latest.dump.3

@@ -1,4 +1,11 @@
 class AuthorCleaner
+  def self.clean_all!
+    delete_nils!
+    delete_with_no_pubs!
+    space_initials!
+    move_initials_to_middle!
+  end
+
   def self.delete_nils!
     blank_authors = Author.where(first_name: ["", nil], last_name: ["",nil], middle_initial: ["",nil])
     blank_authors.each do |ba|

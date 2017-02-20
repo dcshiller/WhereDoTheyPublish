@@ -13,10 +13,12 @@ class Affinity < ActiveRecord::Base
   def self.for(journal_one, journal_two = nil)
     if journal_two.nil?
       Affinity.where(journal_one: journal_one).or(Affinity.where(journal_two: journal_one))
+    elsif journal_one == journal_two
+      Affinity.new(journal_one: journal_one, journal_two: journal_two, affinity: 100)
     elsif journal_one.name <= journal_two.name
-      Affinity.where(journal_one: journal_one, journal_two: journal_two)
+      Affinity.find_by(journal_one: journal_one, journal_two: journal_two)
     else
-      Affinity.where(journal_one: journal_two, journal_two: journal_one)
+      Affinity.find_by(journal_one: journal_two, journal_two: journal_one)
     end
   end
 end
