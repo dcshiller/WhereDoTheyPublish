@@ -4,6 +4,9 @@ class PublicationCleaner
       "Book Review%",
       "Review of %",
       "%(Editors)%",
+      "Oxford: Oxford",
+      "% Book Review %",
+      "% Pp.% Isbn: %"
       "%(Eds.)%",
       "% Pp. %",
       ", By % %"
