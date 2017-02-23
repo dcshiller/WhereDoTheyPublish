@@ -18,7 +18,7 @@ class PublicationsController < ApplicationController
     @focused = "Data"
     @focused_datatype = "Publications"
     @publication.update_attributes(publication_params)
-    @publication.update_attributes(authors: authors)
+    @publication.update_attributes(authors: authors) unless authors.blank?
     render :edit
   end
 
@@ -36,7 +36,7 @@ class PublicationsController < ApplicationController
     end
     authors << Author.from_name(params["new_author_1"]) unless params["new_author_1"].blank?
     authors << Author.from_name(params["new_author_2"]) unless params["new_author_2"].blank?
-    authors.reject(&:blank?)
+    authors.compact
   end
 
   def publication_params
