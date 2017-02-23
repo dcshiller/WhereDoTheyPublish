@@ -8,4 +8,16 @@
         = f.input :display_title
         = f.input :publication_year, as: :numeric
         = f.input :publication_type, as: :select, collection: ["article", "book review", "errata"]
+        h5 Authors
+        - @publication.authors.each.with_index do |author, idx|
+          label= link_to author.name, author_path(author)
+          = check_box_tag "author_#{idx}", author.id, 1
+          br
+        br
+        = text_field_tag "new_author_1", nil, placeholder: "new author"
+        br
+        br
+        = text_field_tag "new_author_2", nil, placeholder: "new author"
+        br
+        br
         = f.submit

@@ -6,7 +6,6 @@ class PublicationCleaner
       "%(Editors)%",
       "Oxford: Oxford",
       "% Book Review %",
-      "% Pp.% Isbn: %",
       "%(Eds.)%",
       "% Pp. %",
       ", By % %"
@@ -21,7 +20,8 @@ class PublicationCleaner
       "Errata",
       "Erratum",
       "Introduction",
-      "Books Received",
+      "Index of Subjects",
+      "%Books Received%",
       "New Books%",
       "Notes and News%",
       "List of % Participants",

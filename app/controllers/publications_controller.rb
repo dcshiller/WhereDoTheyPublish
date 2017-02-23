@@ -13,10 +13,12 @@ class PublicationsController < ApplicationController
   end
 
   def update
+    @publication = Publication.find(params[:id])
+    authors = retrieve_authors
     @focused = "Data"
     @focused_datatype = "Publications"
-    @publication = Publication.find(params[:id])
     @publication.update_attributes(publication_params)
+    @publication.update_attributes(authors: authors)
     render :edit
   end
 
@@ -26,6 +28,16 @@ class PublicationsController < ApplicationController
   end
 
   private
+
+  def retrieve_authors
+    authors = []
+    @publication.authors.count.times do |idx|
+      authors << Author.find_by(id: params["author_#{idx}"])
+    end
+    authors << Author.from_name(params["new_author_1"]) unless params["new_author_1"].blank?
+    authors << Author.from_name(params["new_author_2"]) unless params["new_author_2"].blank?
+    authors.reject(&:blank?)
+  end
 
   def publication_params
     params.require(:publication).permit(:publication_year, :display_title, :publication_type)
