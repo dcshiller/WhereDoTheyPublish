@@ -1,23 +1,27 @@
 
 #content_div
   #display_panel
-    h1= @publication.proper_title
+    h1= link_to @publication.proper_title, publication_path(@publication)
     h4.center Publication
     hr
       = simple_form_for @publication, html: {class: "center"} do |f|
-        = f.input :display_title
-        = f.input :publication_year, as: :numeric
-        = f.input :publication_type, as: :select, collection: ["article", "book review", "errata"]
-        h5 Authors
+        = f.input :display_title, wrapper_html: {class: 'line'}
+        = f.input :publication_year, as: :numeric, wrapper_html: {class: 'line'}
+        = f.input :publication_type, as: :select, collection: ["article", "book review", "errata"], wrapper_html: {class: 'line'}
+        br
+        hr
+        .line.right
+          label 
+            strong Authors
         - @publication.authors.each.with_index do |author, idx|
-          label= link_to author.name, author_path(author)
-          = check_box_tag "author_#{idx}", author.id, 1
-          br
+          .line.right
+            label= link_to author.name, author_path(author)
+            = check_box_tag "author_#{idx}", author.id, 1
+            br
+            br
+        br
         br
         = text_field_tag "new_author_1", nil, placeholder: "new author"
-        br
-        br
-        = text_field_tag "new_author_2", nil, placeholder: "new author"
         br
         br
         = f.submit

@@ -1,10 +1,12 @@
 #content_div
   #display_panel
-    h1 #{@author.name}
+    h1= link_to @author.name, author_path(@author)
     h2.center Author Edit
     hr
     = simple_form_for @author, html: {class: "center"} do |f|
-      = f.input :first_name
-      = f.input :middle_initial
-      = f.input :last_name
+      = f.input :first_name, wrapper_html: {class: 'line'}
+      br
+      = f.input :middle_initial, wrapper_html: {class: 'line'}
+      br
+      = f.input :last_name, wrapper_html: {class: 'line'}
       = f.submit

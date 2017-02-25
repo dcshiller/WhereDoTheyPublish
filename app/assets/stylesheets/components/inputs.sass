@@ -1,0 +1,55 @@
+input[type="text"], input[type="number"], select, input[type="checkbox"]
+  width: 25vw
+  float: right
+  height: 2.5vw
+  font-size: 1.5vw
+  color: grey
+  background: lighten(lightgrey, 10%)
+  padding: .3vw
+  border-radius: .4vw
+  vertical-align: middle
+  &:focus
+    outline-color: black
+
+input[type="number"]
+  width: 5vw
+input[type="checkbox"]
+  width: 1.5vw
+  
+label
+  float: left
+
+.line.right
+  float: right
+  width: 25vw
+
+form
+  border: 1px solid lightgrey
+  padding: 1vw
+  margin: auto
+  width: 40vw
+  font-size: 1.5vw
+  .line
+    width: 100%
+    height: 3vh
+    margin-bottom: 1.5vh
+
+input[type="submit"]
+  font-family: 'Permanent Marker', cursive
+  font-size: 2vh
+  background: lightgrey
+  padding: 1.5vh
+  margin: auto
+  margin-top: 5vh
+  border-radius: 5px
+  text-align: center
+  box-shadow: 3px 3px rgba(20, 20, 20, .2), -3px 3px rgba(20, 20, 20, .2), 3px -3px rgba(20, 20, 20, .2), -3px -3px rgba(20, 20, 20, .2)
+  border: 1px solid rgba(20, 20, 20, .2)
+  // background: radial-gradient(ellipse, white 20%, darken(white, 5%) 90%, grey)
+  color: inherit
+  display: block
+  width: 14vw
+  &:hover
+    background: white
+    transition: background .3s
+
