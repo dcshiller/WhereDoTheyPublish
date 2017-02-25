@@ -15,7 +15,9 @@ class JournalsController < ApplicationController
   end
 
   def update
-    @journal.update_attributes(journal_params)
+    new_attrs = journal_params
+    new_attrs[:display_name] = nil if new_attrs[:display_name] == @journal.name || new_attrs[:display_name] == ""
+    @journal.update_attributes(new_attrs)
     redirect_to journal_path
   end
 
