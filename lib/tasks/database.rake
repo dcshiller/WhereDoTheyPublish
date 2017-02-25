@@ -36,6 +36,8 @@ namespace :db do
     lines.each do |line|
       pub = parser.parse_line(line)
       pub.save
+      author = Author.last
+      author.destroy if author.publications.blank?
       print "."
     end
   end

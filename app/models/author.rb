@@ -8,8 +8,6 @@ class Author < ActiveRecord::Base
   scope :published_in, -> (journal) { joins(:journals).where("journals.id": journal.id) }
   scope :with_name, -> (name) { where(first_name: parse_name(name)[0], middle_initial: parse_name(name)[1], last_name: parse_name(name)[2])}
 
-  validates :publications, presence: true
-
   def name?(name_to_match)
     (first_name .sp last_name) == (name_to_match.split(" ")[0] .sp name_to_match.split(" ")[1]) ||
       (first_name .sp middle_initial .sp last_name == name_to_match)
