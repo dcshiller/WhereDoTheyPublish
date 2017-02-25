@@ -6,8 +6,8 @@
     .center Article Count: #{@publication_count}
     hr
       = simple_form_for @journal, html: {class: "center"} do |f|
-        = f.input :name
-        = f.input :display_name
-        = f.input :publication_start, as: :numeric
-        = f.input :publication_end, as: :numeric
+        = f.input :name, wrapper_html: {class: 'line'}
+        = f.input :display_name, wrapper_html: {class: 'line'}
+        = f.input :publication_start, as: :numeric, wrapper_html: {class: 'line'}
+        = f.input :publication_end, as: :numeric, wrapper_html: {class: 'line'}
         = f.submit

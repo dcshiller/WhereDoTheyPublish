@@ -28,8 +28,8 @@ namespace :db do
 
   task :read_file, [:filename,:journal,:divider] => :environment do |t, args|
     filename = args[:filename]
-    divider = args[:divider]
-    journal = args[:journal]
+    divider = args[:divider] || args[:journal]
+    journal = args[:journal] 
     lines = File.readlines("data/#{filename}")
     arr = []
     parser = Parser.new(journal, divider)
