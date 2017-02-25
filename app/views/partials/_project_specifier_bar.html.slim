@@ -5,3 +5,5 @@
         = link_to "Where?", where_do_they_publish_projects_path
       li class=(@focused_projects == "Affinity" ? "focused" : :unfocused)
         = link_to "Affinity", journal_affinity_projects_path
+      li class=(@focused_projects == "Journal Counts" ? "focused" : :unfocused)
+        = link_to "J. Counts", journal_counts_projects_path

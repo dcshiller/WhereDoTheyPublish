@@ -1,0 +1,5 @@
+#content_div
+  #display_panel
+    h1 Journal Counts
+    hr
+    = line_chart Journal.group(:publication_start).count

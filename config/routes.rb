@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get :data, to: "data#index"
   resources :projects, only: [:index] do
     collection do
+      get :journal_counts, to: "projects#journal_counts"
       get :where_do_they_publish, to: "projects#where_do_they_publish_show"
       post :where_do_they_publish, to: "projects#where_do_they_publish_query"
       get :journal_affinity, to: "projects#journal_affinity_show"

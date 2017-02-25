@@ -39,7 +39,11 @@ class ProjectsController < ApplicationController
     @authors = Author.distinct.published_in(@journal_1) & Author.published_in(@journal_2)
     render :journal_affinity_show
   end
-  
+
+  def journal_counts
+    @focused_projects = "Journal Counts"
+  end
+
   def set_show_values
     @focused = "Projects"
   end
