@@ -36,8 +36,6 @@ namespace :db do
     lines.each do |line|
       pub = parser.parse_line(line)
       pub.save
-      author = Author.last
-      author.destroy if author.publications.blank?
       print "."
     end
   end
@@ -75,6 +73,8 @@ namespace :db do
         cr.dispatch
         pubs = cr.response
         PubSaver.save(pubs)
+        author = Author.last
+        author.destroy if author.publications.blank?
         additional_count = Publication.count - p
         puts additional_count
         query.update_attributes(complete: true, additional_count: additional_count)
