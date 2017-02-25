@@ -42,6 +42,12 @@ class ProjectsController < ApplicationController
 
   def journal_counts
     @focused_projects = "Journal Counts"
+    journal_starts = Journal.group(:publication_start).count
+    journal_ends = Journal.group(:publication_end).count
+    @journals_current = {}
+    (1860..2017).each do |year|
+      @journals_current[year] = (@journals_current[year - 1] || 0) + (journal_starts[year] || 0) - (journal_ends[year] || 0)
+    end
   end
 
   def set_show_values
