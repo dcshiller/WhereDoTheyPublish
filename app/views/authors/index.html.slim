@@ -3,12 +3,10 @@
   #display_panel
     h1 Authors
     hr
-    = form_tag find_authors_path, method: 'get'
-      = text_field_tag "name"
-      = submit_tag "Submit"
-    ul
+    ul.two_columns
       - @authors.each do |author|
         li= link_to (author.first_name .sp author.middle_initial .sp author.last_name), author_path(author.id)
 
   footer
+    p.center or, #{link_to "search by author", find_authors_path}
     = will_paginate @authors

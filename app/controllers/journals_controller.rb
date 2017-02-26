@@ -3,7 +3,7 @@ class JournalsController < ApplicationController
   before_action :find_journal, only: [:show, :edit, :update]
 
   def index
-    @journals = Journal.order(:name).paginate(page: params[:page], per_page: 15)
+    @journals = Journal.order(:name).paginate(page: params[:page], per_page: 30)
   end
 
   def show

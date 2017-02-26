@@ -3,7 +3,7 @@
   #display_panel
     h1 Journals
     hr
-    ul
+    ul.two_columns
       - @journals.each do |journal|
         li= link_to journal.proper_name, journal_path(journal)
 
