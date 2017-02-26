@@ -1,8 +1,8 @@
 class PubSaver
   def self.save(pub_list, options = {})
     pub_list.each do |pub|
-      authors = get_authors(pub)
       if pub.journal.persisted? && !pub.persisted?
+        authors = get_authors(pub)
         assign_authorships(pub, authors)
       end
     end

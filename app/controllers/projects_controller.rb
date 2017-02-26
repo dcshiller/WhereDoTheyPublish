@@ -50,6 +50,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def publication_counts
+    @focused_projects = "Publication Counts"
+    @pubs_count = Publication.articles.group(:publication_year).count
+  end
+
   def set_show_values
     @focused = "Projects"
   end

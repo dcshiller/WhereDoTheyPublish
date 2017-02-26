@@ -7,3 +7,5 @@
         = link_to "Affinity", journal_affinity_projects_path
       li class=(@focused_projects == "Journal Counts" ? "focused" : :unfocused)
         = link_to "J. Counts", journal_counts_projects_path
+      li class=(@focused_projects == "Publication Counts" ? "focused" : :unfocused)
+        = link_to "P. Counts", publication_counts_projects_path

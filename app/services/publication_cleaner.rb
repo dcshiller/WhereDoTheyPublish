@@ -2,6 +2,9 @@ class PublicationCleaner
   def self.categorize!
     review_titles = [
       "Book Review%",
+      "(Hardcover)",
+      "(Paperback)",
+      "Univeristy Press",
       "Review of %",
       "%(Editors)%",
       "Oxford: Oxford",
