@@ -67,4 +67,14 @@ class PublicationCleaner
       end
     end
   end
+
+  def self.substitute!(string_one, string_two)
+    pubs = Publication.where("title LIKE '%#{string_one}%'")
+    pubs.each do |pub|
+      old_title = pub.display_title || pub.title
+      new_title = old_title.gsub(string_one, string_two)
+      pub.display_title = new_title
+      pub.save
+    end
+  end
 end
