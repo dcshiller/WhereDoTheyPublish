@@ -2,16 +2,17 @@ class PublicationCleaner
   def self.categorize!
     review_titles = [
       "Book Review%",
-      "(Hardcover)",
-      "(Paperback)",
-      "Univeristy Press",
+      "%(Hardcover)%",
+      "%(Paperback)%",
+      "%University Press%",
       "Review of %",
       "%(Editors)%",
-      "Oxford: Oxford",
+      "%Oxford: Oxford%",
+      "%Routledge Press%",
       "% Book Review %",
       "%(Eds.)%",
       "% Pp. %",
-      ", By % %"
+      "%, By % %"
     ]
     review_titles.each do |string|
       Publication.articles.where("title LIKE ?", string).update_all(publication_type: "book review")
@@ -30,8 +31,8 @@ class PublicationCleaner
       "List of % Participants",
       "Memo to Authors",
       "Memo on Copyright",
-      "Letter to the",
-      "Meeting of the Assocation",
+      "Letter to the%",
+      "Meeting of the Assocation%",
       "In Memorium%",
       "Current Periodical Articles",
       "Philosophical Abstracts",
@@ -41,6 +42,7 @@ class PublicationCleaner
       "Preface",
       "Forward",
       "Index of Authors",
+      "Books Received",
       "Index of Books Received",
       "New Books:%",
       "American Philosophical Association %",
