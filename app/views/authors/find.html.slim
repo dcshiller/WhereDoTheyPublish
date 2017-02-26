@@ -1,4 +1,3 @@
-
 #content_div
   #display_panel
     h1 Authors
@@ -9,6 +8,3 @@
     ul
       - @authors.each do |author|
         li= link_to (author.first_name .sp author.middle_initial .sp author.last_name), author_path(author.id)
-
-  footer
-    = will_paginate @authors

@@ -25,6 +25,11 @@ class AuthorsController < ApplicationController
     render :show
   end
 
+  def find
+    name = params[:name]
+    @authors = Author.with_name_like(name)
+  end
+
   private
 
   def find_author
