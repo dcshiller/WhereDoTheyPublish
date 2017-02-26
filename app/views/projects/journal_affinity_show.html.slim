@@ -6,20 +6,19 @@
       p 
         | The affinity rating of a pair of journals is a measure of the likelihood of a given author to publish in both of them. 
         | The rating is equal to the percentage of authors of smaller publication who have published in the larger publication. 
-        | Authors with five or fewer publications are excluded.
+        | Authors with five or fewer publications are excluded and book reviews are ignored.
 
-      = select_tag :journal_1, options_from_collection_for_select(@journals, :id, :name, @journal_1&.id)
-      |  and 
-      = select_tag :journal_2, options_from_collection_for_select(@journals, :id, :name, @journal_2&.id)
+      = select_tag :journal_1, options_from_collection_for_select(@journals, :id, :name, @journal_1&.id), class: 'search'
+      .center and
+      = select_tag :journal_2, options_from_collection_for_select(@journals, :id, :name, @journal_2&.id), class: 'search'
       br
       = submit_tag "Affinity Rating", class: "center"
-    hr
     - if @journal_1 && @journal_2
       p= link_to @journal_1&.name, journal_path(@journal_1)
       p= link_to @journal_2&.name, journal_path(@journal_2)
       p
        strong #{@affinity}%
-      ul
+      ul.two_columns
         - @authors.each do |author|
           li
             = link_to author.name, author_path(author)
