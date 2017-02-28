@@ -9,11 +9,23 @@ class Parser
 
   def parse_line(line)
     journal = Journal.find_by(name: journal_name)
-    Publication.new(journal: journal, title: get_title(line, divider), authors: get_authors(line), publication_year: get_year(line))
+    Publication.new(journal: journal, title: get_title(line, divider), authors: get_authors(line), publication_year: get_year(line), volume: get_volume(line), number: get_number(line), pages: get_pages(line))
   end
 
   def get_year(line)
     /\((.*?)\)/.match(line)[0][1..-2].to_i
+  end
+
+  def get_volume(line)
+    line.split(divider)[1].split("(")[0].to_i
+  end
+
+  def get_number(line)
+    line.split(divider)[1].split("(")&.[](1)&.split(")")&.[](0)&.strip
+  end
+
+  def get_pages(line)
+    line.split(divider)[1].split(":")&.[](1)&.chomp(".\n")&.gsub(" ","")
   end
 
   def get_names(line)
