@@ -5,6 +5,10 @@ class PublicationsController < ApplicationController
     @publications = Publication.includes(:authors).includes(:journal).order(:title).paginate(page: params[:page], per_page: 5)
   end
 
+  def show
+    @publication = Publication.find(params[:id])
+  end
+
   def edit
     @publication = Publication.find(params[:id])
     @publication.display_title = @publication.title

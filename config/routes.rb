@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'year/:year', to: 'journals#year', as: "year"
     get 'affinities', to: 'journals#affinities', as: "affinities"
   end
-  resources :publications, only: [:index, :edit, :update, :destroy]
+  resources :publications, only: [:index, :edit, :update, :destroy, :show]
   get :data, to: "data#index"
   resources :projects, only: [:index] do
     collection do
