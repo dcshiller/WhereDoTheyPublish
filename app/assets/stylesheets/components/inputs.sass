@@ -4,6 +4,7 @@ input[type="text"], input[type="number"], select, input[type="checkbox"]
   height: 2.5vw
   font-size: 1.5vw
   color: grey
+  text-align: right
   background: lighten(lightgrey, 10%)
   padding: .3vw
   border-radius: .4vw
@@ -24,10 +25,6 @@ input[type="checkbox"]
   &:checked
     background: green
 
-.line.right
-  float: right
-  width: 25vw
-
 form
   // background: lighten(lightgrey, 15%)
   // border: 1px solid lightgrey
@@ -37,8 +34,15 @@ form
   font-size: 1.5vw
   .line
     width: 100%
-    height: 3vh
+    height: 6vh
     margin-bottom: 1.5vh
+    &:after
+      width: 100%
+      content: ""
+      clear: both
+  .line.left input
+    float: left
+    text-align: left
 
 input[type="submit"]
   font-family: 'Permanent Marker', cursive

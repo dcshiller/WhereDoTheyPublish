@@ -10,18 +10,14 @@
       = f.input :publication_type, as: :select, collection: ["article", "book review", "errata"], wrapper_html: {class: 'line'}
       br
       hr
-      .line.right
+      .line
         label 
           strong Authors
       - @publication.authors.each.with_index do |author, idx|
-        .line.right
+        .line
           label= link_to author.name, author_path(author)
           = check_box_tag "author_#{idx}", author.id, 1
-          br
-          br
-      br
-      br
-      = text_field_tag "new_author_1", nil, placeholder: "new author"
-      br
-      br
-      = f.submit
+      .line.left
+        = text_field_tag "new_author_1", nil, placeholder: "new author"
+      .line
+        = f.submit
