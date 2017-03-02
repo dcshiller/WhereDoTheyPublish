@@ -9,3 +9,5 @@
         = link_to "J. Counts", journal_counts_projects_path
       li class=(@focused_projects == "Publication Counts" ? "focused" : :unfocused)
         = link_to "P. Counts", publication_counts_projects_path
+      li class=(@focused_projects == "Gender Balance Chart" ? "focused" : :unfocused)
+        = link_to "G. Balance", gender_balance_chart_projects_path

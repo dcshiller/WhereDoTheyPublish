@@ -55,6 +55,24 @@ class ProjectsController < ApplicationController
     @pubs_count = Publication.articles.group(:publication_year).count
   end
 
+  def gender_balance_chart
+    @journals = Journal.all
+    @focused_projects = "Gender Balance Chart"
+    @gender_by_year = {}
+    Rails.cache.fetch('gender_balance_chart') {(1900..2017).each do |year|
+      @gender_by_year[year] = Publication.year(year).joins(:authors).average(:gender)
+    end }
+    @journal = Journal.find_by(id: params[:id])
+    if @journal
+      @journal_gender_by_year = {}
+      @journal.years.each do |year|
+        @journal_gender_by_year[year] = @journal.publications.year(year).joins(:authors).average(:gender)
+      end
+    end
+  end
+
+  private
+
   def set_show_values
     @focused = "Projects"
   end

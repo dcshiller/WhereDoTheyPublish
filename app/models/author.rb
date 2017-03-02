@@ -2,6 +2,8 @@ class Author < ActiveRecord::Base
   has_many :authorships
   has_many :publications, through: :authorships
   has_many :journals, through: :publications
+  before_save :guess_gender
+
 
   scope :middle_initial_consistent, ->(mi){ where("middle_initial ~* ?", "^" + mi.to_s + ".*") }
   scope :having_five_pubs, -> { joins(:authorships).group("authors.id").having("COUNT(authorships.id) > 5") }
@@ -13,6 +15,7 @@ class Author < ActiveRecord::Base
                                             #{"AND middle_initial LIKE ?" if parse_name(name)[1]} 
                                              AND last_name LIKE ?", *(parse_name(name).map{|n| (n || "") + '%'}))
                                    }
+
 
   def name?(name_to_match)
     (first_name .sp last_name) == (name_to_match.split(" ")[0] .sp name_to_match.split(" ")[1]) ||
@@ -49,6 +52,19 @@ class Author < ActiveRecord::Base
 
   private
   
+  def guess_gender
+    gender = Guess.gender(first_name)
+    case gender[:gender]
+    when "male"
+      gender = gender[:confidence]
+    when "female"
+      gender = 1 - gender[:confidence]
+    else
+      gender = nil
+    end
+    self.gender = gender
+  end
+
   def self.parse_name(name)
     names = name.split(" ")
     last_name = names.pop
