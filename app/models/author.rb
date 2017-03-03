@@ -16,6 +16,10 @@ class Author < ActiveRecord::Base
                                              AND last_name LIKE ?", *(parse_name(name).map{|n| (n || "") + '%'}))
                                    }
 
+  def self.find_or_create_by_name(name)
+    name = parse_name(name)
+    Author.find_or_create_by(first_name: name[0], middle_initial: name[1], last_name: name[2])
+  end
 
   def name?(name_to_match)
     (first_name .sp last_name) == (name_to_match.split(" ")[0] .sp name_to_match.split(" ")[1]) ||
