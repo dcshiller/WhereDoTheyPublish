@@ -2,10 +2,14 @@
   #display_panel
     h1 About
     hr
-    h2 Projects
+    h2= link_to "Projects", projects_path
     p There are several projects on this site that explore what we can learn about philosophical scholarship from data available on the internet. Currently, the data stored on this site consists of data about publications: where and when they came out and who authored them. Projects will continually be added.
-    h2 Data
+    h2= link_to "Data", data_path
     p You can survey and modify the data used by this site. There are many errors in this data. I'm in the process of correcting it, but feel free to make corrections if you notice any errors.
-    p=link_to "sample author", author_path(Author.find_by(last_name: "Shiller", first_name: "Derek"))
-    p=link_to "sample journal", journal_path(Journal.find_by(name: "Dialogue"))
+    br
+    br
+    p.center
+      strong=link_to "sample author", author_path(Author.find_by(last_name: "Shiller", first_name: "Derek"))
+      | &nbsp &nbsp &nbsp &nbsp &nbsp
+      strong=link_to "sample journal", journal_path(Journal.find_by(name: "Dialogue"))
     / =link_to "sample publication", author_path(Author.find_by(last_name: "Shiller", first_name: "Derek"))

@@ -62,11 +62,14 @@ class CrossRefDispatcher
       Author.find_by(first_name: first_name, last_name: last_name) ||
         Author.new(first_name: first_name, middle_initial: middle_initial,last_name: last_name)
     end
+    volume = item["volume"]
+    number = item["issue"]
+    pages = item["page"]
     condensed_names = item["container-title"].map {|name| Journal.condensed_name(name.proper_titlecase)}
     journal = Journal.find_by(condensed_name: condensed_names) ||
               Journal.new(name: item["container-title"].longest.proper_titlecase)
     year = item.dig('issued', 'date-parts', 0, 0).to_i
     Publication.find_by(title: item["title"].map(&:proper_titlecase), journal: journal, publication_year: year) ||
-      Publication.new(title: item["title"].longest, journal: journal, authors: authors,  publication_year: year)
+      Publication.new(title: item["title"].longest, journal: journal, authors: authors,  publication_year: year, volume: volume, pages: pages, number: number)
   end
 end
