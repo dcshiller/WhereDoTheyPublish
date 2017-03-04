@@ -16,7 +16,7 @@ class Publication < ActiveRecord::Base
   end
 
   def proper_title
-    (display_title || title).html_safe
+    (display_title || title).to_s.html_safe
   end
 
   def author?(name_to_match)
