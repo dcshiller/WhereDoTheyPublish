@@ -16,3 +16,10 @@
       li Volume: #{@publication.volume}
       li Number: #{@publication.number}
       li Pages: #{@publication.pages}
+    br 
+    h2 Categories
+    table
+      - @categories.each do |cat|
+        tr
+          td= cat[0]
+          td= cat[1]

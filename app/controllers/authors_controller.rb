@@ -9,6 +9,8 @@ class AuthorsController < ApplicationController
 
   def show
     @publications = @author.publications.articles.paginate(page: params[:page], per_page: 10).order(:publication_year)
+    @categories = @author.cat.map { |k, v| [category_name[k],v] if v > 0 }.compact
+    @categories.sort! { |a, b| b[-1] <=> a[-1] }
   end
 
   def edit

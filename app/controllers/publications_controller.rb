@@ -1,4 +1,5 @@
 class PublicationsController < ApplicationController
+  include ApplicationHelper
   before_action :set_show_values
 
   def index
@@ -7,6 +8,8 @@ class PublicationsController < ApplicationController
 
   def show
     @publication = Publication.find(params[:id])
+    @categories = @publication.cat.map { |k, v| [category_name[k],v] if v > 0 }.compact
+    @categories.sort! { |a, b| b[-1] <=> a[-1] }
   end
 
   def edit
