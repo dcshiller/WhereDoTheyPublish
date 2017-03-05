@@ -11,7 +11,7 @@ namespace :analyze do
 
   task seed_categories: :environment do
     Journal.find_by(name: "Linguistics and Philosophy").update_attributes(categorization: {"pl" => "100"})
-    Journal.find_by(name: "Sign System Studies").update_attributes(categorization: {"pl" => "100"})
+    Journal.find_by(name: "Semiotica").update_attributes(categorization: {"pl" => "100"})
     Journal.find_by(name: "Journal of Consciousness Studies").update_attributes(categorization: {"pm" => "100"})
     Journal.find_by(name: "Mind and Language").update_attributes(categorization: {"pm" => "30", "cs"=> "30", "pl" => "40"})
     Journal.find_by(name: "Review of Metaphysics").update_attributes(categorization: {"mt" => "100"})
