@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301231758) do
+ActiveRecord::Schema.define(version: 20170304193225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "affinities", force: :cascade do |t|
     t.integer  "first_journal_id"
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170301231758) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.float    "gender"
+    t.hstore   "categorization", default: {}, null: false
     t.index ["last_name"], name: "index_authors_on_last_name", using: :btree
   end
 
@@ -50,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170301231758) do
     t.integer "publication_start"
     t.integer "publication_end"
     t.string  "display_name"
+    t.hstore  "categorization",    default: {}, null: false
     t.index ["condensed_name"], name: "index_journals_on_condensed_name", using: :btree
     t.index ["name"], name: "index_journals_on_name", using: :btree
   end
@@ -65,6 +68,7 @@ ActiveRecord::Schema.define(version: 20170301231758) do
     t.integer  "volume"
     t.string   "number"
     t.string   "pages"
+    t.hstore   "categorization",   default: {},        null: false
     t.index ["journal_id"], name: "index_publications_on_journal_id", using: :btree
     t.index ["title"], name: "index_publications_on_title", using: :btree
   end

@@ -1,4 +1,5 @@
 class Author < ActiveRecord::Base
+  include Categorizable
   has_many :authorships
   has_many :publications, through: :authorships
   has_many :journals, through: :publications
@@ -57,6 +58,7 @@ class Author < ActiveRecord::Base
   private
   
   def guess_gender
+    return if gender == 1 || gender == 0
     gender = Guess.gender(first_name)
     case gender[:gender]
     when "male"

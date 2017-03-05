@@ -1,4 +1,5 @@
 class AuthorsController < ApplicationController
+  include ApplicationHelper
   before_action :set_show_values
   before_action :find_author, only: [:show, :edit, :update]
   

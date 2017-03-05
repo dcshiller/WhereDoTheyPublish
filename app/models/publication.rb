@@ -1,4 +1,5 @@
 class Publication < ActiveRecord::Base
+  include Categorizable
   has_many :authorships, autosave: true
   has_many :authors, through: :authorships, autosave: true
   belongs_to :journal

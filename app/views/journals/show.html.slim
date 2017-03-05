@@ -6,6 +6,8 @@
     .center #{@journal.publication_start} - #{@journal.publication_end}
     .center Article Count: #{@journal.articles.count}
     .center= link_to "affinities", journal_affinities_path(@journal)
+    - @journal.cat.map { |k, v| "#{category_name[k]}: #{v}" if v > 0 }.each do |line|
+      h5= line
     .center= link_to "(edit)", edit_journal_path(@journal)
     hr
     br

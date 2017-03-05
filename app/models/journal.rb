@@ -1,4 +1,5 @@
 class Journal < ActiveRecord::Base
+  include Categorizable
   has_many :publications
   has_many :authors, through: :publications
   has_many :authorships, through: :publications

@@ -1,4 +1,8 @@
 class TitleDistillator
+  def self.get_words
+    Rails.cache.fetch("distillates"){ distillate! }
+  end
+
   def self.distillate!
     dictionary = {}
     Publication.articles.find_each.each do |pub|
@@ -10,7 +14,5 @@ class TitleDistillator
       end
     end
     words = dictionary.select {|k,v| v > 200}.keys
-    debugger
-    3
   end
 end

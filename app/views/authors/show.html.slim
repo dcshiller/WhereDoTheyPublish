@@ -4,6 +4,8 @@
     h1 #{@author.name}
     h2.center Author
     .center= link_to "(edit)", edit_author_path(@author)
+    - @author.cat.map { |k, v| "#{category_name[k]}: #{v}" if v > 0 }.each do |line|
+      h5= line
     hr  
     table.standard
       - @publications.each do |publication|
