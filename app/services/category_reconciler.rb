@@ -28,6 +28,7 @@ class CategoryReconciler
   end
 
   def self.reconcile_pubs_by_title_word(word)
+    word = word.split("'")[0]
     pubs = Publication.articles.where("COALESCE(title, display_title) LIKE '%#{word}%'")
     normalized_average_values = normalize get_average(pubs)
     pubs.each do |pub|

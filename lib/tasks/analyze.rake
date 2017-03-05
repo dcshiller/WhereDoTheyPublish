@@ -13,7 +13,7 @@ namespace :analyze do
     Journal.find_by(name: "Linguistics and Philosophy").update_attributes(categorization: {"pl" => "100"})
     Journal.find_by(name: "Semiotica").update_attributes(categorization: {"pl" => "100"})
     Journal.find_by(name: "Journal of Consciousness Studies").update_attributes(categorization: {"pm" => "100"})
-    Journal.find_by(name: "Mind and Language").update_attributes(categorization: {"pm" => "30", "cs"=> "30", "pl" => "40"})
+    Journal.find_by("name LIKE '%Language'").update_attributes(categorization: {"pm" => "30", "cs"=> "30", "pl" => "40"})
     Journal.find_by(name: "Review of Metaphysics").update_attributes(categorization: {"mt" => "100"})
     Journal.find_by(name: "Synthese").update_attributes(categorization: {"mt" => "50", em: "50"})
     Journal.find_by(name: "Analysis").update_attributes(categorization: {"mt" => "50", em: "50"})
@@ -32,7 +32,7 @@ namespace :analyze do
     Journal.find_by(name: "Political Theory").update_attributes(categorization: {"po" => "100"})
     Journal.find_by(name: "Law and Philosophy").update_attributes(categorization: {"lp" => "100"})
     Journal.find_by(name: "Bioethics").update_attributes(categorization: {"me" => "100"})
-    Journal.find_by(name: "Business Ethics").update_attributes(categorization: {"be" => "100"})
+    Journal.find_by(name: "Business Ethics Quarterly").update_attributes(categorization: {"be" => "100"})
     Journal.find_by(name: "British Journal of Aesthetics").update_attributes(categorization: {"pa" => "100"})
     Journal.find_by(name: "Hypatia").update_attributes(categorization: {"fp" => "100"})
     Journal.find_by(name: "Apeiron").update_attributes(categorization: {"ap" => "100"})
@@ -78,6 +78,7 @@ namespace :analyze do
 
   task random_categorize: :environment do
     time = Time.now
+    words = TitleDistillator.get_words
     until Time.now > time + 5.minutes
       number = rand(100)
       if number < 2
@@ -89,7 +90,7 @@ namespace :analyze do
         CategoryReconciler.reconcile_author_with_pubs(author)
         CategoryReconciler.reconcile_pubs_with_author(author)
       else
-        word = TitleDistillator.get_words.sample
+        word = words.sample
         CategoryReconciler.reconcile_pubs_by_title_word(word)
       end
       print "."
