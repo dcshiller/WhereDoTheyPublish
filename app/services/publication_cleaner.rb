@@ -13,6 +13,7 @@ class PublicationCleaner
       "% Book Review %",
       "%(Eds.)%",
       "% Pp. %",
+      "% Pp.,%",
       "%, By % %"
     ]
     review_titles.each do |string|
@@ -20,6 +21,8 @@ class PublicationCleaner
     end
     errata = [
       "Editorial%",
+      "Editorial",
+      "Books in Review",
       "Editor%",
       "To the Reader",
       "Errata",

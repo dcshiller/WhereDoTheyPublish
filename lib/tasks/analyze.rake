@@ -108,6 +108,11 @@ namespace :analyze do
       CategoryReconciler.reconcile_pubs_with_author(author)
       print "+"
     end
+    words = TitleDistillator.get_words
+    words.each do |word|
+      CategoryReconciler.reconcile_pubs_by_title_word(word)
+      print "w"
+    end
     Journal.find_each do |journal|
       CategoryReconciler.reconcile_journal_with_pubs(journal)
       print ">"
