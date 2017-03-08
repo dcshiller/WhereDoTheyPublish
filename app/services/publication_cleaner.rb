@@ -15,7 +15,8 @@ class PublicationCleaner
       "% Pp. %",
       "% Pp.,%",
       "%, By % %",
-      "% Isbn %"
+      "% Isbn %",
+      "% Isbn: %"
     ]
     review_titles.each do |string|
       Publication.articles.where("title LIKE ?", string).update_all(publication_type: "book review")

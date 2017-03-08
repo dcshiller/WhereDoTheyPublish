@@ -19,6 +19,7 @@ module ApplicationHelper
       ap: "Ancient Philosophy",
       as: "Asian Philosophy",
       mp: "Modern Philosophy",
+      ha: "History of Analytic",
       pr: "Philosophy of Religion",
       cp: "Continental Philosophy",
       be: "Business Ethics"

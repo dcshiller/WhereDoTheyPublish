@@ -23,4 +23,6 @@ Rails.application.routes.draw do
       post :journal_affinity, to: "projects#journal_affinity_query"
     end
   end
+
+  mount Resque::Server.new, at: "/resque"
 end
