@@ -24,7 +24,7 @@ namespace :db do
     parser = Parser.new(journal, divider)
     lines.each do |line|
       pub = parser.parse_line(line)
-      pub.save
+      pub&.save
       print "."
     end
   end

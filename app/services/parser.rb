@@ -8,6 +8,7 @@ class Parser
   end
 
   def parse_line(line)
+    return unless line.include? divider
     journal = Journal.find_by(name: journal_name)
     Publication.new(journal: journal, title: get_title(line, divider), authors: get_authors(line), publication_year: get_year(line), volume: get_volume(line), number: get_number(line), pages: get_pages(line))
   end
@@ -29,30 +30,46 @@ class Parser
   end
 
   def get_names(line)
-    #Handle Junio
-    line.gsub(";","&")
+    #Handle Junior
+    line = line.gsub(";","&")
     /.*?\(/.match(line)[0][0..-2].split("&")
   end
 
   def get_last_name(name)
-    parts = name.split(",")
-    last_name = parts[0]
-    parts[0].strip
+    if name.strip[-1] == "," && (name.count(".") == 2 || name.count(".") == 3)
+      last_name = name.split(".")[-1]
+      last_name + "." if last_name
+    else
+      parts = name.split(",")
+      last_name = parts[0].remove " Jr"
+      parts[0].strip
+    end
   end
 
   def get_middle_initial(name)
-    parts = name.split(" ")
-    parts.shift
-    parts.shift if TITLES.include? parts[0]
-    parts.shift
-    parts[0..-1]&.join(" ")&.strip
+    if name.strip[-1] == "," && (name.count(".") == 2 || name.count(".") == 3)
+      n = name.split(".")
+      n&.shift
+      n&.pop
+      middle_initials = n&.join(". ") 
+      middle_initials + "." if middle_initials
+    else
+      parts = name.split(" ")
+      parts.shift
+      parts.shift if TITLES.include? parts[0]
+      parts.shift
+      parts[0..-1]&.join(" ")&.strip
+    end
   end
 
   def get_first_name(name)
-    parts = name.split(" ")
-    last_name = parts[1]
-    last_name = parts[2] if TITLES.include? parts[0]
-    last_name.strip
+    if name.strip[-1] == "," && (name.count(".") == 2 || name.count(".") == 3)
+      first_name = name.split(".")[0]
+      first_name + "." if first_name
+    else
+      parts = name.split(" ")
+      first_name = parts[1]&.strip
+    end
   end
 
   def get_title(line, divider)
