@@ -4,8 +4,9 @@ class JournalCleaner
     JournalCleaner.new(journal).remove_dups!
   end
 
-  def initialize(journal_name)
-    @journal = Journal.find_by(name: journal_name)
+  def initialize(journal)
+    @journal = Journal.find_by(name: journal) if journal.is_a? String
+    @journal = journal if journal.is_a? Journal
   end
 
   def remove_dups!
@@ -22,7 +23,8 @@ class JournalCleaner
   private
 
   def any_dups?(pub)
-    !near_dups(pub).blank? || !dups(pub).blank?
+    # !near_dups(pub).blank? || !dups(pub).blank?
+    !dups(pub).blank?
   end
 
   def dups(pub)
