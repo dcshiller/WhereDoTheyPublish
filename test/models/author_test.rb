@@ -21,4 +21,16 @@ class AuthorTest < ActiveSupport::TestCase
     assert !a1.publication_consistent?(a2)
     assert a1.publication_consistent?(a3)
   end
+
+  test "matches authors" do
+    a1 = create :author, first_name: "Bill", middle_initial: "T.", last_name: "Fiddle"
+    a2 = create :author, first_name: "B.", middle_initial: "T.", last_name: "Fiddle"
+    a3 = create :author, first_name: "B.", middle_initial: "Tuberculosis", last_name: "Fiddle"
+    a4 = create :author, first_name: "A.", middle_initial: "Tuberculosis", last_name: "Fiddle"
+    assert a1.match(a2)
+    assert a2.match(a3)
+    assert a1.match(a3)
+    refute a1.match(a4)
+    refute a4.match(a1)
+  end
 end

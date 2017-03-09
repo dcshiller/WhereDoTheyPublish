@@ -4,8 +4,8 @@ class JournalCleaner
     JournalCleaner.new(journal).remove_dups!
   end
 
-  def initialize(journal)
-    @journal = journal
+  def initialize(journal_name)
+    @journal = Journal.find_by(name: journal_name)
   end
 
   def remove_dups!
@@ -22,7 +22,7 @@ class JournalCleaner
   private
 
   def any_dups?(pub)
-    !dups(pub).blank?
+    !near_dups(pub).blank? || !dups(pub).blank?
   end
 
   def dups(pub)
@@ -34,6 +34,24 @@ class JournalCleaner
       unless candidates.blank?
         authors = pub.authors.sort
         candidates.select {|c| c.authors.sort == authors}
+      end
+    end
+  end
+
+  def near_dups(pub)
+    @near_dups ||= begin
+      title = pub.title
+      year = pub.publication_year
+      id = pub.id
+      candidates = journal.publications.where("title LIKE ?", "%#{title}%").where.not(id: id).distinct
+      unless candidates.blank?
+        authors = pub.authors.sort
+        candidates.reject do |c|
+          candidate_authors = c.authors.sort
+          authors.all?.with_index do |a,idx|
+            a.match?(candidate_authors[idx])
+          end
+        end
       end
     end
   end

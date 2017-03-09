@@ -55,8 +55,19 @@ class Author < ActiveRecord::Base
     (pairs.sum {|a,b| a.co_publication_percentage(b)} / pairs.count).round(2)
   end
 
+  def match(other_author)
+    match_by(other_author, :first_name) &&
+      match_by(other_author, :middle_initial) &&
+      match_by(other_author, :last_name)
+  end
+
   private
-  
+
+  def match_by(other_author, name_part)
+   send(name_part).chomp(".").include?(other_author.send(name_part).chomp(".")) ||
+     other_author.send(name_part).chomp(".").include?(send(name_part).chomp("."))
+  end
+
   def guess_gender
     return if gender == 1 || gender == 0
     gender = Guess.gender(first_name)
