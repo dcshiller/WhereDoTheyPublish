@@ -1,4 +1,4 @@
-class CategorizerJob
+class RandomCategorizerJob
     @queue = :queue
 
   def self.perform
