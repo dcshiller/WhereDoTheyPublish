@@ -1,4 +1,4 @@
-class SeaderJob
+class SeederJob
   @queue :queue
 
   def perform
