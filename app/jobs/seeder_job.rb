@@ -1,6 +1,26 @@
 class SeederJob
   @queue :queue
-
+  CATEGORIES = {
+                  ap: "Ancient Philosophy",
+                  as: "Asian Philosophy",
+                  be: "Business Ethics",
+                  cp: "Continental Philosophy",
+                  cs: "Cognitive Science",
+                  em: "Epistemology",
+                  et: "Ethics",
+                  ha: "History of Analytic",
+                  lo: "Logic",
+                  me: "Medical Ethics",
+                  mt: "Metaphysics",
+                  mp: "Modern Philosophy",
+                  pa: "Aesthetics",
+                  pl: "Philosophy of Language",
+                  pm: "Philosphy of Mind",
+                  po: "Political and Legal Philosophy",
+                  pr: "Philosophy of Religion",
+                  ps: "Philosophy of Science"
+                }
+                
   def perform
     initial_settings
     set_terms
@@ -8,27 +28,6 @@ class SeederJob
   end
   
   def initial_settings
-    CATEGORIES = {
-                    ap: "Ancient Philosophy",
-                    as: "Asian Philosophy",
-                    be: "Business Ethics",
-                    cp: "Continental Philosophy",
-                    cs: "Cognitive Science",
-                    em: "Epistemology",
-                    et: "Ethics",
-                    ha: "History of Analytic",
-                    lo: "Logic",
-                    me: "Medical Ethics",
-                    mt: "Metaphysics",
-                    mp: "Modern Philosophy",
-                    pa: "Aesthetics",
-                    pl: "Philosophy of Language",
-                    pm: "Philosphy of Mind",
-                    po: "Political and Legal Philosophy",
-                    pr: "Philosophy of Religion",
-                    ps: "Philosophy of Science"
-                  }
-
     average = CATEGORIES.keys.map { |k| [k, 5] }.to_h
     Journal.update_all(categorization: average)
     Author.update_all(categorization: average)
