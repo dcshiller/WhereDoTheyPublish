@@ -36,6 +36,7 @@ class PublicationCleaner
       "%Books Received%",
       "%an Interview%",
       "New Books%",
+      "News and Notes",
       "Notes and News%",
       "List of % Participants",
       "Memo to Authors",
