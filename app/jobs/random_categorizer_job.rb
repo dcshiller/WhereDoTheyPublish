@@ -3,7 +3,7 @@ class RandomCategorizerJob
 
   def self.perform
     time = Time.now
-    words = TitleDistillator.get_words
+    words = File.readlines("data/title_words").map(&:chomp)
     average = CategoryReconciler.get_average_hash(Publication.order("RANDOM()").limit(10000))
     until Time.now > time + 5.minutes
       number = rand(100)
