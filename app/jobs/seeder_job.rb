@@ -20,14 +20,14 @@ class SeederJob
                   pr: "Philosophy of Religion",
                   ps: "Philosophy of Science"
                 }
-                
-  def perform
+
+  def self.perform
     initial_settings
     set_terms
     set_journals
   end
   
-  def initial_settings
+  def self.initial_settings
     average = CATEGORIES.keys.map { |k| [k, 5] }.to_h
     Journal.update_all(categorization: average)
     Author.update_all(categorization: average)
@@ -36,7 +36,7 @@ class SeederJob
 
 
 
-  def set_terms
+  def self.set_terms
     terms = {
               ap: %w[Plato Aristotle Stoics Socrates Lucretius Greek Roman Augustine Boethius Classical],
               as: %w[Confucious Chinese Indian Buddhis Eastern],
@@ -71,7 +71,7 @@ class SeederJob
     end
   end
 
-  def set_journals
+  def self.set_journals
     journals = {
                   ap: ["Apeiron"],
                   as: ["Asian Philosophy", "Dao", "Journal of Chinese Philosophy"],
