@@ -34,8 +34,6 @@ class SeederJob
     Publication.update_all(categorization: average)
   end
 
-
-
   def self.set_terms
     terms = {
               ap: %w[Plato Aristotle Stoics Socrates Lucretius Greek Roman Augustine Boethius Classical],

@@ -2,7 +2,7 @@ class CategorizerJob
     @queue = :queue
 
   def self.perform
-    Resque::Worker.new(queue: :queue).startup
+    # Resque::Worker.new(queue: :queue).startup
     average = CategoryReconciler.get_average_hash(Publication.order("RANDOM()").limit(10000))
     
     Journal.find_each do |journal|
