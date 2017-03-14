@@ -37,39 +37,40 @@ class SeederJob
 
 
   def set_terms
-  terms = {
-            ap: %w[Plato Aristotle Stoics Socrates Lucretius Greek Roman Augustine Boethius Classical],
-            as: %w[Confucious Chinese Indian Buddhis Eastern],
-            be: %w[Market Libertarianism Exchange Capitalism Communism Price Regulation Sale],
-            cp: %w[Deconstruction Heiddeger Sartre Derrida Foucault Postmodern Camus Existential Constructivism Consent],
-            cs: %w[Cognitive Brain Neuro Hippocampus],
-            em: %w[Epistemic Evidence Belief Credence Knowledge Empiricism Coherentism Foundationalism Probability Bayesianism ],
-            et: %w[Fair Deontic Moral Ethic Desert Consequentialism Value Rights Justice Good Wellbeing Obligation Charity Utilitarianism Deontology],
-            fp: %w[Beauvoir Pornography Queer Feminist Disability Disabled Gender Race Lesbian Sex],
-            ha: %w[Wittgenstein Russell Moore Frege],
-            lo: %w[Axiom Computability Completeness Necessity Logic],
-            me: %w[Euthanasia Abortion Doctor Patient Drug Death Life Health Disease Consent],
-            mp: %w[Descartes Hume Locke Spinoza Kant Leibniz Reid Occasionalism Transcedentalism],
-            mt: %w[Mereological Color Modal Explanation Parthood Metaphysics Presentism Objects Vagueness Time Space Nominalism Fictionalism Physicalism Dualism Metaphysics Modality Existence Essence Grounding Necessity Abstracta Number Naturalism],
-            pa: %w[Aesthetics Art Literature Beauty],
-            pl: %w[Lexical Name Determinism Vagueness Intensional Semantics Pragmatics Sense Reference Meaning Predicate Negation Implicature Sign Compositional Define Concept],
-            po: %w[Autonomy Paternalism Authority Libertarianism Freedom Guilt Innocence Government Society Law Democracy Consent Totalitarian Justice Citizen Civic Communism Constructivism],
-            pm: %w[Sensation Intention Imagination Physicalism Dualism Consciousness Intentionality Perception Phenomenology Qualia Brain Cognitivism Emotion Concept],
-            pr: %w[God Christianity Divine Divinity Salvation Omniscience Omnipotence],
-            ps: %w[Cell Correlation Science Genome Causation Physics Biology Evolution Quantum Chemistry]
-          }
-  terms.each do |category, cat_terms|
-    cat_terms.each do |term|
-      Publication.where("title LIKE '%#{term}%'").each do |pub|
-        cats = pub.categorization
-        cats[category] = 100
-        pub.categorization = cats
-        pub.save
-        print "."
+    terms = {
+              ap: %w[Plato Aristotle Stoics Socrates Lucretius Greek Roman Augustine Boethius Classical],
+              as: %w[Confucious Chinese Indian Buddhis Eastern],
+              be: %w[Market Libertarianism Exchange Capitalism Communism Price Regulation Sale],
+              cp: %w[Deconstruction Heiddeger Sartre Derrida Foucault Postmodern Camus Existential Constructivism Consent],
+              cs: %w[Cognitive Brain Neuro Hippocampus],
+              em: %w[Epistemic Evidence Belief Credence Knowledge Empiricism Coherentism Foundationalism Probability Bayesianism ],
+              et: %w[Fair Deontic Moral Ethic Desert Consequentialism Value Rights Justice Good Wellbeing Obligation Charity Utilitarianism Deontology],
+              fp: %w[Beauvoir Pornography Queer Feminist Disability Disabled Gender Race Lesbian Sex],
+              ha: %w[Wittgenstein Russell Moore Frege],
+              lo: %w[Axiom Computability Completeness Necessity Logic],
+              me: %w[Euthanasia Abortion Doctor Patient Drug Death Life Health Disease Consent],
+              mp: %w[Descartes Hume Locke Spinoza Kant Leibniz Reid Occasionalism Transcedentalism],
+              mt: %w[Mereological Color Modal Explanation Parthood Metaphysics Presentism Objects Vagueness Time Space Nominalism Fictionalism Physicalism Dualism Metaphysics Modality Existence Essence Grounding Necessity Abstracta Number Naturalism],
+              pa: %w[Aesthetics Art Literature Beauty],
+              pl: %w[Lexical Name Determinism Vagueness Intensional Semantics Pragmatics Sense Reference Meaning Predicate Negation Implicature Sign Compositional Define Concept],
+              po: %w[Autonomy Paternalism Authority Libertarianism Freedom Guilt Innocence Government Society Law Democracy Consent Totalitarian Justice Citizen Civic Communism Constructivism],
+              pm: %w[Sensation Intention Imagination Physicalism Dualism Consciousness Intentionality Perception Phenomenology Qualia Brain Cognitivism Emotion Concept],
+              pr: %w[God Christianity Divine Divinity Salvation Omniscience Omnipotence],
+              ps: %w[Cell Correlation Science Genome Causation Physics Biology Evolution Quantum Chemistry]
+            }
+    terms.each do |category, cat_terms|
+      cat_terms.each do |term|
+        Publication.where("title LIKE '%#{term}%'").each do |pub|
+          cats = pub.categorization
+          cats[category] = 100
+          pub.categorization = cats
+          pub.save
+          print "."
+        end
       end
     end
   end
-  
+
   def set_journals
     journals = {
                   ap: ["Apeiron"],
