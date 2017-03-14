@@ -2,7 +2,7 @@ module ApplicationHelper
   def category_name
     {
       pl: "Philosophy of Language",
-      pm: "Philosphy of Mind",
+      pm: "Philosophy of Mind",
       mt: "Metaphysics",
       em: "Epistemology",
       cs: "Cognitive Science",
@@ -13,6 +13,7 @@ module ApplicationHelper
       fo: "Formal Philosophy",
       po: "Political Philosophy",
       lp: "Philosophy of Law",
+      md: "Medieval Philosophy",
       me: "Medical Ethics",
       fp: "Feminist Philosophy",
       pa: "Aesthetics",

@@ -7,7 +7,13 @@ Rails.application.routes.draw do
     end
   end
   resources :journals, only: [:index, :show, :edit, :update] do
-    get 'year/:year', to: 'journals#year', as: "year"
+    scope module: :journals do
+      resources :publications, only: [:index] do
+        collection do
+          get 'year/:year', to: 'publications#year', as: "year"
+        end
+      end
+    end
     get 'affinities', to: 'journals#affinities', as: "affinities"
   end
   resources :publications, only: [:index, :edit, :update, :destroy, :show]

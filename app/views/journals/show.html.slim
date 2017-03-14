@@ -1,23 +1,21 @@
-
 #content_div
   #display_panel
     h1 #{@journal.proper_name}
     h4.center Journal
-    .center #{@journal.publication_start} - #{@journal.publication_end}
-    .center Article Count: #{@journal.articles.count}
-    .center= link_to "affinities", journal_affinities_path(@journal)
-    - @journal.cat.map { |k, v| "#{category_name[k]}: #{v}" if v > 0 }.each do |line|
-      h5= line
-    .center= link_to "(edit)", edit_journal_path(@journal)
-    hr
+    h3 Navigation
+    = link_to "Edit", edit_journal_path(@journal)
     br
+    = link_to "Affinities", journal_affinities_path(@journal)
     br
-    .columns
-      - @years.pluck(:publication_year).each do |year|
-        = link_to year.to_s, journal_year_path(@journal, year: year.to_s)
-        | &nbsp &nbsp &nbsp
-        = @years.count('*')[year]
-        br
-
-  footer
-    = will_paginate @years
+    = link_to "Publications by year", journal_publications_path(@journal)
+    h3 Statistics
+    table
+      tr
+        td Article Count: 
+        td #{@journal.articles.count}
+      tr
+      tr 
+      tr 
+        td Active Years: 
+        td #{@journal.publication_start || '?'} - #{@journal.publication_end}
+    = render "partials/categories"

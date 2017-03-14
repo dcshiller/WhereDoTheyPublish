@@ -28,4 +28,7 @@ class Publication < ActiveRecord::Base
     journal.title == title_to_match
   end
 
+  def primary_category
+    cat.to_a.sort{|a,b| a[1] <=> b[1] }.last[0]
+  end
 end

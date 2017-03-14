@@ -1,56 +1,60 @@
 class CategoryReconciler
-  def self.reconcile_journal_with_pubs(journal)
+  def self.reconcile_journal_with_pubs(journal, average = {})
     pubs = journal.publications.articles
     normalized_average_values = normalize get_average(pubs)
-    reconcile(journal, normalized_average_values)
+    reconcile(journal, normalized_average_values, average)
   end
 
-  def self.reconcile_author_with_pubs(author)
+  def self.reconcile_author_with_pubs(author, average = {})
     pubs = author.publications.articles
     normalized_average_values = normalize get_average(pubs)
-    reconcile(author, normalized_average_values)
+    reconcile(author, normalized_average_values, average)
   end
 
-  def self.reconcile_pubs_with_journal(journal)
+  def self.reconcile_pubs_with_journal(journal, average = {})
     return if journal.cat.blank?
     pubs = journal.publications.articles
     pubs.each do |pub|
-      reconcile(pub, journal.cat)
+      reconcile(pub, journal.cat, average)
     end
   end
 
-  def self.reconcile_pubs_with_author(author)
+  def self.reconcile_pubs_with_author(author, average = {})
     return if author.cat.blank?
     pubs = author.publications.articles
     pubs.each do |pub|
-      reconcile(pub, author.cat)
+      reconcile(pub, author.cat, average)
     end
   end
 
-  def self.reconcile_pubs_by_title_word(word)
+  def self.reconcile_pubs_by_title_word(word, average = {})
     word = word.split("'")[0]
     pubs = Publication.articles.where("COALESCE(title, display_title) LIKE '%#{word}%'")
     normalized_average_values = normalize get_average(pubs)
     pubs.each do |pub|
-      reconcile(pub, normalized_average_values)
+      reconcile(pub, normalized_average_values, average)
     end
   end
 
-  private
-
   def self.get_average(categorizables)
     categorizables.inject(Hash.new(0)) do |accum, pub|
-      pub.cat.each do |k,v|
+      pub.cat.each do |k, v|
         accum[k] = accum[k] + v
       end
       accum
     end.map { |k, v| [k, v / categorizables.count] }
   end
 
-  def self.reconcile(reconcilee, values)
+  def self.get_average_hash(categorizables)
+    Hash[ get_average(categorizables) ]
+  end
+
+  private
+
+  def self.reconcile(reconcilee, values, average = {})
     new_values = Hash.new(0)
     reconcilee.cat.each do |k,v|
-      new_values[k] = Math.sqrt(v.to_i**2 + (values[k].to_i)**2)
+      new_values[k] = Math.sqrt(v.to_i**2 + ((values[k].to_i - (average[k] || 0))**2))
     end
     (values.keys - reconcilee.cat.keys).each do |k|
       new_values[k] = values[k]

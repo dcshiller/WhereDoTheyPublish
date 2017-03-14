@@ -5,9 +5,9 @@
       h1 = link_to @journal.name, journal_path(@journal)
       h2.center Journal
       h2.center
-        = link_to @year - 1, journal_year_path(@journal, @year - 1), class: "small-year"
+        = link_to @year - 1, year_journal_publications_path(@journal, @year - 1), class: "small-year" unless @year - 1 < (@journal.publication_start || 0)
         = @year
-        = link_to @year + 1, journal_year_path(@journal, @year + 1), class: "small-year"
+        = link_to @year + 1, year_journal_publications_path(@journal, @year + 1), class: "small-year"unless @year + 1 > (@journal.publication_end || 3000)
       .center Article Count: #{@publications.count}
       hr
     table.standard.two_columns
@@ -15,6 +15,7 @@
         - @publications.each do |publication|
           tr
             td= link_to publication.proper_title || "(title missing)", edit_publication_path(publication), class: "no_link_display"
+            td= category_name[publication.primary_category]
             td 
               - publication.authors.each.with_index do |author, idx|
                 = link_to author.name, author_path(author)

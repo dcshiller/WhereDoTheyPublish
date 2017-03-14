@@ -1,17 +1,21 @@
 
 #content_div
+  background: radial-gradient(ellipse, white 90%, ivory 95%, lightgrey)
+  border: 1px solid rgba(20, 20, 20, .4)
+  border-radius: 5px
+  box-shadow: 1px 1px rgba(20, 20, 20, .4)
+  margin: 1vh
   position: fixed
   top: 10%
   bottom: 10%
   right: calc(2% + 15vw)
   left: calc(2% + 15vw)
-  background: ivory
   overflow-x: scroll
-  margin: 1vh
-  border-radius: 5px
-  box-shadow: 1px 1px rgba(20, 20, 20, .4)
-  border: 1px solid rgba(20, 20, 20, .4)
-  background: radial-gradient(ellipse, white 90%, ivory 95%, lightgrey)
+  @media (max-width: 1000px)
+    right: 5vw
+    left: 5vw
+    top: 20%
+    bottom: 5vw
   h1
     text-align: center
   hr
@@ -19,32 +23,35 @@
   ul
     list-style: none
   footer
+    font-size: 1.5vw
     position: fixed
     bottom: calc(10% + 4vh)
-    width: 100%
     left: 0
-    font-size: 1.5vw
+    width: 100%
     .pagination
-      width: 100%
       text-align: center
+      width: 100%
   #display_panel
     height: calc(100% - 8vw)
-    width: calc(100% - 8vw)
     overflow: scroll
     padding: 4vw
     padding-bottom: 0
+    width: calc(100% - 8vw)
     p, li
       font-size: 1.5vw
+    table
+      tr
+        td:first-child
+          min-width: 10vw
   a.small-year
+    color: inherit
     font-size: 2vh
     margin: 1vw 1vw
-    color: inherit
   input.selector
     display: block
     margin: 2vh auto
 
-
   select
-    width: 20vw
     padding: .5vh
     text-align: center
+    width: 20vw

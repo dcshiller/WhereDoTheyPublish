@@ -1,0 +1,15 @@
+
+#content_div
+  #display_panel
+    h1 #{@journal.proper_name}
+    h4.center Journal
+    .columns
+      - @years.pluck(:publication_year).each do |year|
+        = link_to year_journal_publications_path(@journal, year: year.to_s) do
+          strong= year.to_s
+        | &nbsp &nbsp &nbsp
+        = @years.count('*')[year]
+        br
+  
+  footer
+    = will_paginate @years

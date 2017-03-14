@@ -8,13 +8,12 @@ class PublicationsController < ApplicationController
 
   def show
     @publication = Publication.find(params[:id])
-    @categories = @publication.cat.map { |k, v| [category_name[k],v] if v > 0 }.compact
-    @categories.sort! { |a, b| b[-1] <=> a[-1] }
+    sift_categories(@publication)
   end
 
   def edit
     @publication = Publication.find(params[:id])
-    @publication.display_title = @publication.title
+    @publication.display_title = @publication.display_title || @publication.title
   end
 
   def update

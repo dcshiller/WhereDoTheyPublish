@@ -8,7 +8,7 @@ class JournalsController < ApplicationController
 
   def show
     @publication_count = @journal.articles.count
-    @years = @journal.articles.order(publication_year: :desc).group(:publication_year).paginate(page: params[:page], per_page: 80)
+    sift_categories(@journal)
   end
 
   def edit
@@ -19,12 +19,6 @@ class JournalsController < ApplicationController
     new_attrs[:display_name] = nil if new_attrs[:display_name] == @journal.name || new_attrs[:display_name] == ""
     @journal.update_attributes(new_attrs)
     redirect_to journal_path
-  end
-
-  def year
-    @year = params[:year].to_i
-    @journal = Journal.find(params[:journal_id])
-    @publications = @journal.articles.where(publication_year: @year).paginate(page: params[:page], per_page: 9).order(:title)
   end
 
   def affinities

@@ -18,8 +18,4 @@
       li Pages: #{@publication.pages}
     br 
     h2 Categories
-    table
-      - @categories.each do |cat|
-        tr
-          td= cat[0]
-          td= cat[1]
+    = render "partials/categories"
