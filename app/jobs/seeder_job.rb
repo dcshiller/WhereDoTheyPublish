@@ -1,5 +1,5 @@
 class SeederJob
-  @queue :queue
+  @queue = :queue
   CATEGORIES = {
                   ap: "Ancient Philosophy",
                   as: "Asian Philosophy",
