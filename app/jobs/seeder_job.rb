@@ -41,7 +41,7 @@ class SeederJob
   terms = {
             ap: %w[Plato Aristotle Stoics Socrates Lucretius Greek Roman Augustine Boethius Classical],
             as: %w[Confucious Chinese Indian Buddhis Eastern],
-            be: %w[Market Libertarianism Exchange Capitalism Communism Price Regulation Sale]
+            be: %w[Market Libertarianism Exchange Capitalism Communism Price Regulation Sale],
             cp: %w[Deconstruction Heiddeger Sartre Derrida Foucault Postmodern Camus Existential Constructivism Consent],
             cs: %w[Cognitive Brain Neuro Hippocampus],
             em: %w[Epistemic Evidence Belief Credence Knowledge Empiricism Coherentism Foundationalism Probability Bayesianism ],
@@ -75,7 +75,7 @@ class SeederJob
     journals = {
                   ap: ["Apeiron"],
                   as: ["Asian Philosophy", "Dao", "Journal of Chinese Philosophy"],
-                  be: ["Business Ethics Quarterly", "Journal of Business Ethics"]
+                  be: ["Business Ethics Quarterly", "Journal of Business Ethics"],
                   cp: ["Heiddeger Studies", "Continental Philosophy Review"],
                   cs: ["Review of Philosophy and Psychology", "Consciousness and Cognition", "Behavioral and Brain Sciences"],
                   em: ["Episteme%", "Synthese", "Analysis", "American Philosophical Quarterly", "Journal of Philosophy", "Analytic Philosophy", "Review of Metaphysics"],
