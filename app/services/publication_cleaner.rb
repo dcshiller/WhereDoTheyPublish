@@ -91,6 +91,34 @@ class PublicationCleaner
     end
   end
 
+  def self.substitute_if_first!(string_one, string_two)
+    pubs = Publication.where("title LIKE '#{string_one}%'")
+    pubs.each do |pub|
+      old_title = pub.display_title || pub.title
+      new_title = old_title.gsub(string_one, string_two)
+      pub.display_title = new_title
+      pub.save
+    end
+  end
+
+  def self.substitute_if_last!(string_one, string_two)
+    pubs = Publication.where("title LIKE '%#{string_one}'")
+    pubs.each do |pub|
+      old_title = pub.display_title || pub.title
+      if old_title.ends_with? string_one
+        new_title = old_title.chomp(string_one) + string_two
+        pub.display_title = new_title
+        pub.save
+      end
+    end
+  end
+
+  def self.remove_terminal_ones!
+    ('a'..'z').to_a.each do |letter|
+      substitute_if_last!("#{letter}1",letter)
+    end
+  end
+
   def self.substitute_unless_first!(string_one, string_two)
     pubs = Publication.where("title LIKE '%#{string_one}%'")
     pubs.each do |pub|
@@ -113,6 +141,21 @@ class PublicationCleaner
       old_title = pub.display_title
       new_title = old_title[1..-1]
       pub.display_title = new_title
+      pub.save
+    end
+  end
+
+  def self.titlize_quoted
+    pubs = Publication.where("title LIKE ?","%\'%")
+    pubs.each do |pub|
+      title = pub.display_title || pub.title.dup
+      ('a'..'z').to_a.each do |letter|
+        title.gsub!("\'#{letter}","\'#{letter.upcase}")
+      end
+      ('a'..'z').to_a.each do |letter|
+        title.gsub!("\"#{letter}","\"#{letter.upcase}")
+      end
+      pub.display_title = title
       pub.save
     end
   end
