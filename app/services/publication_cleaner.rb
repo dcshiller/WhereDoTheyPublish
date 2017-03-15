@@ -14,6 +14,7 @@ class PublicationCleaner
       "%(Eds.)%",
       "% Pp. %",
       "% Pp.,%",
+      "% Pp",
       "% Pages",
       "%, By % %",
       "% Isbn %",
