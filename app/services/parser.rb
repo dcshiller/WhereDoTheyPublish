@@ -10,9 +10,13 @@ class Parser
   def parse_line(line)
     return unless line.include? divider
     journal = Journal.find_by(name: journal_name)
-    Publication.new(journal: journal, title: get_title(line, divider), authors: get_authors(line), publication_year: get_year(line), volume: get_volume(line), number: get_number(line), pages: get_pages(line))
+    Publication.new(journal: journal, title: get_title(line, divider), authors: get_authors(line), publication_year: get_year(line), volume: get_volume(line), number: get_number(line), pages: get_pages(line), categorization: average_cat)
   end
 
+  def average_cat
+   @average_categorization ||= CategoryReconciler.get_average_hash(Publication.order("RANDOM()").limit(1000))
+ end
+ 
   def get_year(line)
     /\((.*?)\)/.match(line)[0][1..-2].to_i
   end
