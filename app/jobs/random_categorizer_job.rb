@@ -17,7 +17,7 @@ class RandomCategorizerJob
         CategoryReconciler.reconcile_pubs_with_author(author, average)
       else
         word = words.sample
-        CategoryReconciler.reconcile_pubs_by_title_word(word, average) unless CategoryReconciler.average?(word, average)
+        CategoryReconciler.reconcile_pubs_by_title_word(word, average)
       end
     end
   end
