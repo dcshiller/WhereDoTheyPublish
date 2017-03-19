@@ -23,7 +23,7 @@ class AuthorsController < ApplicationController
       @author.update_attributes(author_params)
     end
     @publications = @author.publications.paginate(page: params[:page], per_page: 10).order(:publication_year)
-    render :show
+    redirect_to author_path(@author || other_author)
   end
 
   def find

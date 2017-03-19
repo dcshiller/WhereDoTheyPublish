@@ -49,6 +49,10 @@ class CategoryReconciler
     Hash[ get_average(categorizables) ]
   end
 
+  def self.average?(hash, average)
+    hash.all? { |k,v| v.to_i < average[k].to_i + 3 }
+  end
+
   private
 
   def self.reconcile(reconcilee, values, average = {})
