@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
     get 'affinities', to: 'journals#affinities', as: "affinities"
   end
-  resources :publications, only: [:index, :edit, :update, :destroy, :show]
+  resources :publications
   get :data, to: "data#index"
   resources :projects, only: [:index] do
     collection do

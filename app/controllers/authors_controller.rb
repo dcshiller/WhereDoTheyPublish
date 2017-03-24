@@ -1,7 +1,7 @@
 class AuthorsController < ApplicationController
   before_action :set_show_values
   before_action :find_author, only: [:show, :edit, :update]
-  
+
   def index
     @authors = Author.order(:last_name).paginate(page: params[:page], per_page: 20)
   end

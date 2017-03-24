@@ -1,9 +1,11 @@
 
-#form_query = form_tag :where_do_they_publish_projects do
-  h2 Include?
-  = text_field_tag :authors
-  = hidden_field_tag :author_ids, @authors&.compact&.map(&:id)&.join(",")
-  = submit_tag "+"
+#form_query 
+  = form_tag :where_do_they_publish_projects do
+    h2 Include?
+    .row
+      = text_field_tag :authors
+      = submit_tag "add"
+      = hidden_field_tag :author_ids, @authors&.compact&.map(&:id)&.join(",")
   
   hr
   table
@@ -16,6 +18,8 @@
 #content_div
   #display_panel
     h1 Where Do They Publish?
-    ul
+    table
       - @journal_count&.each do | journal, count|
-        li= journal.name + " " + count.to_s
+        tr
+          td= count.to_s
+          td= journal.name

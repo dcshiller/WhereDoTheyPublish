@@ -1,20 +1,19 @@
-
 #content_div
   background: radial-gradient(ellipse, white 90%, ivory 95%, lightgrey)
   border: 1px solid rgba(20, 20, 20, .4)
   border-radius: 5px
   box-shadow: 1px 1px rgba(20, 20, 20, .4)
   margin: 1vh
+  overflow-x: scroll
   position: fixed
   top: 10%
   bottom: 10%
   right: calc(2% + 15vw)
   left: calc(2% + 15vw)
-  overflow-x: scroll
   @media (max-width: 1000px)
     right: 5vw
     left: 5vw
-    top: 20%
+    top: 15%
     bottom: 5vw
   h1
     text-align: center
@@ -25,8 +24,8 @@
   footer
     font-size: 1.5vw
     position: fixed
-    bottom: calc(10% + 4vh)
     left: 0
+    bottom: calc(10% + 4vh)
     width: 100%
     .pagination
       text-align: center
@@ -37,8 +36,8 @@
     padding: 4vw
     padding-bottom: 0
     width: calc(100% - 8vw)
-    p, li
-      font-size: 1.5vw
+    p, li, td, a
+      font-size: calc(.5vmax + .5vw + .5vh)
     table
       tr
         td:first-child

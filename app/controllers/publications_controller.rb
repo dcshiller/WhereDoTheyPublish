@@ -11,6 +11,20 @@ class PublicationsController < ApplicationController
     sift_categories(@publication)
   end
 
+  def new
+    @publication = Publication.new
+  end
+
+  def create
+    attribute_values = publication_params
+    @publication = Publication.create(attribute_values)
+    authors = retrieve_authors
+    @publication.update(authors: authors, categorization: {}) unless authors.blank?
+    authors.each { |author| CategoryReconciler.reconcile(@publication, author.cat) }
+    CategoryReconciler.reconcile(@publication, @publication.journal.cat)
+    redirect_to publication_path(@publication)
+  end
+
   def edit
     @publication = Publication.find(params[:id])
     @publication.display_title = @publication.display_title || @publication.title
@@ -47,6 +61,6 @@ class PublicationsController < ApplicationController
   end
 
   def publication_params
-    params.require(:publication).permit(:publication_year, :display_title, :publication_type)
+    params.require(:publication).permit(:publication_year, :title, :display_title, :publication_type, :volume, :number, :pages, :journal_id)
   end
 end

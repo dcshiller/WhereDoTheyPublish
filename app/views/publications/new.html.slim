@@ -1,0 +1,21 @@
+#content_div
+  #display_panel
+    h1  New Publication
+    h4.center Publication
+    hr
+    = simple_form_for @publication do |f|
+      = f.input :title, wrapper_html: {class: 'line'}
+      = f.input :publication_year, as: :numeric, wrapper_html: {class: 'line'}, input_html: { value: params[:publication_year] }
+      = f.input :publication_type, as: :select, collection: ["article", "book review", "errata"], wrapper_html: {class: 'line'}
+      = f.input :journal_id, as: :hidden, wrapper_html: {class: 'line'}, input_html: { value: params[:journal_id] }
+      hr
+      .line
+        label
+          strong Authors
+      .line.left
+        = text_field_tag "new_author_1", nil, placeholder: "new author"
+        br
+        br
+        = text_field_tag "new_author_2", nil, placeholder: "new author"
+      .line
+        = f.submit

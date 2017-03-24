@@ -1,4 +1,14 @@
 class CategoryReconciler
+
+  def self.shift(cato, from_cat, to_cat)
+    from_cat_val = cato.cat[from_cat]
+    subtraction_amount = from_cat_val / 3
+    cato.categorization[from_cat] = (from_cat_val - subtraction_amount).to_s
+    to_cat_val = cato.cat[to_cat]
+    cato.categorization[to_cat] = (to_cat_val + subtraction_amount).to_s
+    cato.save
+  end
+
   def self.reconcile_journal_with_pubs(journal, average = {})
     pubs = journal.publications.articles
     normalized_average_values = normalize get_average(pubs)
