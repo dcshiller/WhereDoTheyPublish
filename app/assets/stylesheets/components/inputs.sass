@@ -1,16 +1,17 @@
 input[type="text"], input[type="number"], select, input[type="checkbox"]
-  width: 25vw
-  float: right
-  height: 2.5vw
-  font-size: 1.5vw
-  color: grey
-  text-align: right
   background: lighten(lightgrey, 10%)
-  padding: .3vw
   border-radius: .4vw
-  vertical-align: middle
+  color: grey
+  font-size: 1.5vw
+  height: 2.5vw
+  padding: .3vw
+  // vertical-align: middle
+  width: 25vw
   &:focus
     outline-color: black
+
+input::-webkit-input-placeholder
+  color: lightgrey
 
 input.search, select.search 
   display: block
@@ -19,48 +20,51 @@ input.search, select.search
   text-align: center
 
 input[type="number"]
-  width: 6vw
+  width: 3vw
 input[type="checkbox"]
-  width: 1.5vw
   background: black
+  width: 1.5vw
   &:checked
     background: green
 
 form
   // background: lighten(lightgrey, 15%)
   // border: 1px solid lightgrey
-  padding: 1vw
-  margin: auto
-  width: 40vw
+  display: flex
+  flex-direction: column
   font-size: 1.5vw
+  margin: auto
+  padding: 1vw
+  width: 40vw
   .line
-    width: 100%
+    align-items: center
+    display: flex
+    flex-direction: row
     height: 6vh
     margin-bottom: 1.5vh
-    &:after
-      width: 100%
-      content: ""
-      clear: both
-  .line.left input
-    float: left
-    text-align: left
+    width: 100%
+    input
+      flex-grow: 1
+      &:not(:last-of-type)
+        margin-right: 10px
+    label
+      margin-right: 20px
 
 input[type="submit"]
-  font-family: 'Permanent Marker', cursive
-  font-size: 2vh
   background: lightgrey
-  padding: 1.5vh
-  margin: auto
-  margin-top: 5vh
-  border-radius: 5px
-  text-align: center
-  box-shadow: 3px 3px rgba(20, 20, 20, .2), -3px 3px rgba(20, 20, 20, .2), 3px -3px rgba(20, 20, 20, .2), -3px -3px rgba(20, 20, 20, .2)
   border: 1px solid rgba(20, 20, 20, .2)
-  // background: radial-gradient(ellipse, white 20%, darken(white, 5%) 90%, grey)
+  border-radius: 5px
+  box-shadow: 3px 3px rgba(20, 20, 20, .2), -3px 3px rgba(20, 20, 20, .2), 3px -3px rgba(20, 20, 20, .2), -3px -3px rgba(20, 20, 20, .2)
   color: inherit
   display: block
+  font-family: 'Permanent Marker', cursive
+  font-size: 2vh
+  margin: auto
+  padding: 1.5vh
+  margin-top: 5vh
+  text-align: center
+  // background: radial-gradient(ellipse, white 20%, darken(white, 5%) 90%, grey)
   width: 14vw
   &:hover
     background: white
     transition: background .3s
-

@@ -3,7 +3,9 @@
     h1 #{@journal.proper_name}
     h4.center Journal
     h3 Navigation
-    = link_to "Edit", edit_journal_path(@journal)
+    = link_to "Edit Journal", edit_journal_path(@journal)
+    br
+    = link_to "New Publication", new_publication_path(publication: { journal_id: @journal.id })
     br
     = link_to "Affinities", journal_affinities_path(@journal)
     br

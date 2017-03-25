@@ -11,7 +11,6 @@ class PubSaver
 
   def self.assign_authorships(pub, authors)
     publication = Publication.create(title: pub.title&.proper_titlecase, journal_id: pub.journal_id, publication_year: pub.publication_year, categorization: average_cat)
-    debugger
     authors.each do |author|
       Authorship.create(author: author, publication: publication)
     end

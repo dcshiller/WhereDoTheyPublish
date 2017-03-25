@@ -10,7 +10,7 @@
         = link_to @year + 1, year_journal_publications_path(@journal, @year + 1), class: "small-year"unless @year + 1 > (@journal.publication_end || 3000)
       .center Article Count: #{@publications.count}
       hr
-      .center= link_to "new publication", new_publication_path(journal_id: @journal.id, publication_year: @year)
+      .center= link_to "new publication", new_publication_path(publication: {journal_id: @journal.id, publication_year: @year})
     table.standard.two_columns
       tbody
         - @publications.each do |publication|

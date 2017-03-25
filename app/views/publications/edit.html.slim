@@ -4,19 +4,26 @@
     h4.center Publication
     hr
     = simple_form_for @publication do |f|
-      = f.input :display_title, wrapper_html: {class: 'line'}
-      = f.input :publication_year, as: :numeric, wrapper_html: {class: 'line'}
-      = f.input :publication_type, as: :select, collection: ["article", "book review", "errata"], wrapper_html: {class: 'line'}
-      br
-      hr
+      = f.input :title, wrapper_html: {class: 'line'}, placeholder: "Connectionism and Cognitive Architecture"
       .line
-        label 
+        = f.input :publication_year, label: "Year", as: :numeric, wrapper: false, placeholder: "1988", input_html: { style: "width: 8vw; margin-right: 2vw" , value: params[:publication_year] }
+        span Journal &nbsp &nbsp
+        h4.center= Journal.find(@publication.journal_id).proper_name
+      .line
+        = f.input :volume, label: "Vol.", as: :numeric, wrapper: false, placeholder: "28"
+        = f.input :number, label: "Num.", wrapper: false, placeholder: "1-2", input_html: { style: "width: 4vw" }
+        = f.input :pages,  label: "Pp.", wrapper: false, input_html: { style: "width: 8vw" }, placeholder: "28-71"
+      .line
+        = f.input :publication_type, as: :select, collection: ["article", "book review", "errata"]
+      = f.input :journal_id, as: :hidden, input_html: { value: @publication.journal_id }
+      .line
+        label
           strong Authors
-      - @publication.authors.each.with_index do |author, idx|
-        .line
-          label= link_to author.name, author_path(author)
-          = check_box_tag "author_#{idx}", author.id, 1
-      .line.left
+        - @publication.authors.each.with_index do |author, idx|
+          .line
+            label= link_to author.name, author_path(author)
+            = check_box_tag "author_#{idx}", author.id, 1
+      .line
         = text_field_tag "new_author_1", nil, placeholder: "new author"
       .line
         = f.submit

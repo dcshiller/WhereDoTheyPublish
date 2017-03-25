@@ -12,7 +12,7 @@ class PublicationsController < ApplicationController
   end
 
   def new
-    @publication = Publication.new
+    @publication = Publication.new(publication_params)
   end
 
   def create
@@ -22,7 +22,7 @@ class PublicationsController < ApplicationController
     @publication.update(authors: authors, categorization: {}) unless authors.blank?
     authors.each { |author| CategoryReconciler.reconcile(@publication, author.cat) }
     CategoryReconciler.reconcile(@publication, @publication.journal.cat)
-    redirect_to publication_path(@publication)
+    redirect_to year_journal_publications_path(@publication.journal, @publication.publication_year)
   end
 
   def edit
@@ -35,7 +35,7 @@ class PublicationsController < ApplicationController
     authors = retrieve_authors
     @publication.update_attributes(publication_params)
     @publication.update_attributes(authors: authors) unless authors.blank?
-    render :edit
+    redirect_to year_journal_publications_path(@publication.journal, @publication.publication_year)
   end
 
   def destroy
@@ -61,6 +61,6 @@ class PublicationsController < ApplicationController
   end
 
   def publication_params
-    params.require(:publication).permit(:publication_year, :title, :display_title, :publication_type, :volume, :number, :pages, :journal_id)
+    params[:publication].permit(:publication_year, :title, :display_title, :publication_type, :volume, :number, :pages, :journal_id)
   end
 end
