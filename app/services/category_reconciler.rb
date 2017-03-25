@@ -1,5 +1,4 @@
 class CategoryReconciler
-
   def self.shift(cato, from_cat, to_cat)
     from_cat_val = cato.cat[from_cat]
     subtraction_amount = from_cat_val / 3

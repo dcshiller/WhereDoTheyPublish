@@ -1,5 +1,5 @@
 class RandomCategorizerJob
-    @queue = :queue
+  @queue = :queue
 
   def self.perform
     time = Time.now
