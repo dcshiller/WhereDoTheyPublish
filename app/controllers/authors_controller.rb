@@ -7,7 +7,7 @@ class AuthorsController < ApplicationController
   end
 
   def show
-    @publications = @author.publications.articles.paginate(page: params[:page], per_page: 10).order(:publication_year)
+    @publications = @author.publications.articles.paginate(page: params[:page], per_page: 10).order(:publication_year, :volume, :number, :pages)
     sift_categories(@author)
   end
 
@@ -22,7 +22,6 @@ class AuthorsController < ApplicationController
     else
       @author.update_attributes(author_params)
     end
-    @publications = @author.publications.paginate(page: params[:page], per_page: 10).order(:publication_year)
     redirect_to author_path(@author || other_author)
   end
 

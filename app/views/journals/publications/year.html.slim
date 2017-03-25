@@ -11,12 +11,12 @@
       .center Article Count: #{@publications.count}
       hr
       .center= link_to "new publication", new_publication_path(publication: {journal_id: @journal.id, publication_year: @year})
-    table.standard.two_columns
+    table.standard
       tbody
         - @publications.each do |publication|
           tr
             td= link_to publication.proper_title || "(title missing)", edit_publication_path(publication), class: "no_link_display"
-            td= category_name[publication.primary_category]
+            td= publication.primary_category_name
             td 
               - publication.authors.each.with_index do |author, idx|
                 = link_to author.name, author_path(author)

@@ -10,6 +10,11 @@
       - @publications.each do |publication|
         tr
           td= publication.publication_year
+          td= publication.primary_category_name
+          td
+             = publication.volume if publication.volume
+             = "(#{publication.number}):" if publication.number
+             = publication.pages if publication.pages
           td= link_to publication.proper_title || "(title missing)", edit_publication_path(publication), class: "no_link_display"
           td= link_to publication.journal.name, year_journal_publications_path(publication.journal, publication.publication_year)
           td= link_to "B", publication_path(publication, publication: { publication_type: "book review" } ), method: "patch", remote: true, data: { confirm: "Are you sure you want to mark this as a book review: #{publication.proper_title}" }, onclick: "history.go(0)"

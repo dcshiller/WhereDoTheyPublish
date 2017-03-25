@@ -6,7 +6,7 @@
     = simple_form_for @publication do |f|
       = f.input :title, wrapper_html: {class: 'line'}, placeholder: "Connectionism and Cognitive Architecture"
       .line
-        = f.input :publication_year, label: "Year", as: :numeric, wrapper: false, placeholder: "1988", input_html: { style: "width: 8vw; margin-right: 2vw" , value: params[:publication_year] }
+        = f.input :publication_year, label: "Year", as: :numeric, wrapper: false, placeholder: "1988", input_html: { style: "width: 8vw; margin-right: 2vw" , value: @publication.publication_year }
         span Journal &nbsp &nbsp
         h4.center= Journal.find(@publication.journal_id).proper_name
       .line
