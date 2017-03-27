@@ -47,12 +47,13 @@ class CategoryReconciler
   end
 
   def self.get_average(categorizables)
+    cat_count = categorizables.count
     categorizables.inject(Hash.new(0)) do |accum, pub|
       pub.cat.each do |k, v|
         accum[k] = accum[k] + v
       end
       accum
-    end.map { |k, v| [k, v / categorizables.count] }
+    end.map { |k, v| [k, v / cat_count] }
   end
 
   def self.get_average_hash(categorizables)
@@ -68,7 +69,7 @@ class CategoryReconciler
   def self.reconcile(reconcilee, values, average = {})
     new_values = Hash.new(0)
     reconcilee.cat.each do |k,v|
-      new_values[k] = Math.sqrt(v.to_i**2 + ((values[k].to_i - (average[k] || 0))**2))
+      new_values[k] = Math.sqrt(v**2 + ((values[k] - (average[k] || 0))**2))
     end
     (values.keys - reconcilee.cat.keys).each do |k|
       new_values[k] = values[k]
@@ -80,6 +81,6 @@ class CategoryReconciler
   def self.normalize(values)
     sum = values.inject(0) { |sum, (_, v)| sum + v }
     return {} unless sum > 0
-    Hash[values.map { |k,v| [k, ((v*100)/sum).to_i] }]
+    Hash[values.map { |k,v| [k, ((v * 100) / sum).to_i] }]
   end
 end

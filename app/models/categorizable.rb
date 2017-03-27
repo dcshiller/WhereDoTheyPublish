@@ -29,7 +29,7 @@ module Categorizable
   end
 
   def cat
-    Hash[categorization.map{ |k,v| [k, v.to_i] }]
+    @cat ||= Hash[categorization.map{ |k,v| [k, v.to_i] }]
   end
 
   def cat=(value)
