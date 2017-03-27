@@ -16,7 +16,6 @@ module Categorizable
       lp: "Philosophy of Law",
       md: "Medieval Philosophy",
       me: "Medical Ethics",
-      fp: "Feminist Philosophy",
       pa: "Aesthetics",
       ap: "Ancient Philosophy",
       as: "Asian Philosophy",

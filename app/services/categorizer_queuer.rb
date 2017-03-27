@@ -8,7 +8,7 @@ class CategorizerQueuer
   end
 
   def self.queue_authors
-    average = CategoryReconciler.get_average_hash(Publication.order("RANDOM()").limit(10000))
+      average = CategoryReconciler.get_average_hash(Publication.order("RANDOM()").limit(10000))
 
     Author.pluck(:id).each_slice(100) do |a_ids|
       Resque.enqueue(AuthorCategorizerJob, a_ids, average)

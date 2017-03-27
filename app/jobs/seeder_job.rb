@@ -43,7 +43,7 @@ class SeederJob
               cs: %w[Cognitive Brain Neuro Hippocampus],
               em: %w[Epistemic Evidence Belief Credence Knowledge Empiricism Coherentism Foundationalism Probability Bayesianism ],
               et: %w[Fair Deontic Moral Ethic Desert Consequentialism Value Rights Justice Good Wellbeing Obligation Charity Utilitarianism Deontology],
-              fp: %w[Beauvoir Pornography Queer Feminist Disability Disabled Gender Race Lesbian Sex],
+              # fp: %w[Beauvoir Pornography Queer Feminist Disability Disabled Gender Race Lesbian Sex],
               ha: %w[Wittgenstein Russell Moore Frege],
               lo: %w[Axiom Computability Completeness Necessity Logic],
               me: %w[Euthanasia Abortion Doctor Patient Drug Death Life Health Disease Consent],

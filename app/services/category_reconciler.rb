@@ -69,7 +69,7 @@ class CategoryReconciler
   def self.reconcile(reconcilee, values, average = {})
     new_values = Hash.new(0)
     reconcilee.cat.each do |k,v|
-      new_values[k] = Math.sqrt(v**2 + ((values[k] - (average[k] || 0))**2))
+      new_values[k] = Math.sqrt(v**2 + (((values[k] || 0) - (average[k] || 0))**2))
     end
     (values.keys - reconcilee.cat.keys).each do |k|
       new_values[k] = values[k]
