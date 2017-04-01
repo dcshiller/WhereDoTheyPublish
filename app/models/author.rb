@@ -31,6 +31,13 @@ class Author < ActiveRecord::Base
     first_name .sp middle_initial .sp last_name
   end
 
+  def just_initials?
+    not not
+    (first_name&.strip || "").match(/(^$)|^(.|.\.)$/) &&
+    (middle_initial&.strip || "").match(/(^$)|^(.|.\.)$/) &&
+    (last_name&.strip || "").match(/(^$)|^(.|.\.)$/)
+  end
+
   def merge_into(other_author)
     return unless self != other_author
     authorships.update_all(author_id: other_author.id)

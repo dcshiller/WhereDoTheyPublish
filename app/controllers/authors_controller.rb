@@ -3,7 +3,7 @@ class AuthorsController < ApplicationController
   before_action :find_author, only: [:show, :edit, :update]
 
   def index
-    @authors = Author.order(:last_name).paginate(page: params[:page], per_page: 20)
+    @authors = Author.distinct.joins(:publications).merge(Publication.articles).order(:last_name).paginate(page: params[:page], per_page: 20)
   end
 
   def show
