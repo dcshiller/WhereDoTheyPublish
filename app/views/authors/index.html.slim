@@ -3,10 +3,23 @@
   #display_panel
     h1 Authors
     hr
-    ul.two_columns
-      - @authors.each do |author|
-        li= link_to (author.first_name .sp author.middle_initial .sp author.last_name), author_path(author.id)
+    p Enter a name in the search field to search the authors in the database. Capitalization matters. If you are unsure of the name, you can also enter initials.
+    = form_tag authors_path, method: 'get'
+      = text_field_tag "name", @search_string, class: "search", placeholder: "author name"
+      = submit_tag "Search"
+    - unless !@none_found && @authors.blank?
+      h2.center Results:
+      - if @none_found
+        p.center None found
+      ul.center class=('two_columns' if @authors.count > 5)
+        - @authors.each do |author|
+          li= link_to (author.first_name .sp author.middle_initial .sp author.last_name), author_path(author.id)
+
+    / h1 Authors
+    / hr
+    / ul.two_columns
+    /   - @authors.each do |author|
+    /     li= link_to (author.first_name .sp author.middle_initial .sp author.last_name), author_path(author.id)
 
   footer
-    p.center or, #{link_to "search by author", find_authors_path}
-    = will_paginate @authors
+    = will_paginate @authors  

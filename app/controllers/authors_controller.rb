@@ -3,7 +3,10 @@ class AuthorsController < ApplicationController
   before_action :find_author, only: [:show, :edit, :update]
 
   def index
-    @authors = Author.distinct.joins(:publications).merge(Publication.articles).order(:last_name).paginate(page: params[:page], per_page: 20)
+    @search_string = params[:name]
+    @authors = @search_string ? Author.with_name_like(@search_string).paginate(page: params[:page], per_page: 6) : []
+    @none_found = true if @search_string && !@authors.exists?
+  
   end
 
   def show
@@ -26,9 +29,6 @@ class AuthorsController < ApplicationController
   end
 
   def find
-    @search_string = params[:name]
-    @authors = @search_string ? Author.with_name_like(@search_string).limit(10) : []
-    @none_found = true if @search_string && !@authors.exists?
   end
 
   private
