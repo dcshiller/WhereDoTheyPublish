@@ -16,6 +16,15 @@ class Publication < ActiveRecord::Base
     titles == string_to_match
   end
 
+  def one_page?
+    return unless pages && page_array.count > 1
+      (page_array[1] - page_array[0]).between?(0,1)
+  end
+
+  def page_array
+    @page_arr ||= pages.split("-").map(&:to_i)
+  end
+
   def proper_title
     (display_title || title).to_s.html_safe
   end
