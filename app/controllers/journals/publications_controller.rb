@@ -9,7 +9,7 @@ class Journals::PublicationsController < ApplicationController
   def year
     @year = params[:year].to_i
     @journal = Journal.find(params[:journal_id])
-    @publications = @journal.articles.where(publication_year: @year).paginate(page: params[:page], per_page: 9).order(:volume, :number, :pages, :title)
+    @publications = @journal.articles.where(publication_year: @year).paginate(page: params[:page], per_page: 100).order(:volume, :number, :pages, :title)
   end
 
   private

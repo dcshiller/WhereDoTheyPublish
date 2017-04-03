@@ -3,7 +3,9 @@ class PublicationsController < ApplicationController
   before_action :set_show_values
 
   def index
-    @publications = Publication.includes(:authors).includes(:journal).order(:title).paginate(page: params[:page], per_page: 5)
+    @search_string = params[:title]
+    @publications = @search_string ? Publication.articles.where("COALESCE(display_title, title) LIKE ?", "%#{@search_string&.split(" ")&.join("%")}%").includes(:authors).includes(:journal).order(:title).paginate(page: params[:page], per_page: 5) : []
+    @none_found = true if @search_string && !@publications.exists?
   end
 
   def show

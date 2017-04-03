@@ -3,12 +3,25 @@
   #display_panel
     h1 Publications
     hr
-    table
-      - @publications.each do |publication|
-        tr
-          td= link_to publication.proper_title || "(title missing)", edit_publication_path(publication), class: "no_link_display"
-          td= publication.authors.map(&:name).compact.join(", ")
-          td= publication.journal.name
+    p Enter a title in the search field to search the publications in the database. Capitalization matters.
+    = form_tag publications_path, method: 'get'
+      = text_field_tag "title", @search_string, class: "search", placeholder: "title"
+      br
+      = submit_tag "Search"
+    - unless !@none_found && @publications.blank?
+      h2.center Results:
+      - if @none_found
+        p.center None found
+      - else
+        table.standard
+          - @publications.each do |publication|
+            tr
+              td= link_to publication.proper_title || "(title missing)", edit_publication_path(publication), class: "no_link_display"
+              td= publication.authors.map(&:name).compact.join(", ")
+              td= publication.journal.name
 
-  footer
-    = will_paginate @publications
+    / h1 Publications
+    / hr
+  - unless @publications.blank?
+    footer
+      = will_paginate @publications

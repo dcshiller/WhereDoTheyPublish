@@ -10,11 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304193225) do
+ActiveRecord::Schema.define(version: 20170402160501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "affiliations", force: :cascade do |t|
+    t.integer  "institution_id",   null: false
+    t.integer  "author_id",        null: false
+    t.integer  "start_year"
+    t.integer  "end_year"
+    t.string   "affiliation_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["author_id"], name: "index_affiliations_on_author_id", using: :btree
+    t.index ["institution_id"], name: "index_affiliations_on_institution_id", using: :btree
+  end
 
   create_table "affinities", force: :cascade do |t|
     t.integer  "first_journal_id"
@@ -33,6 +45,8 @@ ActiveRecord::Schema.define(version: 20170304193225) do
     t.datetime "updated_at",                  null: false
     t.float    "gender"
     t.hstore   "categorization", default: {}, null: false
+    t.integer  "birth_year"
+    t.integer  "death_year"
     t.index ["last_name"], name: "index_authors_on_last_name", using: :btree
   end
 
@@ -43,6 +57,12 @@ ActiveRecord::Schema.define(version: 20170304193225) do
     t.datetime "updated_at",     null: false
     t.index ["author_id"], name: "index_authorships_on_author_id", using: :btree
     t.index ["publication_id"], name: "index_authorships_on_publication_id", using: :btree
+  end
+
+  create_table "institutions", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "journals", force: :cascade do |t|

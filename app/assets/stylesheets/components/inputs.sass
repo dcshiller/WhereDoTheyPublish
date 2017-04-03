@@ -21,6 +21,8 @@ input.search, select.search
 
 input[type="number"]
   width: 3vw
+  &.year
+    width: 6vw
 input[type="checkbox"]
   background: black
   width: 1.5vw
@@ -49,22 +51,3 @@ form
         margin-right: 10px
     label
       margin-right: 20px
-
-input[type="submit"]
-  background: lightgrey
-  border: 1px solid rgba(20, 20, 20, .2)
-  border-radius: 5px
-  box-shadow: 3px 3px rgba(20, 20, 20, .2), -3px 3px rgba(20, 20, 20, .2), 3px -3px rgba(20, 20, 20, .2), -3px -3px rgba(20, 20, 20, .2)
-  color: inherit
-  display: block
-  font-family: 'Permanent Marker', cursive
-  font-size: 2vh
-  margin: auto
-  padding: 1.5vh
-  margin-top: 5vh
-  text-align: center
-  // background: radial-gradient(ellipse, white 20%, darken(white, 5%) 90%, grey)
-  width: 14vw
-  &:hover
-    background: white
-    transition: background .3s

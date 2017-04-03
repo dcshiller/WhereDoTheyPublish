@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   root to: "pages#welcome"
   get 'about', to: "pages#about"
   resources :authors, only: [:index, :show, :edit, :update, :update] do
-    collection do
-      get 'find', to: 'authors#find'
+    scope module: :authors do
+      resource :affiliations, only: [:edit, :update]
     end
-  end
+   end
+  resources :institution, only: [:index]
   resources :journals, only: [:index, :show, :edit, :update] do
     scope module: :journals do
       resources :publications, only: [:index] do

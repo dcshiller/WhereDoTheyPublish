@@ -1,10 +1,10 @@
 #content_div
   #display_panel
     h1= link_to @author.name, author_path(@author)
-    h2.center Author Edit
+    h2.center Author Affiliation Edit
     hr
-    = simple_form_for @author, html: {class: "center"} do |f|
-      = f.input :first_name, wrapper_html: {class: 'line'}
+    = form_tag class: "center"
+      = input_tag :first_name, wrapper_html: {class: 'line'}
       br
       = f.input :middle_initial, wrapper_html: {class: 'line'}
       br

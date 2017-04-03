@@ -1,11 +1,17 @@
 
 #content_div
   #display_panel
-    h1 #{@author.name}
+    h1= @author.name
+    h4.center #{@author.birth_year || '?'} &#8212 #{@author.death_year}
     h2.center Author
     .center= link_to "(edit)", edit_author_path(@author)
-    = render "partials/categories"
-    hr  
+    br
+    .row
+      .box
+        = render "partials/categories"
+        = render "partials/affiliations"
+    hr
+    h3 Publications
     table.standard
       - @publications.each do |publication|
         tr

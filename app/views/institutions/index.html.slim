@@ -1,0 +1,11 @@
+
+#content_div
+  #display_panel
+    h1 Institutions
+    hr
+    ul.two_columns
+      - @institutions.each do |institution|
+        li= institution.name
+
+  footer
+    = will_paginate @institutions
