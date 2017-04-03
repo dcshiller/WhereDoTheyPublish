@@ -11,6 +11,6 @@
       = f.input :last_name, wrapper_html: {class: 'line'}
       br
       .line
-        = f.input :birth_year, input_html: {class: 'year'}
-        = f.input :death_year, input_html: {class: 'year'}
+        = f.input :birth_year, as: :numeric, input_html: {class: 'year'}
+        = f.input :death_year, as: :numeric, input_html: {class: 'year'}
       = f.submit

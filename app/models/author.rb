@@ -1,6 +1,7 @@
 class Author < ActiveRecord::Base
   include Categorizable
   has_many :authorships
+  has_many :affiliations
   has_many :publications, through: :authorships
   has_many :journals, through: :publications
   before_save :guess_gender

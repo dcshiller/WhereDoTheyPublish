@@ -18,7 +18,11 @@ class AuthorsController < ApplicationController
   end
 
   def update
-    other_author = (Author.where(author_params).to_a - [@author]).first
+    other_author = (Author.where(
+                                   first_name: author_params[:first_name],
+                                   middle_initial: author_params[:middle_initial],
+                                   last_name: author_params[:last_name]
+                                 ).to_a - [@author]).first
     unless other_author.blank?
       @author.merge_into(other_author)
       @author = other_author
