@@ -64,16 +64,16 @@ class CategoryReconciler
     hash.all? { |k,v| v.to_i < average[k].to_i + 3 }
   end
 
-  private
+  # private
 
   def self.reconcile(reconcilee, values, average = {})
     new_values = Hash.new(0)
     reconcilee.cat.each do |k,v|
-      new_values[k] = Math.sqrt(v**2 + (((values[k] || 0) - (average[k] || 0))**2))
+      new_values[k] = [0, (v + (((values[k] || 0) - (average[k] || 0))))].max
     end
-    (values.keys - reconcilee.cat.keys).each do |k|
-      new_values[k] = values[k]
-    end
+    # (values.keys - reconcilee.cat.keys).each do |k|
+    #   new_values[k] = values[k]
+    # end
     reconcilee.cat = normalize new_values
     reconcilee.save
   end

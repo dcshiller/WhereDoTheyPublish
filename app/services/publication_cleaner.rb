@@ -115,7 +115,7 @@ class PublicationCleaner
   end
 
   def self.remove_terminal_ones!
-    ('a'..'z').to_a.each do |letter|
+    (('a'..'z').to_a + ['?']).each do |letter|
       substitute_if_last!("#{letter}1",letter)
     end
   end
@@ -147,7 +147,7 @@ class PublicationCleaner
   end
 
   def self.titlize_quoted
-    pubs = Publication.where("title LIKE ?","%\'%")
+    pubs = Publication.where("title LIKE ? OR title LIKE ?","%\'%","%\"%")
     pubs.each do |pub|
       title = pub.display_title || pub.title.dup
       ('a'..'z').to_a.each do |letter|

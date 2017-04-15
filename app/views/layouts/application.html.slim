@@ -1,6 +1,6 @@
 html
   head
-    title Wheredotheypublish
+    title Philosophy Data Project
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     link href="https://fonts.googleapis.com/css?family=Hammersmith+One|Montserrat" rel="stylesheet"
@@ -13,9 +13,9 @@ html
   body
     navbar
       ul
-        li class=(@focused == "About" || @focused == "All" ? "focused" : "unfocused") = link_to "About", about_path
-        li class=(@focused == "Projects"  || @focused == "All" ? "focused" : "unfocused") = link_to "Projects", projects_path 
-        li class=(@focused == "Data"  || @focused == "All" ? "focused" : "unfocused") = link_to "Data", data_path
+        li class=(@focused == "About"     || @focused == "All" ? "focused" : "unfocused") = link_to "About", about_path
+        li class=(@focused == "Projects"  || @focused == "All" ? "focused" : "unfocused") = link_to "Projects", projects_path
+        li class=(@focused == "Data"      || @focused == "All" ? "focused" : "unfocused") = link_to "Data", data_path
       p
     div#side_bar
 

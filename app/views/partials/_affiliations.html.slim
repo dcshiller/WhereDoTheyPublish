@@ -1,6 +1,6 @@
-  h3 Affiliations
-  table
-    - @author.affiliations.each do |affiliation|
-      tr
-        td= affiliations.institution.name
-        td= affiliations.start_date .sp affiliations.end_date
+h3 Affiliations
+table
+  - @author.affiliations.each do |affiliation|
+    tr
+      td= affiliations.institution.name
+      td= affiliations.start_date .sp affiliations.end_date

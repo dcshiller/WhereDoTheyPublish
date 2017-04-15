@@ -2,28 +2,20 @@ module Categorizable
 
   def category_name
     {
-      pl: "Philosophy of Language",
-      pm: "Philosophy of Mind",
+      pl: "Language",
+      pm: "Mind",
       mt: "Metaphysics",
       em: "Epistemology",
-      cs: "Cognitive Science",
       lo: "Logic",
-      ps: "Philosophy of Science",
-      pb: "Philosophy of Biology",
+      ps: "Science",
       et: "Ethics",
-      fo: "Formal Philosophy",
-      po: "Political Philosophy",
-      lp: "Philosophy of Law",
-      md: "Medieval Philosophy",
-      me: "Medical Ethics",
+      po: "Politics and Law",
       pa: "Aesthetics",
-      ap: "Ancient Philosophy",
-      as: "Asian Philosophy",
-      mp: "Modern Philosophy",
-      ha: "History of Analytic",
-      pr: "Philosophy of Religion",
-      cp: "Continental Philosophy",
-      be: "Business Ethics"
+      ap: "Ancient",
+      as: "Asian",
+      ae: "Applied Ethics",
+      mp: "Modern",
+      pr: "Religion"
     }.with_indifferent_access
   end
 

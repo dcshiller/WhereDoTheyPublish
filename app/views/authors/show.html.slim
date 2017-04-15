@@ -1,4 +1,3 @@
-
 #content_div
   #display_panel
     h1= @author.name
@@ -6,9 +5,10 @@
     h2.center Author
     .center= link_to "(edit)", edit_author_path(@author)
     br
-    .row
-      .box
+    .row.align_top
+      .box width="50%"
         = render "partials/categories"
+      .box width="50%"
         = render "partials/affiliations"
     hr
     h3 Publications

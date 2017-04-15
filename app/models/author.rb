@@ -42,6 +42,10 @@ class Author < ActiveRecord::Base
   def merge_into(other_author)
     return unless self != other_author
     authorships.update_all(author_id: other_author.id)
+    affiliations.update_all(author_id: other_author.id)
+    other_author.birth_year = other_author.birth_year || birth_year
+    other_author.death_year = other_author.death_year || death_year
+    other_author.save
     destroy
   end
 

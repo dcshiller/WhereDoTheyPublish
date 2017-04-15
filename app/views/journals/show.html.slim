@@ -2,22 +2,35 @@
   #display_panel
     h1 #{@journal.proper_name}
     h4.center Journal
-    h3 Navigation
-    = link_to "Edit Journal", edit_journal_path(@journal)
     br
-    = link_to "New Publication", new_publication_path(publication: { journal_id: @journal.id })
     br
-    = link_to "Affinities", journal_affinities_path(@journal)
     br
-    = link_to "Publications by year", journal_publications_path(@journal)
-    h3 Statistics
-    table
-      tr
-        td Article Count: 
-        td #{@journal.articles.count}
-      tr
-      tr 
-      tr 
-        td Active Years: 
-        td #{@journal.publication_start || '?'} - #{@journal.publication_end}
-    = render "partials/categories"
+    .row.align_top
+      .box width="30%"
+        h3 Navigation
+        br
+        = link_to "Edit Journal", edit_journal_path(@journal)
+        br
+        br
+        = link_to "New Publication", new_publication_path(publication: { journal_id: @journal.id })
+        br
+        br
+        = link_to "Affinities", journal_affinities_path(@journal)
+        br
+        br
+        = link_to "Publications by Year", journal_publications_path(@journal)
+
+      .box width="30%"
+        h3 Statistics
+        br
+        table
+          tr
+            td Article Count: 
+            td #{@journal.articles.count}
+          tr
+          tr 
+          tr 
+            td Active Years: 
+            td #{@journal.publication_start || '?'} - #{@journal.publication_end}
+      .box width="30%"
+        = render "partials/categories"

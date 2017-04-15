@@ -1,4 +1,10 @@
 class CategorizerQueuer
+  def self.queue_all
+    queue_journals
+    queue_authors
+    queue_words
+  end
+
   def self.queue_journals
     average = CategoryReconciler.get_average_hash(Publication.order("RANDOM()").limit(10000))
 
