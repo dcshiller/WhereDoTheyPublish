@@ -1,4 +1,27 @@
 class AuthorCleaner
+  ACCENTED_CHARACTERS = %w[á Á é É í Í ó Ó ú Ú ý Ý ä Ä ë Ë ï Ï ö Ö ü Ü à À è È ì Ì ò Ò ù Ù ã Ã ñ Ñ õ Õ ç Ç].
+                        in_groups_of 2
+  
+  def self.remove_non_first_accented_caps!
+    ACCENTED_CHARACTERS.each do |(lc, uc)|
+      [:first_name, :middle_initial, :last_name].each do |name|
+        Author.where("#{name} LIKE '%#{uc}%'").find_each do |author|
+          current_names = author.send(name).split(" ")
+          current_names.map! do |current_name|
+            current_initial = current_name[0]
+            current_initial + current_name[1..-1].gsub(uc, lc)
+          end
+            new_name = current_names.join(" ")
+            author.update_attributes(name => new_name)
+        end
+        dups = Author.where(first_name: author.reload.first_name, middle_initial: author.middle_initial, last_name: author.last_name)
+        if dups.count > 1
+          dups[1].merge_into dups[0]
+        end
+      end
+    end
+  end
+
   def self.clean_all!
     delete_nils!
     delete_with_no_pubs!

@@ -4,10 +4,11 @@ class Publication < ActiveRecord::Base
   has_many :authors, through: :authorships, autosave: true
   belongs_to :journal
 
+  before_create :assign_cat
   validates :journal, presence: true
 
-  scope :published_between, -> (years) {where(publication_year: years[0]...years[1])}
-  scope :year, -> (value){ where(publication_year: value) }
+  scope :published_between, -> (years) { where(publication_year: years[0]...years[1]) }
+  scope :year, -> (value) { where(publication_year: value) }
   scope :articles, -> { where(publication_type: "article") }
   scope :book_reviews, -> { where(publication_type: "book_review") }
   scope :errata, -> { where(publication_type: "errata") }
@@ -18,7 +19,7 @@ class Publication < ActiveRecord::Base
 
   def one_page?
     return unless pages && page_array.count > 1
-      (page_array[1] - page_array[0]).between?(0,1)
+    (page_array[1] - page_array[0]).between?(0,1)
   end
 
   def page_array
@@ -35,5 +36,9 @@ class Publication < ActiveRecord::Base
 
   def journal?(title_to_match)
     journal.title == title_to_match
+  end
+
+  def assign_cat
+    self.categorization = starting_cat
   end
 end

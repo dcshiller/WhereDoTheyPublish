@@ -47,4 +47,11 @@ class AuthorCleanerTest < ActiveSupport::TestCase
     assert_equal "B.", Author.second.middle_initial
     there_must_be 3, Author
   end
+
+  test "uncapitalizes non-first characters" do
+    create :author, first_name: "ÝartÄ", last_name: "ËËËrg", middle_initial: ""
+    AuthorCleaner.remove_non_first_accented_caps!
+    assert_equal "Ýartä", Author.first.first_name
+    assert_equal "Ëëërg", Author.first.last_name
+  end
 end

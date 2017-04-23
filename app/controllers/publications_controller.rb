@@ -21,7 +21,7 @@ class PublicationsController < ApplicationController
     attribute_values = publication_params
     @publication = Publication.create(attribute_values)
     authors = retrieve_authors
-    @publication.update(authors: authors, categorization: {}) unless authors.blank?
+    @publication.update(authors: authors) unless authors.blank?
     authors.each { |author| CategoryReconciler.reconcile(@publication, author.cat) }
     CategoryReconciler.reconcile(@publication, @publication.journal.cat)
     redirect_to year_journal_publications_path(@publication.journal, @publication.publication_year)
