@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
     @focused_projects = "Gender Balance Chart"
     @gender_by_year = {}
     @gender_by_year = Rails.cache.fetch('gender_chart') { Hash[
-        *(1900..2017).map { |year| [year, Publication.year(year).joins(:authors).average(:gender).to_f] }.flatten
+        *(1876..2016).map { |year| [year, Publication.articles.year(year).joins(:authors).average(:gender).to_f] }.flatten
     ] }
   end
 

@@ -32,7 +32,7 @@ class JournalCleaner
       title = pub.proper_title
       year = pub.publication_year
       id = pub.id
-      candidates = journal.publications.where("COALESCE(display_title,title) IS IN ['#{title}', \'\'] OR title IS NULL").where(publication_year: year).where.not(id: id).distinct
+      candidates = journal.publications.where("COALESCE(display_title,title) IN (\"#{title}\", \'\') OR title IS NULL").where(publication_year: year).where.not(id: id).distinct
       unless candidates.blank?
         authors = pub.authors.sort
         candidates.select {|c| c.authors.sort == authors}
