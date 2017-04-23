@@ -62,13 +62,6 @@ class ProjectsController < ApplicationController
     @gender_by_year = Rails.cache.fetch('gender_chart') { Hash[
         *(1900..2017).map { |year| [year, Publication.year(year).joins(:authors).average(:gender).to_f] }.flatten
     ] }
-    @journal = Journal.find_by(id: params[:id])
-    if @journal
-      @journal_gender_by_year = {}
-      @journal.years.each do |year|
-        @journal_gender_by_year[year] = @journal.publications.year(year).joins(:authors).average(:gender)
-      end
-    end
   end
 
   private

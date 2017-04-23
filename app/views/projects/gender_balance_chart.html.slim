@@ -1,0 +1,10 @@
+#content_div
+  #display_panel
+    h1 Gender Balance
+    hr
+    p Gender Balances
+    = area_chart @gender_by_year
+    / = form_tag :gender_balance_chart_projects, method: :get do
+    /   = select_tag :id, options_from_collection_for_select(@journals, :id, :name, @journal&.id), class: 'search'
+    /   = submit_tag "Gender Balance", class: "center"
+    / / = area_chart @journal_gender_by_year
