@@ -1,6 +1,7 @@
 .row#specifier_bar
   .two_columns
     ul.menu
+      li.navigation_button#prev <<
       li class=(@focused_projects == "Where?" ? "focused" : :unfocused)
         = link_to "Where?", where_do_they_publish_projects_path
       li class=(@focused_projects == "Affinity" ? "focused" : :unfocused)
@@ -11,3 +12,20 @@
         = link_to "P. Counts", publication_counts_projects_path
       li class=(@focused_projects == "Gender Balance Chart" ? "focused" : :unfocused)
         = link_to "G. Balance", gender_balance_chart_projects_path
+      li.navigation_button#next >>
+
+javascript:
+  document.querySelector("#prev").addEventListener("click", function(){
+    project_buttons = document.querySelectorAll('#specifier_bar li:not(.navigation_button')
+    first = project_buttons[0]
+    parent = first.parentNode
+    first.remove()
+    parent.insertBefore(first, document.querySelector('#next'))
+  })
+  document.querySelector("#next").addEventListener("click", function(){
+    project_buttons = document.querySelectorAll('#specifier_bar li:not(.navigation_button')
+    last = project_buttons[project_buttons.length - 1]
+    parent = last.parentNode
+    last.remove()
+    parent.insertBefore(last, project_buttons[0])
+  })
