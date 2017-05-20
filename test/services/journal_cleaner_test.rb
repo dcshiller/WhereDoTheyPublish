@@ -28,6 +28,15 @@ class JournalCleanerTest < ActiveSupport::TestCase
     there_must_be 1, Publication
   end
 
+  test "it removes dups by display_title" do
+    author = create :author
+    journal = create :journal
+    create :publication, journal: journal, authors: [author], title: "Two Dogmas of Semantic Essentialism", publication_year: 1970
+    create :publication, journal: journal, authors: [author], display_title: "Two Dogmas of Semantic Essentialism", publication_year: 1970
+    JournalCleaner.remove_dups! journal
+    there_must_be 1, Publication
+  end
+
   test "it does not remove non-dups" do
     author = create :author
     journal = create :journal
