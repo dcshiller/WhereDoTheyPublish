@@ -28,6 +28,11 @@
             td Article Count: 
             td #{@journal.articles.count}
           tr
+          tr
+          tr
+            td Author Count: 
+            td #{@journal.authors.uniq.count}
+          tr
           tr 
           tr 
             td Active Years: 

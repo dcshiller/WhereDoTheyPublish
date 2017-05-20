@@ -28,6 +28,8 @@ Rails.application.routes.draw do
       post :where_do_they_publish, to: "projects#where_do_they_publish_query"
       get :journal_affinity, to: "projects#journal_affinity_show"
       post :journal_affinity, to: "projects#journal_affinity_query"
+      get :title_ngram_chart, to: "projects#title_ngram_chart"
+      post :title_ngram_chart, to: "projects#title_ngram_chart"
     end
   end
 

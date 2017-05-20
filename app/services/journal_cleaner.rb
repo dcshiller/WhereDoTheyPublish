@@ -3,7 +3,7 @@ class JournalCleaner
   def self.remove_dups!(journal)
     JournalCleaner.new(journal).remove_dups!
   end
-  
+
   def self.queue_dups_jobs
     Journal.find_each do |j|
       Resque.enqueue(DupRemoverJob, j.id)
@@ -38,7 +38,7 @@ class JournalCleaner
       title = pub.proper_title
       year = pub.publication_year
       id = pub.id
-      candidates = journal.publications.where("COALESCE(display_title,title) = ANY ( ARRAY[\'#{title}\', \'\']) OR title IS NULL").where(publication_year: year).where.not(id: id).distinct
+      candidates = journal.publications.where("COALESCE(display_title,title) = ANY ( ARRAY[?, \'\']) OR title IS NULL", title).where(publication_year: year).where.not(id: id).distinct
       unless candidates.blank?
         authors = pub.authors.sort
         candidates.select {|c| c.authors.sort == authors}

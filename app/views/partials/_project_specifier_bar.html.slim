@@ -12,6 +12,8 @@
         = link_to "P. Counts", publication_counts_projects_path
       li class=(@focused_projects == "Gender Balance Chart" ? "focused" : :unfocused)
         = link_to "G. Balance", gender_balance_chart_projects_path
+      li class=(@focused_projects == "Tile Ngram Chart" ? "focused" : :unfocused)
+        = link_to "T. Ngrams", title_ngram_chart_projects_path
       li.navigation_button#next >>
 
 javascript:

@@ -29,7 +29,7 @@ class JournalsController < ApplicationController
   private
 
   def find_journal
-    @journal = Journal.find(params[:id])
+    @journal = Journal.includes(:publications).includes(:authors).find(params[:id])
   end
 
   def set_show_values
