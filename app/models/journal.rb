@@ -1,6 +1,7 @@
 class Journal < ActiveRecord::Base
   include Categorizable
   has_many :publications
+  has_many :articles
   has_many :authors, through: :publications
   has_many :authorships, through: :publications
   has_many :affinities, foreign_key: :first_journal_id
@@ -9,6 +10,10 @@ class Journal < ActiveRecord::Base
 
   def articles
     publications.articles
+  end
+
+  def article_authors
+    Author.where(id: authorships.where(publication_id: articles.pluck(:id)).pluck(:author_id).uniq)
   end
 
   def years
