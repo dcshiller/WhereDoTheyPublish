@@ -59,19 +59,24 @@ class ProjectsController < ApplicationController
     @journals = Journal.all
     @focused_projects = "Gender Balance Chart"
     @gender_by_year = {}
-    @gender_by_year = Rails.cache.fetch('gender_chart') { Hash[
-        *(1876..2016).map { |year| [year, Publication.articles.year(year).joins(:authors).average(:gender).to_f] }.flatten
-    ] }
+    # @gender_by_year = Rails.cache.fetch('gender_chart') { Hash[
+    #     *(1876..2016).map { |year| [year, Publication.articles.year(year).joins(:authors).average(:gender).to_f] }.flatten
+    # ] }
+    @gender_by_year = Rails.cache.fetch('gender_chart') { Publication.articles.joins(:authors).group(:publication_year).average(:gender) }
   end
 
   def title_ngram_chart
     if params[:title]
       @journals = Journal.all
       @focused_projects = "Title Ngram Chart"
-      @gender_by_year = {}
-      @title_by_year = Rails.cache.fetch('ngram_chart') { Hash[
-          *(1876..2016).map { |year| [year, Publication.where("title LIKE '%#{params[:title]}%'").articles.year(year).count("publications.id").to_f / Publication.year(year).count ] }.flatten
-      ] }
+      matching_pubs = Publication.where("title LIKE ?", "%#{params[:title]}%").articles.group("publication_year").count
+      years = matching_pubs.keys
+      total_pubs = Publication.articles.year(years).group(:publication_year).count
+      @title_by_year = Hash[
+        *(1876..2016).map do |year|
+          [ year, matching_pubs[year] ? matching_pubs[year].to_f / total_pubs[year] : 0 ]
+        end.flatten
+      ]
     end
   end
 
