@@ -7,7 +7,8 @@
     br
     .row.align_top
       .box width="30%"
-        h3 Navigation
+        h3
+          u Navigation
         br
         = link_to "Edit Journal", edit_journal_path(@journal)
         br
@@ -15,12 +16,12 @@
         = link_to "New Publication", new_publication_path(publication: { journal_id: @journal.id })
         br
         br
-        = link_to "Affinities", journal_affinities_path(@journal)
+        = link_to "View Affinities", journal_affinities_path(@journal)
         br
         br
-        = link_to "Publications by Year", journal_publications_path(@journal)
+        = link_to "View Publications (by Year)", journal_publications_path(@journal)
 
-      .box width="30%"
+      .dashed_box
         h3 Statistics
         br
         table
@@ -37,5 +38,5 @@
           tr 
             td Active Years: 
             td #{@journal.publication_start || '?'} - #{@journal.publication_end}
-      .box width="30%"
+      .dashed_box
         = render "partials/categories"

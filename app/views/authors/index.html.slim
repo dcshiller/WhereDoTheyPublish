@@ -1,12 +1,12 @@
-
 #content_div
   #display_panel
     h1 Authors
     hr
-    p Enter a name in the search field to search the authors in the database. Capitalization matters. If you are unsure of the name, you can also enter initials.
+    p Enter a name in the search field to search the authors in the database. Capitalization matters. 
+    
+    p If you are unsure of the name, you can also enter partial names or initials.
     = form_tag authors_path, method: 'get'
       = text_field_tag "name", @search_string, class: "search", placeholder: "author name"
-      br
       = submit_tag "Search"
     - unless !@none_found && @authors.blank?
       h2.center Results:
@@ -16,12 +16,6 @@
         - @authors.each do |author|
           li= link_to (author.first_name .sp author.middle_initial .sp author.last_name), author_path(author.id)
 
-    / h1 Authors
-    / hr
-    / ul.two_columns
-    /   - @authors.each do |author|
-    /     li= link_to (author.first_name .sp author.middle_initial .sp author.last_name), author_path(author.id)
-
     - unless @authors.blank?
       footer
-        = will_paginate @authors  
+        = will_paginate @authors

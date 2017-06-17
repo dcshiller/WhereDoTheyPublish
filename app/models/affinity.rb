@@ -5,7 +5,6 @@ class Affinity < ActiveRecord::Base
   def self.calculate_affinity(journal_one, journal_two)
     return if journal_two.name <= journal_one.name
     affinity = Affinity.find_or_create_by(journal_one: journal_one, journal_two: journal_two)
-    return if affinity.affinity && affinity.updated_at > 1.day.ago
     affinity_rating = journal_one.co_publication_percentage(journal_two)
     affinity.update_attributes(affinity: affinity_rating)
   end
