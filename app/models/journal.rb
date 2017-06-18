@@ -4,8 +4,9 @@ class Journal < ActiveRecord::Base
   has_many :articles
   has_many :authors, through: :publications
   has_many :authorships, through: :publications
-  has_many :affinities, foreign_key: :first_journal_id
+  has_many :affinities, foreign_key: :first_journal_id, dependent: :destroy
 
+  scope :empty, -> { where.not(id: Journal.joins(:publications).ids) }
   scope :philosophy, -> { where(philosophy: true) }
 
   def articles
