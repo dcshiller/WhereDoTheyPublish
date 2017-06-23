@@ -2,7 +2,7 @@
   #display_panel
     h1 Gender Balance
     hr
-    p Gender Balances
+    p This is a chart of gender percentages among authors per year. The genders of authors are inferred from first names on the basis of stastical rname-gender regularities. The chart shows the percentage of male (vs. female) authors.
     = area_chart @gender_by_year
     / = form_tag :gender_balance_chart_projects, method: :get do
     /   = select_tag :id, options_from_collection_for_select(@journals, :id, :name, @journal&.id), class: 'search'

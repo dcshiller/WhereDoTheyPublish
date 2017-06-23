@@ -14,11 +14,18 @@
       br
       = submit_tag "Affinity Rating", class: "center"
     - if @journal_1 && @journal_2
-      p= link_to @journal_1&.name, journal_path(@journal_1)
-      p= link_to @journal_2&.name, journal_path(@journal_2)
       p
+       | Affinity of 
+       = link_to @journal_1&.name, journal_path(@journal_1)
+       |  and 
+       = link_to @journal_2&.name, journal_path(@journal_2)
+       | : 
        strong #{@affinity}%
-      ul.two_columns
-        - @authors.each do |author|
-          li
-            = link_to author.name, author_path(author)
+      p Authors who have published in both:
+      - if @authors.blank? 
+        | none
+      - else
+        ul.two_columns
+          - @authors.each do |author|
+            li
+              = link_to author.name, author_path(author)

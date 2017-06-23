@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402160501) do
+ActiveRecord::Schema.define(version: 20170618225404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20170402160501) do
     t.string   "pages"
     t.hstore   "categorization",   default: {},        null: false
     t.index ["journal_id"], name: "index_publications_on_journal_id", using: :btree
+    t.index ["publication_type"], name: "index_publications_on_publication_type", using: :btree
     t.index ["title"], name: "index_publications_on_title", using: :btree
   end
 
