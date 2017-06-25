@@ -28,6 +28,12 @@ class CategoryReconciler
     end
   end
 
+  def sel.reconcile_journal_with_high_affinity_journals(journal, average = {})
+    other_journals = journal.high_affinity_journals
+    normalized_average_values = normalize get_average(other_journals)
+    reconcile(journal, normalized_average_values, average)
+  end
+
   def self.reconcile_pubs_with_author(author, average = {})
     return if author.cat.blank?
     pubs = author.publications.articles

@@ -6,6 +6,9 @@ class JournalCategorizerJob
       CategoryReconciler.reconcile_journal_with_pubs(journal, average)
     end
     Journal.find(journal_ids).each do |journal|
+      CategoryReconciler.reconcile_journal_with_high_affinity_journals(journal, average)
+    end
+    Journal.find(journal_ids).each do |journal|
       CategoryReconciler.reconcile_pubs_with_journal(journal, average)
     end
   end

@@ -9,6 +9,11 @@ class Journal < ActiveRecord::Base
   scope :empty, -> { where.not(id: Journal.joins(:publications).ids) }
   scope :philosophy, -> { where(philosophy: true) }
 
+  def high_affinity_journals
+    ids = affinities.where("affinity > 30 AND NOT affinity > 100").pluck(:first_journal_id, :second_journal_id).uniq
+    Journal.where(ids: ids)
+  end
+
   def articles
     publications.articles
   end
