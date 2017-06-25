@@ -28,7 +28,7 @@ class CategoryReconciler
     end
   end
 
-  def sel.reconcile_journal_with_high_affinity_journals(journal, average = {})
+  def self.reconcile_journal_with_high_affinity_journals(journal, average = {})
     other_journals = journal.high_affinity_journals
     normalized_average_values = normalize get_average(other_journals)
     reconcile(journal, normalized_average_values, average)

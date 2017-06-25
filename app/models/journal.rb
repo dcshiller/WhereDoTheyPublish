@@ -10,8 +10,8 @@ class Journal < ActiveRecord::Base
   scope :philosophy, -> { where(philosophy: true) }
 
   def high_affinity_journals
-    ids = affinities.where("affinity > 30 AND NOT affinity > 100").pluck(:first_journal_id, :second_journal_id).uniq
-    Journal.where(ids: ids)
+    ids = affinities.where("affinity > 30 AND NOT affinity > 100").pluck(:first_journal_id, :second_journal_id).flatten.uniq
+    Journal.where(id: ids)
   end
 
   def articles
