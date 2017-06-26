@@ -10,8 +10,8 @@ class CategoryReconciler
 
   def self.reconcile_journal_with_pubs(journal, average = {})
     pubs = journal.publications.articles
-    normalized_average_values = normalize get_average(pubs)
-    reconcile(journal, normalized_average_values, average)
+    average = get_average_hash pubs
+    approach_average(journal, average)
   end
 
   def self.reconcile_author_with_pubs(author, average = {})
@@ -30,8 +30,8 @@ class CategoryReconciler
 
   def self.reconcile_journal_with_high_affinity_journals(journal, average = {})
     other_journals = journal.high_affinity_journals
-    normalized_average_values = normalize get_average(other_journals)
-    reconcile(journal, normalized_average_values, average)
+    average = get_average_hash other_journals
+    approach_average(journal, average)
   end
 
   def self.reconcile_pubs_with_author(author, average = {})
@@ -68,6 +68,13 @@ class CategoryReconciler
 
   def self.average?(hash, average)
     hash.all? { |k,v| v.to_i < average[k].to_i + 3 }
+  end
+
+  def self.approach_average(categorizable, average)
+    categorizable.cat = normalize Hash[ 
+        categorizable.cat.map { |k,v| [k, (v + average[k])/2 ] }
+      ]
+    categorizable.save
   end
 
   # private
