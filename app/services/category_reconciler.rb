@@ -9,20 +9,20 @@ class CategoryReconciler
   end
 
   def self.reconcile_journal_with_pubs(journal, average = {})
-    pubs = journal.publications.articles
+    pubs = journal.publications
     average = get_average_hash pubs
     approach_average(journal, average)
   end
 
   def self.reconcile_author_with_pubs(author, average = {})
-    pubs = author.publications.articles
-    normalized_average_values = normalize get_average(pubs)
-    reconcile(author, normalized_average_values, average)
+    pubs = author.publications
+    average = get_average_hash pubs
+    approach_average(author, average)
   end
 
   def self.reconcile_pubs_with_journal(journal, average = {})
     return if journal.cat.blank?
-    pubs = journal.publications.articles
+    pubs = journal.publications
     pubs.each do |pub|
       reconcile(pub, journal.cat, average)
     end
@@ -36,7 +36,7 @@ class CategoryReconciler
 
   def self.reconcile_pubs_with_author(author, average = {})
     return if author.cat.blank?
-    pubs = author.publications.articles
+    pubs = author.publications
     pubs.each do |pub|
       reconcile(pub, author.cat, average)
     end
@@ -44,7 +44,7 @@ class CategoryReconciler
 
   def self.reconcile_pubs_by_title_word(word, average = {})
     word = word.split("'")[0]
-    pubs = Publication.articles.where("COALESCE(title, display_title) LIKE '%#{word}%'")
+    pubs = Publication.where("COALESCE(title, display_title) LIKE '%#{word}%'")
     normalized_average_values = normalize get_average(pubs)
     return if average? normalized_average_values, average
     pubs.each do |pub|
