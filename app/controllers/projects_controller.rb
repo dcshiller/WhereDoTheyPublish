@@ -69,7 +69,8 @@ class ProjectsController < ApplicationController
     if params[:title]
       @journals = Journal.all
       @focused_projects = "Title Ngram Chart"
-      matching_pubs = Publication.where("title LIKE ?", "%#{params[:title]}%").articles.group("publication_year").count
+      matching_pubs = Publication.where("title LIKE ?", "%#{params[:title]}%").articles.
+                                  group("publication_year").count
       years = matching_pubs.keys
       total_pubs = Publication.articles.year(years).group(:publication_year).count
       @title_by_year = Hash[
