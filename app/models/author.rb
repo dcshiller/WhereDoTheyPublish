@@ -6,17 +6,15 @@ class Author < ActiveRecord::Base
   has_many :journals, through: :publications
   before_save :guess_gender
 
-
-  scope :middle_initial_consistent, ->(mi){ where("middle_initial ~* ?", "^" + mi.to_s + ".*") }
-  scope :having_five_pubs, -> { joins(:authorships).group("authors.id").having("COUNT(authorships.id) > 5") }
-  scope :published_in, -> (journal) { joins(:journals).where("journals.id": journal.id) }
-  scope :with_name, -> (name) { where(first_name: parse_name(name)[0], middle_initial: parse_name(name)[1], last_name: parse_name(name)[2])}
-  scope :with_name_like, -> (name) {
-                                      # where(first_name: [parse_name(name)[0], "", nil], middle_initial: [parse_name(name)[1], "", nil], last_name: [parse_name(name)[2], "", nil]).
-                                      where("first_name LIKE ? 
-                                            #{"AND middle_initial LIKE ?" if parse_name(name)[1]} 
-                                             AND last_name LIKE ?", *(parse_name(name).map{|n| (n || "") + '%'}))
-                                   }
+  scope :middle_initial_consistent, -> (mi) { where("middle_initial ~* ?", "^" + mi.to_s + ".*") }
+  scope :having_five_pubs,          -> { joins(:authorships).group("authors.id").having("COUNT(authorships.id) > 5") }
+  scope :published_in,              -> (journal) { joins(:journals).where("journals.id" => journal.id) }
+  scope :with_name,                 -> (name) { where(first_name: parse_name(name)[0], middle_initial: parse_name(name)[1], last_name: parse_name(name)[2])}
+  scope :with_name_like,            -> (name) {
+                                                  where("first_name LIKE ? 
+                                                        #{"AND middle_initial LIKE ?" if parse_name(name)[1]} 
+                                                         AND last_name LIKE ?", *(parse_name(name).map{|n| (n || "") + '%'}))
+                                               }
 
   def self.find_or_create_by_name(name)
     name = parse_name(name)
