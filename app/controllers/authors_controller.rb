@@ -5,12 +5,14 @@ class AuthorsController < ApplicationController
   def index
     @search_string = params[:name]
     @authors = @search_string ? Author.with_name_like(@search_string).paginate(page: params[:page], per_page: 6) : []
-    @none_found = true if @search_string && !@authors.exists?
+    @none_found = @search_string && !@authors.exists?
   
   end
 
   def show
-    @publications = @author.publications.articles.paginate(page: params[:page], per_page: 10).order(:publication_year, :volume, :number, :pages)
+    @publications = @author.publications.articles.
+                            paginate(page: params[:page], per_page: 10).
+                            order(:publication_year, :volume, :number, :pages)
     sift_categories(@author)
   end
 
@@ -47,6 +49,7 @@ class AuthorsController < ApplicationController
   end
 
   def author_params
-    params.require(:author).permit(:first_name, :last_name, :middle_initial, :birth_year, :death_year)
+    params.require(:author).
+           permit(:first_name, :last_name, :middle_initial, :birth_year, :death_year)
   end
 end

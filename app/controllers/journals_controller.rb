@@ -3,7 +3,8 @@ class JournalsController < ApplicationController
   before_action :find_journal, only: [:show, :edit, :update]
 
   def index
-    @journals = Journal.order(:name).paginate(page: params[:page], per_page: 30)
+    @journals = Journal.order(:name).
+                        paginate(page: params[:page], per_page: 30)
   end
 
   def show
@@ -23,13 +24,15 @@ class JournalsController < ApplicationController
 
   def affinities
     @journal = Journal.find(params[:journal_id])
-    @affinities = Affinity.for(@journal).includes(:journal_one).includes(:journal_two).compact.reject{ |a| a.affinity.nan? }.sort_by(&:affinity).reverse
+    @affinities = Affinity.for(@journal).includes(:journal_one, :journal_two).compact.
+                          reject{ |a| a.affinity.nan? }.
+                          sort_by(&:affinity).reverse
   end
 
   private
 
   def find_journal
-    @journal = Journal.includes(:publications).includes(:authors).find(params[:id])
+    @journal = Journal.includes(:publications, :authors).find(params[:id])
   end
 
   def set_show_values
@@ -38,6 +41,7 @@ class JournalsController < ApplicationController
   end
 
   def journal_params
-    params.require(:journal).permit(:name, :publication_start, :publication_end, :display_name)
+    params.require(:journal).
+           permit(:name, :publication_start, :publication_end, :display_name)
   end
 end
