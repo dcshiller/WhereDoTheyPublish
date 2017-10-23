@@ -1,5 +1,5 @@
 class JournalCategorizerJob
-    @queue = :queue
+  @queue = :queue
 
   def self.perform(journal_ids, average)
     Journal.find(journal_ids).each do |journal|

@@ -1,5 +1,4 @@
 class PublicationsController < ApplicationController
-  include ApplicationHelper
   before_action :set_show_values
 
   def index
