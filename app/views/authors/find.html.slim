@@ -2,7 +2,7 @@
   #display_panel
     h1 Authors
     hr
-    p Enter a name in the search field to search the authors in the database. Capitalization matters. If you are unsure of the name, you can also enter initials.
+    p Enter a name in the search field to search the authors in the database. If you are unsure of the name, you can also enter initials.
     = form_tag authors_path, method: 'get'
       = text_field_tag "name", @search_string, class: "search", placeholder: "author name"
       = submit_tag "Search"

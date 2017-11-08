@@ -3,7 +3,7 @@
   #display_panel
     h1 Publications
     hr
-    p Enter a title in the search field to search the publications in the database. Capitalization matters.
+    p Enter a title in the search field to search the publications in the database.
     = form_tag publications_path, method: 'get'
       = text_field_tag "title", @search_string, class: "search", placeholder: "title"
       br

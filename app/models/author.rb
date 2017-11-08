@@ -11,9 +11,9 @@ class Author < ActiveRecord::Base
   scope :published_in,              -> (journal) { joins(:journals).where("journals.id" => journal.id) }
   scope :with_name,                 -> (name) { where(first_name: parse_name(name)[0], middle_initial: parse_name(name)[1], last_name: parse_name(name)[2])}
   scope :with_name_like,            -> (name) {
-                                                  where("first_name LIKE ? 
-                                                        #{"AND middle_initial LIKE ?" if parse_name(name)[1]} 
-                                                         AND last_name LIKE ?", *(parse_name(name).map{|n| (n || "") + '%'}))
+                                                  where("first_name ILIKE ? 
+                                                        #{"AND middle_initial ILIKE ?" if parse_name(name)[1]} 
+                                                         AND last_name ILIKE ?", *(parse_name(name).map{|n| (n || "") + '%'}))
                                                }
 
   def self.find_or_create_by_name(name)

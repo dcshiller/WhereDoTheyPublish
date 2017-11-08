@@ -2,7 +2,7 @@
   #display_panel
     h1 Title Ngram
     hr
-    p This queries the database for articles with the search term in the title. Capitalization matters. Results are shown as a percentage of publications for the given year.
+    p This queries the database for articles with the search term in the title. Results are shown as a percentage of publications for the given year.
     p To view the articles with a given title word, see the #{link_to "publication page", publications_path}.
     = form_tag :title_ngram_chart_projects do
       .center.search= text_field_tag :title, "", placeholder: "Title Word"

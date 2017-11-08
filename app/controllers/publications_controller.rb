@@ -4,7 +4,7 @@ class PublicationsController < ApplicationController
   def index
     @search_string = params[:title]
     if @search_string
-      @publications =  Publication.articles.where("COALESCE(display_title, title) LIKE ?", "%#{@search_string&.split(" ")&.join("%")}%").
+      @publications =  Publication.articles.where("COALESCE(display_title, title) ILIKE ?", "%#{@search_string&.split(" ")&.join("%")}%").
                                    includes(:authors, :journal).
                                    order(:title).paginate(page: params[:page], per_page: 5)
     else
