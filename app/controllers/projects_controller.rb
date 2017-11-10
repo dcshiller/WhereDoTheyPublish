@@ -34,6 +34,7 @@ class ProjectsController < ApplicationController
   def journal_affinity_query
     @focused_projects = "Affinity"
     @journals = Journal.distinct.joins(:publications).where("publications.id IS NOT NULL").order(:name)
+    return render :journal_affinity_show if params[:journal_1] == params[:journal_2]
     @journal_1, @journal_2 = Journal.where(id: [params[:journal_1], params[:journal_2]])
     @affinity = @journal_1.co_publication_percentage @journal_2 unless [@journal_1.publications.count, @journal_2.publications.count].any?(&:zero?)
     @authors = Author.distinct.published_in(@journal_1) & Author.published_in(@journal_2)
@@ -56,19 +57,16 @@ class ProjectsController < ApplicationController
   end
 
   def gender_balance_chart
-    @journals = Journal.all
     @focused_projects = "Gender Balance Chart"
+    @journals = Journal.all
     @gender_by_year = {}
-    # @gender_by_year = Rails.cache.fetch('gender_chart') { Hash[
-    #     *(1876..2016).map { |year| [year, Publication.articles.year(year).joins(:authors).average(:gender).to_f] }.flatten
-    # ] }
     @gender_by_year = Rails.cache.fetch('gender_chart') { Publication.articles.joins(:authors).group(:publication_year).average(:gender) }
   end
 
   def title_ngram_chart
+    @focused_projects = "Title Ngram Chart"
     if params[:title]
       @journals = Journal.all
-      @focused_projects = "Title Ngram Chart"
       matching_pubs = Publication.where("title ILIKE ?", "%#{params[:title]}%").articles.
                                   group("publication_year").count
       years = matching_pubs.keys
