@@ -8,6 +8,12 @@ class CategoryReconciler
     cato.save
   end
 
+  def self.shave(cato, from_cat)
+    from_cat_val = cato.cat[from_cat]
+    cato.categorization[from_cat] = from_cat_val * 2 / 3
+    cato.save
+  end
+
   def self.reconcile_journal_with_pubs(journal, average = {})
     pubs = journal.publications
     average = get_average_hash pubs

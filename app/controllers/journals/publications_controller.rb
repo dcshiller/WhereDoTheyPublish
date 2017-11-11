@@ -13,7 +13,7 @@ class Journals::PublicationsController < ApplicationController
     @journal = Journal.find(params[:journal_id])
     @publications = @journal.articles.where(publication_year: @year).
                              paginate(page: params[:page], per_page: 100).
-                            order(:volume, :number, :pages, :title)
+                             order(:volume, :number, :pages, :title)
   end
 
   private
