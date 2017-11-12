@@ -1,10 +1,12 @@
 class JournalsController < ApplicationController
   before_action :set_show_values
   before_action :find_journal, only: [:show, :edit, :update]
+  include Categories
 
   def index
-    @journals = Journal.order(:name).
-                        paginate(page: params[:page], per_page: 30)
+    @cat = params[:cat]; @val = params[:value]
+    journals = @cat.blank? ? Journal : Journal.where_cat(@cat, @val)
+    @journals = journals.order(:name).paginate(page: params[:page], per_page: 30)
   end
 
   def show

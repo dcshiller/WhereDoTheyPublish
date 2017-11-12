@@ -10,7 +10,9 @@ class Journal < ActiveRecord::Base
   end
 
   scope :empty, -> { where.not(id: Journal.joins(:publications).ids) }
-  scope :philosophy, -> { where(philosophy: true) }
+  scope :where_cat, -> (cat, val) { Journal.where("CAST(categorization -> :cat AS integer) > :val", cat: cat, val: val) }
+
+
 
   def high_affinity_journals
     ids = affinities.where("affinity > 30 AND NOT affinity > 100").pluck(:first_journal_id, :second_journal_id).flatten.uniq

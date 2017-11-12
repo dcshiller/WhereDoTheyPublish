@@ -1,8 +1,18 @@
-
 #content_div
   #display_panel
     h1 Journals
     hr
+    = form_tag journals_path, method: :get
+      .line
+        .column
+          label Filter Category
+          = select_tag "cat", options_for_select(CATEGORIES.invert.merge(none: ""), @cat)
+        .column
+          label Threshold Value
+          br
+          = select_tag "value", options_for_select([10, 25, 50], @val)
+        .column
+          = submit_tag "Filter by category"
     ul.two_columns
       - @journals.each do |journal|
         li= link_to journal.proper_name, journal_path(journal)

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  helper Categories
 
   def sift_categories(categorizable)
     @categories = categorizable.cat.map { |k, v| [categorizable.category_name[k],v] if v > 0 }.compact
