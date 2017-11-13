@@ -8,9 +8,9 @@ class CategoryReconciler
     cato.save
   end
 
-  def self.shave(cato, from_cat)
+  def self.shave(cato, from_cat, amount)
     from_cat_val = cato.cat[from_cat]
-    cato.categorization[from_cat] = from_cat_val * 2 / 3
+    cato.categorization[from_cat] = (from_cat_val * amount).to_i
     cato.save
   end
 
@@ -77,10 +77,13 @@ class CategoryReconciler
   end
 
   def self.approach_average(categorizable, average)
-    categorizable.cat = normalize Hash[ 
-        categorizable.cat.map { |k,v| [k, (v + average[k])/2 ] }
+    categorizable.cat = normalize Hash[
+        categorizable.cat.map { |k,v| [k, ((v || 0) + average[k]) / 2] }
       ]
     categorizable.save
+  rescue
+    puts categorizable.class.to_s
+    puts categorizable.id
   end
 
   # private

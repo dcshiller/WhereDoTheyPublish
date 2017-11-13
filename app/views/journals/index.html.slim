@@ -6,6 +6,7 @@
       .line
         .column
           label Filter Category
+          br
           = select_tag "cat", options_for_select(CATEGORIES.invert.merge(none: ""), @cat)
         .column
           label Threshold Value
