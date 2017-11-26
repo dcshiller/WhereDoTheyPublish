@@ -7,6 +7,7 @@ gem 'pry-rails'
 gem 'redis'
 gem 'resque', "~> 1.22.0", require: 'resque/server'
 gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
+gem "font-awesome-rails"
 
 gem 'humanize'
 gem 'faraday'
