@@ -26,6 +26,10 @@ class Publication < ActiveRecord::Base
     @page_arr ||= pages.split("-").map(&:to_i)
   end
 
+  def any_volume_info?
+    [volume, number, pages].none? &:blank?
+  end
+
   def proper_title
     (display_title || title).to_s.html_safe
   end

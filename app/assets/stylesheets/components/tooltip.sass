@@ -1,0 +1,25 @@
+table
+  td.tooltip
+    overflow: visible
+    position: relative
+    .tooltip_text
+      display: none
+    &:hover .tooltip_text
+      background: ivory
+      border-radius: 10px
+      border-top-left-radius: 0px
+      border: 2px solid grey
+      border-top-width: 1px
+      border-left-width: 1px
+      box-shadow: 3px 3px lighten(grey, 20%)
+      display: block
+      left: 35px
+      overflow: visible
+      padding: 10px
+      position: absolute
+      text-align: left
+      top: 4px
+      width: max-content
+      z-index: 2
+      dt, dd
+        display: inline

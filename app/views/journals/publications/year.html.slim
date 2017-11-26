@@ -16,7 +16,7 @@
       tbody
         - @publications.each do |publication|
           tr
-            td= publication.volume.to_s + ":" + publication.number.to_s
+            td= publication.volume.to_s + ":" + publication.number.to_s if publication.any_volume_info?
             td= link_to publication.proper_title || "(title missing)", edit_publication_path(publication), class: "no_link_display"
             td= publication.primary_category_name
             td 
