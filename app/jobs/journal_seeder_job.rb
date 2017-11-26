@@ -21,7 +21,7 @@ class JournalSeederJob
                   po: ["Journal of Law, Medicine, and Ethics", "Political Theory", "Law and Philosophy", "Journal of Ethics and Social Philosophy", "Journal of Global Ethics", "Journal of Political Philosophy", "Philosophy and Public Affairs"],
                   pm: ["Phenomenology and the Cognitive Sciences", "Neuroethics", "Consciousness and Cognition", "Behavioral and Brain Studies", "Mind %", "Journal of Consciousness Studies", "Minds and Machines", "Journal of Mind and Behavior", "Review of Metaphysics"],
                   pr: ["Faith and Philosophy", "Religious Studies", "Ars Disputandi", "Augustinian Studies", "American Catholic Philosophical Quarterly", "International Journal for Philosophy of Religion", "Philosophy and Theology"],
-                  ps: ["Science and Engineering Ethics", "Hyle", "Journal for General Philosophy of Science", "Biology and Philosophy", "Brititsh Journal for the Philosophy of Science", "International Studies in the Philosophy of Science"]
+                  ps: ["Hyle", "Biology and Philosophy", "%Science%"]
               }
     journals.each do |category, names|
       names.each do |name|

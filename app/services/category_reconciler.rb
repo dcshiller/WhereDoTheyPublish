@@ -17,7 +17,7 @@ class CategoryReconciler
   def self.reconcile_journal_with_pubs(journal, average = {})
     pubs = journal.publications
     average = get_average_hash pubs
-    approach_average(journal, average)
+    equal_average(journal, average)
   end
 
   def self.reconcile_author_with_pubs(author, average = {})
@@ -78,8 +78,16 @@ class CategoryReconciler
 
   def self.approach_average(categorizable, average)
     categorizable.cat = normalize Hash[
-        categorizable.cat.map { |k,v| [k, ((v || 0) + average[k]) / 2] }
+        categorizable.cat.map { |k,v| [k, (v || 0) + average[k]] }
       ]
+    categorizable.save
+  rescue
+    puts categorizable.class.to_s
+    puts categorizable.id
+  end
+
+  def self.equal_average(categorizable, average)
+    categorizable.cat = average
     categorizable.save
   rescue
     puts categorizable.class.to_s
@@ -90,12 +98,12 @@ class CategoryReconciler
 
   def self.reconcile(reconcilee, values, average = {})
     new_values = Hash.new(0)
-    reconcilee.cat.each do |k,v|
-      new_values[k] = [70, [0, (v + (((values[k] || 0) - (average[k] || 0))))].max].min
+    reconcilee.cat.each do |k, v|
+      discount_value = (average[k] || 0) + [average[k] * 3 - 24, 0].max
+      adjusted_new_value = [0, v + (((values[k] || 0) - discount_value))].max
+      ceilinged_new_value = [40 + (adjusted_new_value / 2), adjusted_new_value].min
+      new_values[k] = ceilinged_new_value
     end
-    # (values.keys - reconcilee.cat.keys).each do |k|
-    #   new_values[k] = values[k]
-    # end
     reconcilee.cat = normalize new_values
     reconcilee.save
   end
